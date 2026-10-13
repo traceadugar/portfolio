@@ -8,6 +8,7 @@ const translations = {
     previous: 'Previous image', next: 'Next image', image: 'Image', of: 'of', selectImage: 'Show image', screenshot: 'screenshot',
     profilePhoto: 'Profile photo of Trace Dugar', notFound: 'Page not found', notFoundDetail: 'This address does not match a page in this portfolio.',
     backHome: 'Return home', copyright: 'Copyright',
+    pauseAnimation: 'Pause animation', playAnimation: 'Play animation',
   },
   ja: {
     home: 'ホーム', about: 'プロフィール', darkMode: 'ダークモード', github: '現在のGitHubプロフィールを開く',
@@ -18,6 +19,7 @@ const translations = {
     previous: '前の画像', next: '次の画像', image: '画像', of: '/', selectImage: '画像を表示', screenshot: 'スクリーンショット',
     profilePhoto: 'Trace Dugarのプロフィール写真', notFound: 'ページが見つかりません', notFoundDetail: 'このアドレスに対応するページはありません。',
     backHome: 'ホームに戻る', copyright: '著作権',
+    pauseAnimation: 'アニメーションを停止', playAnimation: 'アニメーションを再生',
   },
 };
 

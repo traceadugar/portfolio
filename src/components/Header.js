@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { readPreference, savePreference } from '../translations';
+import SeasideBackground from './SeasideBackground';
 
 export default function Header({ sharedData, resumeBasicInfo, labels, theme, changeTheme }) {
+  const [paused, setPaused] = useState(() => readPreference('portfolioMotion', 'playing') === 'paused');
+  const toggleMotion = () => {
+    const nextPaused = !paused;
+    setPaused(nextPaused);
+    savePreference('portfolioMotion', nextPaused ? 'paused' : 'playing');
+  };
   const github = sharedData?.social.find(item => item.name === 'GitHub')?.url;
   const linkedin = sharedData?.social.find(item => item.name === 'LinkedIn')?.url;
   return (
-    <header id="home" className="site-header">
+    <header id="home" className="site-header" data-motion={paused ? 'paused' : 'playing'}>
+      <SeasideBackground theme={theme} paused={paused} />
       <nav className="site-nav" aria-label={labels.home}>
         <NavLink to="/" end>{labels.home}</NavLink>
         <NavLink to="/about">{labels.about}</NavLink>
@@ -14,6 +23,9 @@ export default function Header({ sharedData, resumeBasicInfo, labels, theme, cha
           className={`theme-toggle ${theme}`} onClick={changeTheme}>
           <span aria-hidden="true">{theme === 'dark' ? '☀' : '☾'}</span>
           <span className="theme-toggle-knob" aria-hidden="true" />
+        </button>
+        <button type="button" className="motion-toggle" onClick={toggleMotion}>
+          {paused ? labels.playAnimation : labels.pauseAnimation}
         </button>
       </nav>
       <div className="header-content">

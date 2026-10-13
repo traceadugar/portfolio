@@ -7,7 +7,6 @@ body[data-theme=dark] .project-date {
 }
 body[data-theme=dark] header {
   background-color: #989898;
-  background-image: url("https://media0.giphy.com/media/rzeWnbH8Uc5Y4/giphy.gif?cid=ecf05e47wf1j0ivnwqccbiovgi0rn5tbkqzhlwnu8ejk2gu8&rid=giphy.gif&ct=g");
 }
 body[data-theme=dark] header h1 {
   color: #dcddec;
@@ -99,8 +98,7 @@ header {
   background-size: cover;
   text-align: center;
   overflow: hidden;
-  background-image: url("https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNDVhN2FmMmFmN2YyMWI1MDRmYTE5NjZmMDdkOGZiZDMwZDQzNjU1ZiZjdD1n/JUwa2qSoTwcxv0gFJh/giphy.gif");
-  background-size: cover;
+  background-color: #254356;
 }
 
 .project-date {
@@ -331,13 +329,51 @@ footer a:focus {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.58));
+  z-index: 1;
+  background: linear-gradient(rgba(0, 0, 0, .22), rgba(0, 0, 0, .46));
   pointer-events: none;
+}
+
+.seaside-background, .seaside-poster, .seaside-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.seaside-poster {
+  background-size: cover;
+  background-position: center 60%;
+}
+
+.seaside-poster-dusk {
+  transition: opacity 1.2s ease-in-out;
+}
+
+.seaside-canvas { opacity: 0; }
+.seaside-background[data-ready="true"] .seaside-canvas { opacity: 1; }
+.seaside-video { display: none; }
+
+.motion-toggle {
+  border: 1px solid rgba(255, 255, 255, .6);
+  border-radius: .5rem;
+  padding: .6rem .9rem;
+  min-height: 4.4rem;
+  color: #fff;
+  background: rgba(0, 0, 0, .35);
+  font-size: 1.2rem;
 }
 
 .site-nav, .header-content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
+}
+
+#about, #portfolio, #resume, footer, .card, .polaroid span, .section-title,
+.project-date, .project-title-settings, .archive-intro, .archive-label,
+.theme-toggle, .theme-toggle-knob, .experience-badge, .main-badge {
+  transition: background-color 1.2s ease-in-out, color 1.2s ease-in-out, border-color 1.2s ease-in-out;
 }
 
 .site-nav {
@@ -701,6 +737,7 @@ body[data-theme=dark] .experience-summary {
   .site-header {
     padding: 0 1rem 3rem;
   }
+  .seaside-poster { background-position: 31% center; }
   .site-nav {
     font-size: 1.3rem;
   }
@@ -721,11 +758,11 @@ body[data-theme=dark] .experience-summary {
   }
 }
 @media (prefers-reduced-motion: reduce) {
-  .site-header {
-    background-image: none !important;
-    background-color: #254356;
-  }
-  .foto div {
+  .seaside-canvas { display: none; }
+  .motion-toggle { display: none; }
+  .seaside-poster-dusk, #about, #portfolio, #resume, footer, .card, .polaroid span,
+  .section-title, .project-date, .project-title-settings, .archive-intro,
+  .archive-label, .theme-toggle, .theme-toggle-knob, .experience-badge, .main-badge, .foto div {
     transition: none;
   }
 }

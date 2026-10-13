@@ -60,4 +60,12 @@ npm run optimize:images
 npm run build
 ```
 
-Thumbnails are checked into Git, so Netlify does not need to regenerate them. The animated header backgrounds remain part of the current design; replacing those assets belongs to the planned aesthetic overhaul.
+Thumbnails are checked into Git, so Netlify does not need to regenerate them.
+
+## Seaside background
+
+The custom header shows a miniature California seaside town with Trace's stylized avatar in modern clothes. Light theme uses the sunny scene; dark theme uses its matching late-dusk scene. Only the ocean and a narrow band of surf washing up the sand move. The wave cycle uses periodic displacement, with an identical virtual start/end frame; the repeated endpoint is omitted from playback.
+
+Desktop and mobile MP4 assets live in `public/images/backgrounds/`. Each video frame contains the day and dusk scenes side by side. A single video supplies both halves to the header canvas, keeping the waves at exactly the same point in the four-second cycle. The theme switch blends those halves over 1.2 seconds without replacing the video or seeking its playback clock. Reversing the switch during a fade starts from the current blend.
+
+Pause freezes the current wave position and still permits a lighting fade. Reduced motion uses static posters without loading the video. Posters also provide a fallback if playback or canvas rendering fails. Animation controls are translated, and the visitor's pause preference persists locally. Mobile visitors receive a smaller video; canvas redraws skip unchanged frames when the theme is stable. The original generated artwork and prompts are retained in `assets/source/`.

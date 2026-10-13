@@ -5,6 +5,8 @@ import english from '../public/res_primaryLanguage.json';
 import japanese from '../public/res_secondaryLanguage.json';
 import shared from '../public/portfolio_shared_data.json';
 
+jest.mock('./components/SeasideBackground', () => () => null);
+
 beforeEach(() => {
   window.localStorage.clear();
   document.body.dataset.theme = 'light';
@@ -105,4 +107,17 @@ test('unknown addresses explain the missing page and provide a way home', async 
   render(<App />);
   expect(await screen.findByRole('heading', { name: 'Page not found' })).toBeInTheDocument();
   expect(screen.getByRole('link', { name: 'Return home' })).toHaveAttribute('href', '/');
+});
+
+test('the background can be paused and that preference survives a reload', async () => {
+  render(<App />);
+  await screen.findByRole('heading', { name: 'Experience' });
+  fireEvent.click(screen.getByRole('button', { name: 'Pause animation' }));
+  expect(document.querySelector('header')).toHaveAttribute('data-motion', 'paused');
+  expect(window.localStorage.getItem('portfolioMotion')).toBe('paused');
+  cleanup();
+  render(<App />);
+  await screen.findByRole('heading', { name: 'Experience' });
+  fireEvent.click(screen.getByRole('button', { name: 'Play animation' }));
+  expect(document.querySelector('header')).toHaveAttribute('data-motion', 'playing');
 });
