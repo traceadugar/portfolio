@@ -5,6 +5,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import About from './components/About';
 import Home from './components/Home';
+import RouteNavigation from './components/RouteNavigation';
 import { getLabels, readPreference, savePreference } from './translations';
 
 async function loadJson(path) {
@@ -28,6 +29,7 @@ class App extends Component {
 
   componentDidMount() {
     document.body.dataset.theme = this.state.theme;
+    this.updateThemeColor(this.state.theme);
     document.documentElement.lang = this.state.language;
     this.loadPortfolio(this.state.language);
   }
@@ -72,7 +74,13 @@ class App extends Component {
     const theme = this.state.theme === 'dark' ? 'light' : 'dark';
     this.setState({ theme });
     document.body.dataset.theme = theme;
+    this.updateThemeColor(theme);
     savePreference('portfolioTheme', theme);
+  };
+
+  updateThemeColor = theme => {
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.content = theme === 'dark' ? '#051026' : '#fff8e8';
   };
 
   render() {
@@ -80,9 +88,11 @@ class App extends Component {
     const labels = getLabels(language);
     return (
       <Router>
+        <RouteNavigation ready={Boolean(resumeData && sharedData)} />
         <Header sharedData={sharedData?.basic_info} resumeBasicInfo={resumeData?.basic_info}
-          labels={labels} theme={theme} changeTheme={this.changeTheme} />
-        <main>
+          labels={labels} theme={theme} changeTheme={this.changeTheme} language={language}
+          applyPickedLanguage={this.loadPortfolio} loading={loading} />
+        <main id="main-content" tabIndex="-1">
           {loading && <p className="portfolio-status" role="status">{labels.loading}</p>}
           {error && <div className="portfolio-status" role="alert">
             <p>{labels.loadError}</p>
@@ -90,7 +100,7 @@ class App extends Component {
           </div>}
           {resumeData && sharedData && <Routes>
             <Route path="/" element={<Home resumeData={resumeData} sharedData={sharedData} labels={labels} />} />
-            <Route path="/about" element={<About resumeBasicInfo={resumeData.basic_info} labels={labels} />} />
+            <Route path="/about" element={<About resumeBasicInfo={resumeData.basic_info} sharedBasicInfo={sharedData.basic_info} labels={labels} />} />
             <Route path="*" element={<section className="portfolio-status">
               <h2>{labels.notFound}</h2><p>{labels.notFoundDetail}</p><Link to="/">{labels.backHome}</Link>
             </section>} />

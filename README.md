@@ -19,7 +19,7 @@ npm test -- --watchAll=false --runInBand
 npm run build
 ```
 
-The regression suite covers routing, Japanese localization, timeline order, project galleries, recoverable data errors, and saved theme preferences. Also inspect the production build in a browser at desktop and narrow mobile widths.
+The regression suite covers routing and section navigation, Japanese localization, timeline order, keyboard project galleries and focus restoration, recoverable data errors, saved preferences, synchronized lighting transitions, and reduced-motion/media fallbacks. Also inspect the production build in a browser at desktop and narrow mobile widths.
 
 ## Update content
 
@@ -48,8 +48,8 @@ The site was recovered from the original repository and reconnected to the curre
 - English and Japanese language buttons always show their native names: `English` and `日本語`.
 - Shared data and each translation load once per app session. Failed requests can be retried, and reloading the page checks the deployed files again.
 - Project details load in a separate JavaScript chunk when a card opens. React Bootstrap remains responsible for modal focus, Escape dismissal, and focus restoration.
-- The timeline uses an ordered list and static CSS rather than a JavaScript timeline package or visibility observer.
-- Bootstrap Sass imports only the grid, typography, card, badge, modal, and supporting styles used by the site. Retired slider styles, switch packages, service-worker scaffolding, and deployment scripts were removed.
+- The timeline uses a single ordered list with dates first. It preserves newest-first chronology and the same reading order on desktop and mobile.
+- Bootstrap supplies the modal, transition, reset, and accessibility helpers. The layout and component styles use native CSS grid and flexbox. Retired grid/card/badge utilities and the old alternating timeline stylesheet were removed.
 - Local SVGs replace the external icon fonts and Iconify runtime. Icon sources and licenses are in `public/licenses/`.
 - Responsive WebP thumbnails reduce card and profile transfers. The original screenshots remain unchanged and are used in the gallery.
 
@@ -69,3 +69,15 @@ The custom header shows a miniature California seaside town with Trace's stylize
 Desktop and mobile MP4 assets live in `public/images/backgrounds/`. Each video frame contains the day and dusk scenes side by side. A single video supplies both halves to the header canvas, keeping the waves at exactly the same point in the four-second cycle. The theme switch blends those halves over 1.2 seconds without replacing the video or seeking its playback clock. Reversing the switch during a fade starts from the current blend.
 
 Pause freezes the current wave position and still permits a lighting fade. Reduced motion uses static posters without loading the video. Posters also provide a fallback if playback or canvas rendering fails. Animation controls are translated, and the visitor's pause preference persists locally. Mobile visitors receive a smaller video; canvas redraws skip unchanged frames when the theme is stable. The original generated artwork and prompts are retained in `assets/source/`.
+
+## Seaside interface
+
+The interface extends the artwork through warm sand surfaces, dark teal controls, terracotta accents, rounded panels, and lightly raised buttons. Dusk uses ocean and violet surfaces with lantern gold and lavender accents. Colors were sampled from the approved GIF frames and adjusted for readable contrast; the samples, coordinates, derivations, and contrast checks are retained in `assets/design/seaside-palette.json`. Edit the theme tokens at the top of `src/App.scss` rather than adding unrelated colors to individual components.
+
+Text and its surface change together when switching themes. Tweening light text and dark text alongside opposing background colors produced an unreadable midpoint, so the content palette switches together while the animated scene keeps its 1.2-second lighting fade. Reduced-motion settings also remove hover movement and transitions.
+
+Project cards show a short description, technology chips, archive status, and a clear details action; XLRX's delivered client work appears first. The gallery keeps the original screenshots, supports arrow keys and Escape, and restores focus to the card on closing. About separates biography, qualifications, and contact actions. Qualification text is based on the supplied profile; Linux+ is explicitly marked as study in progress.
+
+The sticky navigation offers page and section links, language selection, theme, and motion controls. `RouteNavigation` waits for content before following a section fragment and places keyboard focus at the destination. Navigation uses React Router links to preserve the shared video clock. A skip link, visible focus indicators, labelled icon controls, and touch targets of at least 44 pixels support keyboard and mobile use.
+
+[Nunito Sans](https://fontsource.org/fonts/nunito-sans/about) is self-hosted as one 31 KB variable Latin WOFF2 file, sourced from Fontsource's npm package version 5.3.0. Its original SIL Open Font License is in `public/licenses/nunito-sans.txt`. Japanese uses the visitor's installed Japanese font fallback. Original rounded `shore-*` SVGs live in `Icon.js`; technology and social brand symbols retain the licensed local sprite. No external font or icon service is required.

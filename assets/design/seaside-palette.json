@@ -1,0 +1,635 @@
+{
+  "source": {
+    "day": {
+      "file": "seaside-town-loop.gif",
+      "width": 960,
+      "height": 540
+    },
+    "dusk": {
+      "file": "seaside-town-dusk-loop.gif",
+      "width": 960,
+      "height": 540
+    }
+  },
+  "samples": {
+    "day": {
+      "sand": {
+        "centerNormalized": [
+          0.5,
+          0.625
+        ],
+        "extentNormalized": 0.025,
+        "average": "#fee7b3",
+        "median": "#feecb9",
+        "pixelRegion": {
+          "left": 468,
+          "top": 330,
+          "width": 24,
+          "height": 14
+        }
+      },
+      "parchment": {
+        "centerNormalized": [
+          0.024,
+          0.21
+        ],
+        "extentNormalized": 0.008,
+        "average": "#d6b19b",
+        "median": "#d9b49d",
+        "pixelRegion": {
+          "left": 19,
+          "top": 111,
+          "width": 8,
+          "height": 4
+        }
+      },
+      "seaTeal": {
+        "centerNormalized": [
+          0.44,
+          0.829
+        ],
+        "extentNormalized": 0.02,
+        "average": "#2bbfd6",
+        "median": "#29bfd7",
+        "pixelRegion": {
+          "left": 412,
+          "top": 442,
+          "width": 19,
+          "height": 11
+        }
+      },
+      "darkOcean": {
+        "centerNormalized": [
+          0.93,
+          0.866
+        ],
+        "extentNormalized": 0.028,
+        "average": "#2f93db",
+        "median": "#3395db",
+        "pixelRegion": {
+          "left": 879,
+          "top": 460,
+          "width": 27,
+          "height": 15
+        }
+      },
+      "terracotta": {
+        "centerNormalized": [
+          0.265,
+          0.175
+        ],
+        "extentNormalized": 0.016,
+        "average": "#da815c",
+        "median": "#d57d5f",
+        "pixelRegion": {
+          "left": 246,
+          "top": 90,
+          "width": 15,
+          "height": 9
+        }
+      },
+      "foliage": {
+        "centerNormalized": [
+          0.535,
+          0.185
+        ],
+        "extentNormalized": 0.018,
+        "average": "#7f934b",
+        "median": "#839d47",
+        "pixelRegion": {
+          "left": 504,
+          "top": 95,
+          "width": 17,
+          "height": 10
+        }
+      },
+      "lanternLight": {
+        "centerNormalized": [
+          0.176,
+          0.304
+        ],
+        "extentNormalized": 0.012,
+        "average": "#f6dcaf",
+        "median": "#feecb9",
+        "pixelRegion": {
+          "left": 163,
+          "top": 160,
+          "width": 12,
+          "height": 6
+        }
+      },
+      "sky": {
+        "centerNormalized": [
+          0.776,
+          0.06
+        ],
+        "extentNormalized": 0.03,
+        "average": "#71c0fd",
+        "median": "#73c1fd",
+        "pixelRegion": {
+          "left": 730,
+          "top": 24,
+          "width": 29,
+          "height": 16
+        }
+      },
+      "cloud": {
+        "centerNormalized": [
+          0.654,
+          0.054
+        ],
+        "extentNormalized": 0.019,
+        "average": "#e1edf9",
+        "median": "#dfecf9",
+        "pixelRegion": {
+          "left": 618,
+          "top": 24,
+          "width": 18,
+          "height": 10
+        }
+      },
+      "duskViolet": {
+        "centerNormalized": [
+          0.741,
+          0.11
+        ],
+        "extentNormalized": 0.025,
+        "average": "#7fc1f0",
+        "median": "#87cefd",
+        "pixelRegion": {
+          "left": 699,
+          "top": 52,
+          "width": 24,
+          "height": 14
+        }
+      },
+      "cloudLavender": {
+        "centerNormalized": [
+          0.843,
+          0.135
+        ],
+        "extentNormalized": 0.018,
+        "average": "#91d4fc",
+        "median": "#91d4fc",
+        "pixelRegion": {
+          "left": 800,
+          "top": 68,
+          "width": 17,
+          "height": 10
+        }
+      },
+      "shutterBlue": {
+        "centerNormalized": [
+          0.077,
+          0.263
+        ],
+        "extentNormalized": 0.008,
+        "average": "#6f90b1",
+        "median": "#728fac",
+        "pixelRegion": {
+          "left": 70,
+          "top": 139,
+          "width": 8,
+          "height": 4
+        }
+      }
+    },
+    "dusk": {
+      "sand": {
+        "centerNormalized": [
+          0.5,
+          0.625
+        ],
+        "extentNormalized": 0.025,
+        "average": "#bd7c72",
+        "median": "#bd7e73",
+        "pixelRegion": {
+          "left": 468,
+          "top": 330,
+          "width": 24,
+          "height": 14
+        }
+      },
+      "parchment": {
+        "centerNormalized": [
+          0.024,
+          0.21
+        ],
+        "extentNormalized": 0.008,
+        "average": "#ac7678",
+        "median": "#a97375",
+        "pixelRegion": {
+          "left": 19,
+          "top": 111,
+          "width": 8,
+          "height": 4
+        }
+      },
+      "seaTeal": {
+        "centerNormalized": [
+          0.44,
+          0.829
+        ],
+        "extentNormalized": 0.02,
+        "average": "#886b72",
+        "median": "#8f5f73",
+        "pixelRegion": {
+          "left": 412,
+          "top": 442,
+          "width": 19,
+          "height": 11
+        }
+      },
+      "darkOcean": {
+        "centerNormalized": [
+          0.93,
+          0.866
+        ],
+        "extentNormalized": 0.028,
+        "average": "#113888",
+        "median": "#0f3889",
+        "pixelRegion": {
+          "left": 879,
+          "top": 460,
+          "width": 27,
+          "height": 15
+        }
+      },
+      "terracotta": {
+        "centerNormalized": [
+          0.265,
+          0.175
+        ],
+        "extentNormalized": 0.016,
+        "average": "#742d34",
+        "median": "#782e36",
+        "pixelRegion": {
+          "left": 246,
+          "top": 90,
+          "width": 15,
+          "height": 9
+        }
+      },
+      "foliage": {
+        "centerNormalized": [
+          0.535,
+          0.185
+        ],
+        "extentNormalized": 0.018,
+        "average": "#3b392c",
+        "median": "#393e2e",
+        "pixelRegion": {
+          "left": 504,
+          "top": 95,
+          "width": 17,
+          "height": 10
+        }
+      },
+      "lanternLight": {
+        "centerNormalized": [
+          0.176,
+          0.304
+        ],
+        "extentNormalized": 0.012,
+        "average": "#fce0a2",
+        "median": "#fded9e",
+        "pixelRegion": {
+          "left": 163,
+          "top": 160,
+          "width": 12,
+          "height": 6
+        }
+      },
+      "sky": {
+        "centerNormalized": [
+          0.776,
+          0.06
+        ],
+        "extentNormalized": 0.03,
+        "average": "#4a4fae",
+        "median": "#464dae",
+        "pixelRegion": {
+          "left": 730,
+          "top": 24,
+          "width": 29,
+          "height": 16
+        }
+      },
+      "cloud": {
+        "centerNormalized": [
+          0.654,
+          0.054
+        ],
+        "extentNormalized": 0.019,
+        "average": "#3443a4",
+        "median": "#3241a2",
+        "pixelRegion": {
+          "left": 618,
+          "top": 24,
+          "width": 18,
+          "height": 10
+        }
+      },
+      "duskViolet": {
+        "centerNormalized": [
+          0.741,
+          0.11
+        ],
+        "extentNormalized": 0.025,
+        "average": "#5b4b99",
+        "median": "#5d50a6",
+        "pixelRegion": {
+          "left": 699,
+          "top": 52,
+          "width": 24,
+          "height": 14
+        }
+      },
+      "cloudLavender": {
+        "centerNormalized": [
+          0.843,
+          0.135
+        ],
+        "extentNormalized": 0.018,
+        "average": "#845aa3",
+        "median": "#8d5fa5",
+        "pixelRegion": {
+          "left": 800,
+          "top": 68,
+          "width": 17,
+          "height": 10
+        }
+      },
+      "shutterBlue": {
+        "centerNormalized": [
+          0.077,
+          0.263
+        ],
+        "extentNormalized": 0.008,
+        "average": "#4d5177",
+        "median": "#4e4f73",
+        "pixelRegion": {
+          "left": 70,
+          "top": 139,
+          "width": 8,
+          "height": 4
+        }
+      }
+    }
+  },
+  "tokens": {
+    "day": {
+      "page": {
+        "hex": "#fff8e8",
+        "sourceSample": "sand",
+        "sourceHex": "#fee7b3",
+        "mixTarget": "#ffffff",
+        "mixFraction": 0.7
+      },
+      "surface": {
+        "hex": "#fffcf6",
+        "sourceSample": "sand",
+        "sourceHex": "#fee7b3",
+        "mixTarget": "#ffffff",
+        "mixFraction": 0.88
+      },
+      "surfaceAlt": {
+        "hex": "#fff5e1",
+        "sourceSample": "sand",
+        "sourceHex": "#fee7b3",
+        "mixTarget": "#ffffff",
+        "mixFraction": 0.6
+      },
+      "ink": {
+        "hex": "#081823",
+        "sourceSample": "darkOcean",
+        "sourceHex": "#2f93db",
+        "mixTarget": "#000000",
+        "mixFraction": 0.84
+      },
+      "muted": {
+        "hex": "#133b58",
+        "sourceSample": "darkOcean",
+        "sourceHex": "#2f93db",
+        "mixTarget": "#000000",
+        "mixFraction": 0.6
+      },
+      "accent": {
+        "hex": "#16636f",
+        "sourceSample": "seaTeal",
+        "sourceHex": "#2bbfd6",
+        "mixTarget": "#000000",
+        "mixFraction": 0.48
+      },
+      "accentInk": {
+        "hex": "#fffcf6",
+        "sourceSample": "sand",
+        "sourceHex": "#fee7b3",
+        "mixTarget": "#ffffff",
+        "mixFraction": 0.88
+      },
+      "secondary": {
+        "hex": "#834d37",
+        "sourceSample": "terracotta",
+        "sourceHex": "#da815c",
+        "mixTarget": "#000000",
+        "mixFraction": 0.4
+      },
+      "secondaryInk": {
+        "hex": "#fffcf6",
+        "sourceSample": "sand",
+        "sourceHex": "#fee7b3",
+        "mixTarget": "#ffffff",
+        "mixFraction": 0.88
+      },
+      "border": {
+        "hex": "#82765b",
+        "sourceSample": "sand",
+        "sourceHex": "#fee7b3",
+        "mixTarget": "#000000",
+        "mixFraction": 0.49
+      },
+      "decorativeBorder": {
+        "hex": "#e5d0a1",
+        "sourceSample": "sand",
+        "sourceHex": "#fee7b3",
+        "mixTarget": "#000000",
+        "mixFraction": 0.1
+      },
+      "focus": {
+        "hex": "#114c56",
+        "sourceSample": "seaTeal",
+        "sourceHex": "#2bbfd6",
+        "mixTarget": "#000000",
+        "mixFraction": 0.6
+      },
+      "foliage": {
+        "hex": "#434e28",
+        "sourceSample": "foliage",
+        "sourceHex": "#7f934b",
+        "mixTarget": "#000000",
+        "mixFraction": 0.47
+      },
+      "wash": {
+        "hex": "#dff5f9",
+        "sourceSample": "seaTeal",
+        "sourceHex": "#2bbfd6",
+        "mixTarget": "#ffffff",
+        "mixFraction": 0.85
+      }
+    },
+    "dusk": {
+      "page": {
+        "hex": "#051026",
+        "sourceSample": "darkOcean",
+        "sourceHex": "#113888",
+        "mixTarget": "#000000",
+        "mixFraction": 0.72
+      },
+      "surface": {
+        "hex": "#1e2046",
+        "sourceSample": "sky",
+        "sourceHex": "#4a4fae",
+        "mixTarget": "#000000",
+        "mixFraction": 0.6
+      },
+      "surfaceAlt": {
+        "hex": "#292b60",
+        "sourceSample": "sky",
+        "sourceHex": "#4a4fae",
+        "mixTarget": "#000000",
+        "mixFraction": 0.45
+      },
+      "ink": {
+        "hex": "#f2e5e3",
+        "sourceSample": "sand",
+        "sourceHex": "#bd7c72",
+        "mixTarget": "#ffffff",
+        "mixFraction": 0.8
+      },
+      "muted": {
+        "hex": "#cebdda",
+        "sourceSample": "cloudLavender",
+        "sourceHex": "#845aa3",
+        "mixTarget": "#ffffff",
+        "mixFraction": 0.6
+      },
+      "accent": {
+        "hex": "#fce0a2",
+        "sourceSample": "lanternLight",
+        "sourceHex": "#fce0a2",
+        "mixTarget": null,
+        "mixFraction": 0
+      },
+      "accentInk": {
+        "hex": "#051026",
+        "sourceSample": "darkOcean",
+        "sourceHex": "#113888",
+        "mixTarget": "#000000",
+        "mixFraction": 0.72
+      },
+      "secondary": {
+        "hex": "#cebdda",
+        "sourceSample": "cloudLavender",
+        "sourceHex": "#845aa3",
+        "mixTarget": "#ffffff",
+        "mixFraction": 0.6
+      },
+      "secondaryInk": {
+        "hex": "#1e2046",
+        "sourceSample": "sky",
+        "sourceHex": "#4a4fae",
+        "mixTarget": "#000000",
+        "mixFraction": 0.6
+      },
+      "border": {
+        "hex": "#af94c3",
+        "sourceSample": "cloudLavender",
+        "sourceHex": "#845aa3",
+        "mixTarget": "#ffffff",
+        "mixFraction": 0.35
+      },
+      "decorativeBorder": {
+        "hex": "#4a4fae",
+        "sourceSample": "sky",
+        "sourceHex": "#4a4fae",
+        "mixTarget": null,
+        "mixFraction": 0
+      },
+      "focus": {
+        "hex": "#fce0a2",
+        "sourceSample": "lanternLight",
+        "sourceHex": "#fce0a2",
+        "mixTarget": null,
+        "mixFraction": 0
+      },
+      "foliage": {
+        "hex": "#c4c4c0",
+        "sourceSample": "foliage",
+        "sourceHex": "#3b392c",
+        "mixTarget": "#ffffff",
+        "mixFraction": 0.7
+      },
+      "wash": {
+        "hex": "#0c275f",
+        "sourceSample": "darkOcean",
+        "sourceHex": "#113888",
+        "mixTarget": "#000000",
+        "mixFraction": 0.3
+      }
+    }
+  },
+  "contrast": {
+    "day": {
+      "inkOnpage": 17.03,
+      "mutedOnpage": 11.06,
+      "accentOnpage": 6.51,
+      "secondaryOnpage": 6.44,
+      "borderOnpage": 4.23,
+      "focusOnpage": 9.05,
+      "inkOnsurface": 17.6,
+      "mutedOnsurface": 11.43,
+      "accentOnsurface": 6.73,
+      "secondaryOnsurface": 6.65,
+      "borderOnsurface": 4.37,
+      "focusOnsurface": 9.36,
+      "inkOnsurfaceAlt": 16.65,
+      "mutedOnsurfaceAlt": 10.81,
+      "accentOnsurfaceAlt": 6.36,
+      "secondaryOnsurfaceAlt": 6.3,
+      "borderOnsurfaceAlt": 4.14,
+      "focusOnsurfaceAlt": 8.85,
+      "accentLabel": 6.73,
+      "secondaryLabel": 6.65
+    },
+    "dusk": {
+      "inkOnpage": 15.42,
+      "mutedOnpage": 10.75,
+      "accentOnpage": 14.72,
+      "secondaryOnpage": 10.75,
+      "borderOnpage": 7.08,
+      "focusOnpage": 14.72,
+      "inkOnsurface": 12.66,
+      "mutedOnsurface": 8.82,
+      "accentOnsurface": 12.09,
+      "secondaryOnsurface": 8.82,
+      "borderOnsurface": 5.81,
+      "focusOnsurface": 12.09,
+      "inkOnsurfaceAlt": 10.62,
+      "mutedOnsurfaceAlt": 7.41,
+      "accentOnsurfaceAlt": 10.15,
+      "secondaryOnsurfaceAlt": 7.41,
+      "borderOnsurfaceAlt": 4.88,
+      "focusOnsurfaceAlt": 10.15,
+      "accentLabel": 14.72,
+      "secondaryLabel": 8.82
+    }
+  },
+  "method": "Arithmetic mean of sRGB pixels in normalized rectangular regions of the first decoded GIF frame. Tokens are linear RGB-channel mixes with black/white for readable text and controls. WCAG relative-luminance formula is used for contrast, not raw-channel brightness.",
+  "requirements": {
+    "bodyText": 4.5,
+    "meaningfulControls": 3,
+    "note": "Decorative border may be below 3; use the border token for actual control outlines. Accent/secondary labels must meet 4.5. Focus against supported surfaces must meet 3."
+  },
+  "passed": true
+}

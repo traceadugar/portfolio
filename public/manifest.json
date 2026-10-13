@@ -3,13 +3,13 @@
   "name": "Trace Dugar's Portfolio",
   "icons": [
     {
-      "src": "/marker.ico",
+      "src": "/favicon.svg",
       "sizes": "any",
-      "type": "image/x-icon"
+      "type": "image/svg+xml"
     }
   ],
   "start_url": "/",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#fff8e8",
+  "background_color": "#fff8e8"
 }

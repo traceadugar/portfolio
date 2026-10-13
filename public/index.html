@@ -3,14 +3,23 @@
   <head>
     <title>Trace Dugar | Software Development &amp; IT Operations</title>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/marker.ico" />
+    <link rel="icon" type="image/svg+xml" href="%PUBLIC_URL%/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#fff8e8" />
     <meta name="description" content="Trace Dugar’s portfolio: AI-assisted software development, Python application modernization, and IT and network operations." />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
 
   </head>
   <body data-theme="light">
+    <script>
+      try {
+        if (localStorage.getItem('portfolioTheme') === 'dark') {
+          document.body.dataset.theme = 'dark';
+          document.querySelector('meta[name="theme-color"]').content = '#051026';
+        }
+        if (localStorage.getItem('portfolioLanguage') === 'ja') document.documentElement.lang = 'ja';
+      } catch (error) { /* Storage is optional; React supplies session preferences. */ }
+    </script>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
 

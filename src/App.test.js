@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor, cleanup } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor, cleanup, within } from '@testing-library/react';
 import App from './App';
 import english from '../public/res_primaryLanguage.json';
 import japanese from '../public/res_secondaryLanguage.json';
@@ -120,4 +120,55 @@ test('the background can be paused and that preference survives a reload', async
   await screen.findByRole('heading', { name: 'Experience' });
   fireEvent.click(screen.getByRole('button', { name: 'Play animation' }));
   expect(document.querySelector('header')).toHaveAttribute('data-motion', 'playing');
+});
+
+test('the navigation language selector translates About qualifications and preserves native language names', async () => {
+  window.history.replaceState({}, '', '/about');
+  render(<App />);
+  await screen.findByRole('heading', { name: 'Certifications' });
+  expect(screen.getByText('Currently studying for CompTIA Linux+')).toBeInTheDocument();
+  fireEvent.change(screen.getByRole('combobox', { name: 'Language' }), { target: { value: 'ja' } });
+  await screen.findByRole('heading', { name: '認定資格' });
+  expect(screen.getByText('CompTIA Linux+を学習中')).toBeInTheDocument();
+  expect(screen.getByText('Google サイバーセキュリティ認定資格')).toBeInTheDocument();
+  expect(screen.getByRole('option', { name: 'English' })).toBeInTheDocument();
+  expect(screen.getByRole('button', { name: 'English', exact: true })).toHaveAttribute('lang', 'en');
+});
+
+test('the gallery supports arrow keys and Escape restores focus to its project card', async () => {
+  render(<App />);
+  const project = await screen.findByRole('button', { name: 'View project details: Salmon Cookies' });
+  project.focus();
+  fireEvent.click(project);
+  await screen.findByRole('dialog', { name: 'Salmon Cookies' });
+  const gallery = screen.getByRole('group', { name: 'Project screenshots' });
+  gallery.focus();
+  fireEvent.keyDown(gallery, { key: 'ArrowRight' });
+  expect(screen.getByRole('img', { name: 'Salmon Cookies — screenshot 2' })).toBeInTheDocument();
+  fireEvent.keyDown(document, { key: 'Escape', code: 'Escape', keyCode: 27 });
+  await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument());
+  expect(project).toHaveFocus();
+});
+
+test('section links from About reach the loaded home section without reloading the portfolio', async () => {
+  window.history.replaceState({}, '', '/about');
+  render(<App />);
+  await screen.findByRole('heading', { name: 'About me' });
+  fireEvent.click(screen.getByRole('link', { name: 'Projects', exact: true }));
+  const heading = await screen.findByRole('heading', { name: 'Project archive' });
+  expect(window.location.pathname).toBe('/');
+  expect(window.location.hash).toBe('#portfolio');
+  expect(heading).toHaveFocus();
+  expect(global.fetch).toHaveBeenCalledTimes(2);
+});
+
+test('Home returns to the header after navigating within the home page', async () => {
+  render(<App />);
+  await screen.findByRole('heading', { name: 'Experience' });
+  const navigation = within(screen.getByRole('navigation', { name: 'Main navigation' }));
+  fireEvent.click(navigation.getByRole('link', { name: 'Experience', exact: true }));
+  expect(screen.getByRole('heading', { name: 'Experience' })).toHaveFocus();
+  fireEvent.click(navigation.getByRole('link', { name: 'Home', exact: true }));
+  expect(window.location.hash).toBe('');
+  expect(screen.getByRole('heading', { name: 'Trace Dugar', exact: true })).toHaveFocus();
 });
