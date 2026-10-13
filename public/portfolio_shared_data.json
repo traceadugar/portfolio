@@ -5,17 +5,17 @@
       {
         "name": "GitHub",
         "url": "https://github.com/traceadugar",
-        "class": "fab fa-github"
+        "icon": "fa-github"
       },
       {
         "name": "LinkedIn",
         "url": "https://www.linkedin.com/in/tracedugar/",
-        "class": "fab fa-linkedin"
+        "icon": "fa-linkedin"
       },
       {
         "name": "Medium",
         "url": "https://medium.com/@tracedugar",
-        "class": "fab fa-medium"
+        "icon": "fa-medium"
       }
     ],
     "image": "Trace.JPG"
@@ -24,43 +24,43 @@
     "icons": [
       {
         "name": "Python",
-        "class": "devicon-python-plain"
+        "icon": "devicon-python-plain"
       },
       {
         "name": "Linux",
-        "class": "devicon-linux-plain"
+        "icon": "devicon-linux-plain"
       },
       {
         "name": "Bash",
-        "class": "fas fa-terminal"
+        "icon": "fa-terminal"
       },
       {
         "name": "PostgreSQL",
-        "class": "devicon-postgresql-plain"
+        "icon": "devicon-postgresql-plain"
       },
       {
         "name": "Git",
-        "class": "devicon-git-plain"
+        "icon": "devicon-git-plain"
       },
       {
         "name": "JavaScript",
-        "class": "devicon-javascript-plain"
+        "icon": "devicon-javascript-plain"
       },
       {
         "name": "React",
-        "class": "devicon-react-original"
+        "icon": "devicon-react-original"
       },
       {
         "name": "TypeScript",
-        "class": "fas fa-code"
+        "icon": "fa-code"
       },
       {
         "name": "FastAPI",
-        "class": "fas fa-code"
+        "icon": "fa-code"
       },
       {
         "name": "Svelte",
-        "class": "fas fa-code"
+        "icon": "fa-code"
       }
     ]
   }

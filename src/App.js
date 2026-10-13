@@ -15,6 +15,7 @@ async function loadJson(path) {
 
 class App extends Component {
   loadVersion = 0;
+  requests = new Map();
 
   constructor(props) {
     super(props);
@@ -33,13 +34,26 @@ class App extends Component {
 
   componentWillUnmount() { this.loadVersion += 1; }
 
+  getData = (path) => {
+    // Cache only for this mounted app, so switches reuse data while a reload
+    // still checks the deployed content. Failed requests remain retryable.
+    if (!this.requests.has(path)) {
+      this.requests.set(path, loadJson(path).catch(error => {
+        this.requests.delete(path);
+        throw error;
+      }));
+    }
+    return this.requests.get(path);
+  };
+
   loadPortfolio = async (language) => {
+    if (this.state.resumeData && !this.state.error && language === this.state.language) return;
     const version = ++this.loadVersion;
     this.setState({ loading: true, error: false });
     try {
       const [sharedData, resumeData] = await Promise.all([
-        loadJson('/portfolio_shared_data.json'),
-        loadJson(language === 'ja' ? '/res_secondaryLanguage.json' : '/res_primaryLanguage.json'),
+        this.getData('/portfolio_shared_data.json'),
+        this.getData(language === 'ja' ? '/res_secondaryLanguage.json' : '/res_primaryLanguage.json'),
       ]);
       // A slower response must not overwrite a more recent language selection.
       if (version !== this.loadVersion) return;
@@ -76,7 +90,7 @@ class App extends Component {
           </div>}
           {resumeData && sharedData && <Routes>
             <Route path="/" element={<Home resumeData={resumeData} sharedData={sharedData} labels={labels} />} />
-            <Route path="/about" element={<About resumeBasicInfo={resumeData.basic_info} sharedBasicInfo={sharedData.basic_info} labels={labels} />} />
+            <Route path="/about" element={<About resumeBasicInfo={resumeData.basic_info} labels={labels} />} />
             <Route path="*" element={<section className="portfolio-status">
               <h2>{labels.notFound}</h2><p>{labels.notFoundDetail}</p><Link to="/">{labels.backHome}</Link>
             </section>} />

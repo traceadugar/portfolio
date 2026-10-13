@@ -11,7 +11,7 @@ const translations = {
   },
   ja: {
     home: 'ホーム', about: 'プロフィール', darkMode: 'ダークモード', github: '現在のGitHubプロフィールを開く',
-    projects: 'プロジェクトを見る', contact: 'LinkedInで連絡する', language: '表示言語', english: '英語', japanese: '日本語',
+    projects: 'プロジェクトを見る', contact: 'LinkedInで連絡する', language: '表示言語', english: 'English', japanese: '日本語',
     loading: 'ポートフォリオを読み込んでいます…', loadError: 'ポートフォリオを読み込めませんでした。もう一度お試しください。', retry: '再試行',
     archived: '過去のプロジェクト', archiveNote: '公開デモは終了しています。スクリーンショットは当時の動作画面です。',
     openProject: 'プロジェクトの詳細を表示', close: 'プロジェクトの詳細を閉じる', repository: 'ソースコードを見る', gallery: 'プロジェクトのスクリーンショット',

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import ProjectDetailsModal from './ProjectDetailsModal';
+import React, { lazy, Suspense, useState } from 'react';
+
+const ProjectDetailsModal = lazy(() => import('./ProjectDetailsModal'));
 
 export default function Projects({ resumeProjects, resumeBasicInfo, labels }) {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -12,7 +13,10 @@ export default function Projects({ resumeProjects, resumeBasicInfo, labels }) {
           <button type="button" className="project-card foto portfolio-item d-block"
             aria-label={`${labels.openProject}: ${project.title}`} onClick={() => setSelectedProject(project)}>
             <div>
-              <img src={project.images[0]} alt={`${project.title} — ${labels.screenshot}`} loading="lazy" />
+              <img src={`/images/thumbnails/${project.id}-480.webp`}
+                srcSet={`/images/thumbnails/${project.id}-480.webp 480w, /images/thumbnails/${project.id}-960.webp 960w`}
+                sizes="(min-width: 992px) 33vw, (min-width: 768px) 50vw, 100vw"
+                width="960" height="600" alt={`${project.title} — ${labels.screenshot}`} loading="lazy" decoding="async" />
               <span className="project-date">{project.startDate}</span>
               <h3 className="project-title-settings">{project.title}</h3>
               <span className="archive-label">{labels.archived}</span>
@@ -20,8 +24,9 @@ export default function Projects({ resumeProjects, resumeBasicInfo, labels }) {
           </button>
         </div>)}
       </div>
-      <ProjectDetailsModal show={Boolean(selectedProject)} onHide={() => setSelectedProject(null)}
-        data={selectedProject} labels={labels} />
+      {selectedProject && <Suspense fallback={<p role="status" className="portfolio-status">{labels.loading}</p>}>
+        <ProjectDetailsModal show onHide={() => setSelectedProject(null)} data={selectedProject} labels={labels} />
+      </Suspense>}
     </section>
   );
 }

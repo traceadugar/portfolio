@@ -22,16 +22,16 @@
       ],
       "technologies": [
         {
-          "class": "devicon-html5-plain",
-          "name": "HTML"
+          "name": "HTML",
+          "icon": "devicon-html5-plain"
         },
         {
-          "class": "devicon-css3-plain",
-          "name": "CSS"
+          "name": "CSS",
+          "icon": "devicon-css3-plain"
         },
         {
-          "class": "devicon-javascript-plain",
-          "name": "JavaScript"
+          "name": "JavaScript",
+          "icon": "devicon-javascript-plain"
         }
       ],
       "id": "salmon-cookies",
@@ -47,16 +47,16 @@
       ],
       "technologies": [
         {
-          "class": "devicon-html5-plain",
-          "name": "HTML"
+          "name": "HTML",
+          "icon": "devicon-html5-plain"
         },
         {
-          "class": "devicon-css3-plain",
-          "name": "CSS"
+          "name": "CSS",
+          "icon": "devicon-css3-plain"
         },
         {
-          "class": "devicon-javascript-plain",
-          "name": "JavaScript"
+          "name": "JavaScript",
+          "icon": "devicon-javascript-plain"
         }
       ],
       "id": "odd-duck",
@@ -73,16 +73,16 @@
       ],
       "technologies": [
         {
-          "class": "devicon-react-plain",
-          "name": "React"
+          "name": "React",
+          "icon": "devicon-react-plain"
         },
         {
-          "class": "devicon-express-original",
-          "name": "Express.js"
+          "name": "Express.js",
+          "icon": "devicon-express-original"
         },
         {
-          "class": "devicon-javascript-plain",
-          "name": "JavaScript"
+          "name": "JavaScript",
+          "icon": "devicon-javascript-plain"
         }
       ],
       "id": "todo-app",
@@ -102,16 +102,16 @@
       ],
       "technologies": [
         {
-          "class": "devicon-react-plain",
-          "name": "React"
+          "name": "React",
+          "icon": "devicon-react-plain"
         },
         {
-          "class": "devicon-sass-plain",
-          "name": "Sass"
+          "name": "Sass",
+          "icon": "devicon-sass-plain"
         },
         {
-          "class": "devicon-javascript-plain",
-          "name": "JavaScript"
+          "name": "JavaScript",
+          "icon": "devicon-javascript-plain"
         }
       ],
       "id": "virtual-store",
@@ -131,16 +131,16 @@
       ],
       "technologies": [
         {
-          "class": "devicon-react-plain",
-          "name": "React"
+          "name": "React",
+          "icon": "devicon-react-plain"
         },
         {
-          "class": "devicon-css3-plain",
-          "name": "CSS 3"
+          "name": "CSS 3",
+          "icon": "devicon-css3-plain"
         },
         {
-          "class": "devicon-javascript-plain",
-          "name": "JavaScript"
+          "name": "JavaScript",
+          "icon": "devicon-javascript-plain"
         }
       ],
       "id": "xlrx",

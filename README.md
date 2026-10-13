@@ -42,3 +42,22 @@ Netlify builds the `main` branch of [traceadugar/portfolio](https://github.com/t
 ## Recovery and maintenance
 
 The site was recovered from the original repository and reconnected to the current GitHub account in October 2026. Original history and project screenshots remain intact. The existing Create React App toolchain was retained to keep this recovery incremental; a future toolchain migration should be tested separately.
+
+## Optimization decisions
+
+- English and Japanese language buttons always show their native names: `English` and `日本語`.
+- Shared data and each translation load once per app session. Failed requests can be retried, and reloading the page checks the deployed files again.
+- Project details load in a separate JavaScript chunk when a card opens. React Bootstrap remains responsible for modal focus, Escape dismissal, and focus restoration.
+- The timeline uses an ordered list and static CSS rather than a JavaScript timeline package or visibility observer.
+- Bootstrap Sass imports only the grid, typography, card, badge, modal, and supporting styles used by the site. Retired slider styles, switch packages, service-worker scaffolding, and deployment scripts were removed.
+- Local SVGs replace the external icon fonts and Iconify runtime. Icon sources and licenses are in `public/licenses/`.
+- Responsive WebP thumbnails reduce card and profile transfers. The original screenshots remain unchanged and are used in the gallery.
+
+After changing a project's first screenshot or the shared profile image, regenerate thumbnails before building:
+
+```powershell
+npm run optimize:images
+npm run build
+```
+
+Thumbnails are checked into Git, so Netlify does not need to regenerate them. The animated header backgrounds remain part of the current design; replacing those assets belongs to the planned aesthetic overhaul.

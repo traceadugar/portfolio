@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Modal } from 'react-bootstrap';
+import Modal from 'react-bootstrap/Modal';
+import Icon from './Icon';
 
 export default function ProjectDetailsModal({ show, onHide, data, labels }) {
   const [imageIndex, setImageIndex] = useState(0);
@@ -20,7 +21,7 @@ export default function ProjectDetailsModal({ show, onHide, data, labels }) {
           }
         }}>
           <figure className="project-screenshot">
-            <img src={data.images[imageIndex]} alt={`${data.title} — ${labels.screenshot} ${imageIndex + 1}`} />
+            <img src={data.images[imageIndex]} alt={`${data.title} — ${labels.screenshot} ${imageIndex + 1}`} decoding="async" />
             <figcaption>{labels.image} {imageIndex + 1} {labels.of} {count}</figcaption>
           </figure>
           {count > 1 && <div className="gallery-controls">
@@ -38,7 +39,7 @@ export default function ProjectDetailsModal({ show, onHide, data, labels }) {
         {data.repositoryUrl && <a className="repository-link" href={data.repositoryUrl} target="_blank" rel="noopener noreferrer">{labels.repository}</a>}
         <ul className="list-inline project-technologies">
           {data.technologies.map(tech => <li className="list-inline-item" key={tech.name}>
-            <i className={tech.class} aria-hidden="true" /> <span>{tech.name}</span>
+            <Icon name={tech.icon} /> <span>{tech.name}</span>
           </li>)}
         </ul>
       </Modal.Body>

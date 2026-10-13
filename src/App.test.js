@@ -24,7 +24,7 @@ test('a direct About route with a trailing slash renders the profile with root-b
   window.history.replaceState({}, '', '/about/');
   render(<App />);
   expect(await screen.findByRole('heading', { name: 'About me' })).toBeInTheDocument();
-  expect(screen.getByRole('img', { name: 'Profile photo of Trace Dugar' })).toHaveAttribute('src', '/images/Trace.JPG');
+  expect(screen.getByRole('img', { name: 'Profile photo of Trace Dugar' })).toHaveAttribute('src', '/images/thumbnails/profile.webp');
 });
 
 test('experience runs from the current role to the earliest training', async () => {
@@ -43,12 +43,27 @@ test('Japanese changes the document language, navigation, timeline dates and des
   fireEvent.click(screen.getByRole('button', { name: '日本語', exact: true }));
   await screen.findByRole('heading', { name: '職歴・学習歴' });
   expect(document.documentElement).toHaveAttribute('lang', 'ja');
+  expect(screen.getByRole('button', { name: 'English', exact: true })).toHaveAttribute('lang', 'en');
   expect(screen.getByRole('link', { name: 'ホーム', exact: true })).toBeInTheDocument();
   expect(screen.getByText('2024年10月 – 現在')).toBeInTheDocument();
   expect(screen.getByText('2023年9月 – 2024年10月')).toBeInTheDocument();
   expect(screen.getByText('メディアクエリ')).toBeInTheDocument();
   expect(document.body.textContent).not.toMatch(/Current|Media Queries|Responsive Design|File Conversions|IT Support Technician/);
   expect(window.localStorage.getItem('portfolioLanguage')).toBe('ja');
+});
+
+test('switching languages reuses shared and previously loaded content', async () => {
+  render(<App />);
+  await screen.findByRole('heading', { name: 'Experience' });
+  fireEvent.click(screen.getByRole('button', { name: '日本語', exact: true }));
+  await screen.findByRole('heading', { name: '職歴・学習歴' });
+  fireEvent.click(screen.getByRole('button', { name: 'English', exact: true }));
+  await screen.findByRole('heading', { name: 'Experience' });
+  fireEvent.click(screen.getByRole('button', { name: '日本語', exact: true }));
+  await screen.findByRole('heading', { name: '職歴・学習歴' });
+  expect(global.fetch.mock.calls.map(([url]) => url).sort()).toEqual([
+    '/portfolio_shared_data.json', '/res_primaryLanguage.json', '/res_secondaryLanguage.json',
+  ]);
 });
 
 test('archived projects expose accessible details and repositories with working image controls', async () => {

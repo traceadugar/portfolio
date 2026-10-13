@@ -1,4 +1,5 @@
 import React from 'react';
+import Icon from './Icon';
 
 export default function Skills({ sharedSkills, resumeBasicInfo }) {
   return <section id="skills">
@@ -6,7 +7,7 @@ export default function Skills({ sharedSkills, resumeBasicInfo }) {
     <ul className="list-inline skill-icon">
       {sharedSkills.icons.map(skill => <li className="list-inline-item mx-3" key={skill.name}>
         <div className="text-center skills-tile">
-          <i className={skill.class} aria-hidden="true" /><p>{skill.name}</p>
+          <Icon name={skill.icon} /><p>{skill.name}</p>
         </div>
       </li>)}
     </ul>

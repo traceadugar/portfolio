@@ -1,18 +1,14 @@
 import React from 'react';
-import { Icon } from '@iconify/react';
-import sassIcon from '@iconify/icons-logos/sass';
-import reactIcon from '@iconify/icons-logos/react';
-import jsIcon from '@iconify/icons-logos/javascript';
 
-export default function About({ resumeBasicInfo, sharedBasicInfo, labels }) {
+export default function About({ resumeBasicInfo, labels }) {
   return <section id="about">
     <h2 className="section-title">{resumeBasicInfo.section_name.about}</h2>
     <div className="row center mx-auto mb-5">
       <div className="col-md-4 mb-5 center">
         <div className="polaroid"><span>
-          <img height="285" src={`/images/${sharedBasicInfo.image}`} alt={labels.profilePhoto} loading="lazy" />
-          {[sassIcon, reactIcon, jsIcon].map((icon, index) => <Icon key={index} icon={icon} aria-hidden="true"
-            style={{ fontSize: '400%', margin: '9% 5% 0 5%' }} />)}
+          <img width="200" height="285" src="/images/thumbnails/profile.webp" alt={labels.profilePhoto} loading="lazy" decoding="async" />
+          {['sass', 'react', 'javascript'].map(name => <img key={name} className="about-logo"
+            src={`/images/icons/${name}.svg`} alt="" aria-hidden="true" width="40" height="40" loading="lazy" />)}
         </span></div>
       </div>
       <div className="col-md-8 center"><div className="col-md-10">
