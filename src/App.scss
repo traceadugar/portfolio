@@ -182,7 +182,7 @@ h1[tabindex='-1']:focus, h2[tabindex='-1']:focus, h3[tabindex='-1']:focus { outl
 .project-card-action .icon { font-size: 1.25rem; }
 .current-projects { margin-bottom: 3.5rem; }
 .current-projects-heading h3 { font-size: 1.4rem; margin-bottom: 1.5rem; }
-.current-project-grid { grid-template-columns: 1fr; }
+.project-grid.current-project-grid { grid-template-columns: 1fr; }
 .current-project-grid .project-card { display: grid; grid-template-columns: minmax(240px, .7fr) minmax(0, 1.5fr); align-items: center; }
 .current-project-grid .project-image-wrap { margin: .75rem; }
 .current-project-grid .project-card-content { padding: 1.5rem; }
