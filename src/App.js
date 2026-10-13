@@ -102,7 +102,8 @@ class App extends Component {
           {resumeData && sharedData && <Routes>
             <Route path="/" element={<Home resumeData={resumeData} sharedData={sharedData} labels={labels} />} />
             <Route path="/about" element={<About resumeBasicInfo={resumeData.basic_info} sharedBasicInfo={sharedData.basic_info} labels={labels} />} />
-            <Route path="/case-studies/tanmar-safety-platform" element={<CaseStudy data={resumeData.case_studies?.find(study => study.id === 'tanmar-safety-platform')} labels={labels} />} />
+            {resumeData.case_studies?.map(study => <Route key={study.id} path={`/case-studies/${study.id}`}
+              element={<CaseStudy data={study} labels={labels} />} />)}
             <Route path="*" element={<section className="portfolio-status">
               <h2>{labels.notFound}</h2><p>{labels.notFoundDetail}</p><Link to="/">{labels.backHome}</Link>
             </section>} />

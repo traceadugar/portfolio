@@ -173,18 +173,29 @@ h1[tabindex='-1']:focus, h2[tabindex='-1']:focus, h3[tabindex='-1']:focus { outl
 .project-year { position: absolute; right: .65rem; bottom: .65rem; padding: .2rem .6rem; background-color: var(--surface); color: var(--ink); border: 1px solid var(--edge); border-radius: .6rem; font-size: .74rem; font-weight: 800; }
 .project-card-content { display: flex; flex-direction: column; flex: 1; gap: .9rem; padding: 1.25rem; }
 .project-card-meta { display: block; }
-.archive-label { display: inline-flex; align-items: center; gap: .35rem; color: var(--secondary); font-size: .72rem; font-weight: 800; }
+.archive-label, .current-project-label { display: inline-flex; align-items: center; gap: .35rem; color: var(--secondary); font-size: .72rem; font-weight: 800; }
 .project-title { display: block; font-size: 1.23rem; line-height: 1.35; font-weight: 900; letter-spacing: -.02em; }
 .project-summary { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; color: var(--muted); font-size: .9rem; line-height: 1.65; }
 .technology-chips, .tech-list { display: flex; flex-wrap: wrap; gap: .4rem; list-style: none; padding: 0; margin: 0; }
 .technology-chip, .tech-list li { display: inline-flex; align-items: center; gap: .35rem; padding: .32rem .6rem; border-radius: .55rem; border: 1px solid var(--edge); background-color: var(--surface-alt); color: var(--muted); font-size: .75rem; line-height: 1.35; font-weight: 700; }
 .project-card-action { display: flex; align-items: center; justify-content: space-between; gap: .6rem; padding-top: .9rem; margin-top: auto; border-top: 1px solid var(--edge); color: var(--accent); font-size: .83rem; font-weight: 900; }
 .project-card-action .icon { font-size: 1.25rem; }
+.current-projects { margin-bottom: 3.5rem; }
+.current-projects-heading h3 { font-size: 1.4rem; margin-bottom: 1.5rem; }
+.current-project-grid { grid-template-columns: 1fr; }
+.current-project-grid .project-card { display: grid; grid-template-columns: minmax(240px, .7fr) minmax(0, 1.5fr); align-items: center; }
+.current-project-grid .project-image-wrap { margin: .75rem; }
+.current-project-grid .project-card-content { padding: 1.5rem; }
+.current-project-grid .project-summary { -webkit-line-clamp: 4; }
 
 .case-study-card { display: grid; grid-template-columns: minmax(220px, .7fr) minmax(0, 1.5fr); gap: clamp(1.5rem, 3vw, 2.5rem); align-items: center; padding: clamp(1.25rem, 3vw, 2rem); margin-bottom: 3.5rem; }
 // The official logo keeps its original colors on a day-palette plaque in both themes.
 .case-study-brand { display: flex; align-items: center; justify-content: center; background-color: #fffcf6; border: 1px solid var(--edge); border-radius: 1rem; padding: clamp(1.25rem, 3vw, 2rem); min-height: 200px; }
 .case-study-brand img { display: block; width: 100%; height: auto; max-width: 320px; }
+.case-study-card-photo { border: 1px solid var(--edge); border-radius: 1rem; overflow: hidden; }
+.case-study-card-photo img { display: block; width: 100%; height: auto; }
+.case-study-emblem { @include foregrounds(surface-alt); display: flex; align-items: center; justify-content: center; background-color: var(--surface-alt); color: var(--accent); border: 1px solid var(--edge); border-radius: 1rem; min-height: 200px; }
+.case-study-emblem .icon { width: 100px; height: 100px; }
 .case-study-card-copy { min-width: 0; }
 .case-study-card h3 { font-size: clamp(1.5rem, 3vw, 2rem); margin: .6rem 0; }
 .case-study-subtitle { color: var(--muted); line-height: 1.6; font-weight: 750; margin-bottom: .9rem; }
@@ -199,6 +210,10 @@ h1[tabindex='-1']:focus, h2[tabindex='-1']:focus, h3[tabindex='-1']:focus { outl
 .case-study-page .section-intro { font-size: 1.05rem; }
 .case-study-overview { display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 1.6rem; align-items: center; padding: clamp(1.25rem, 3vw, 2rem); margin-bottom: 2rem; }
 .case-study-overview .case-study-brand { min-height: 150px; padding: 1.2rem; }
+.case-study-overview .case-study-emblem { min-height: 150px; }
+.case-study-figure { grid-column: 1 / -1; margin: .5rem 0 0; }
+.case-study-figure img { display: block; width: min(100%, 520px); height: auto; margin-inline: auto; border-radius: .9rem; }
+.case-study-figure figcaption { color: var(--muted); font-size: .85rem; line-height: 1.6; text-align: center; margin-top: .75rem; }
 .case-study-overview-copy { min-width: 0; }
 .case-study-organization { font-weight: 800; margin-bottom: .6rem; }
 .case-study-overview .technology-chips { margin-top: 1rem; }
@@ -216,6 +231,10 @@ h1[tabindex='-1']:focus, h2[tabindex='-1']:focus, h3[tabindex='-1']:focus { outl
 .case-study-decisions { list-style: none; padding: 0; margin: 0; display: grid; gap: 1.5rem; }
 .case-study-decisions h4 { font-size: 1.05rem; line-height: 1.5; margin: 0 0 .4rem; }
 .case-study-footer-actions { margin-top: 2rem; }
+.case-study-sources ul { list-style: none; padding: 0; margin: 0; display: grid; gap: .75rem; }
+.case-study-sources a { display: inline-flex; align-items: center; gap: .6rem; min-height: 44px; line-height: 1.6; }
+.case-study-sources a .icon { flex-shrink: 0; }
+.project-detail-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
 
 .skills-section { border-top: 1px solid var(--edge); border-bottom: 1px solid var(--edge); }
 .skills-groups { display: grid; grid-template-columns: .85fr 1.5fr; gap: 1.5rem; }
@@ -343,6 +362,9 @@ html[lang='ja'] .site-header h1 { letter-spacing: -.015em; }
 }
 @media (max-width: 600px) {
   .case-study-card, .case-study-overview { grid-template-columns: 1fr; }
+  .current-project-grid .project-card { grid-template-columns: 1fr; }
+  .current-project-grid .project-card-content { padding: 1.25rem; }
+  .case-study-emblem { min-height: 160px; }
   .case-study-brand { min-height: 160px; }
   .case-study-brand img { max-width: 260px; }
   .case-study-card { margin-bottom: 2.5rem; }

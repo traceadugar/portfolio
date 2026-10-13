@@ -26,6 +26,8 @@ const translations = {
     archiveHeading: 'Project archive', backToProjects: 'Back to projects', caseStudyContents: 'In this case study',
     caseStudyStack: 'Technology stack', caseStudyStatus: 'Project status', caseStudyWork: 'Current work',
     returnCaseOverview: 'Back to overview',
+    currentProjectsHeading: 'Recent projects', currentProject: 'Personal project', readJournal: 'Read project journal',
+    caseStudySources: 'Full project breakdown on GitHub',
   },
   ja: {
     locale: 'ja-JP',
@@ -54,6 +56,8 @@ const translations = {
     archiveHeading: '過去のプロジェクト', backToProjects: '制作実績に戻る', caseStudyContents: 'このケーススタディの内容',
     caseStudyStack: '使用技術', caseStudyStatus: 'プロジェクトの進捗', caseStudyWork: '現在の取り組み',
     returnCaseOverview: '概要に戻る',
+    currentProjectsHeading: '最近のプロジェクト', currentProject: '個人プロジェクト', readJournal: 'プロジェクト日誌を読む',
+    caseStudySources: 'GitHubで詳しいプロジェクト内容を見る',
   },
 };
 

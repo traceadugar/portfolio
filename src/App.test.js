@@ -188,7 +188,8 @@ test('Home returns to the header after navigating within the home page', async (
 
 test('the featured case study opens a text-only writeup and returns to the projects section without reloading', async () => {
   render(<App />);
-  const link = await screen.findByRole('link', { name: 'Read case study', exact: true });
+  const card = await screen.findByRole('article', { name: 'TanMar Safety Platform' });
+  const link = within(card).getByRole('link', { name: 'Read case study', exact: true });
   expect(link).toHaveAttribute('href', '/case-studies/tanmar-safety-platform');
   expect(screen.getByRole('img', { name: 'TanMar Communications logo' })).toHaveAttribute('src', '/images/brands/tanmar-communications-color.svg');
   fireEvent.click(link);
@@ -204,6 +205,57 @@ test('the featured case study opens a text-only writeup and returns to the proje
   expect(projects).toHaveFocus();
   expect(window.location.hash).toBe('#portfolio');
   expect(global.fetch).toHaveBeenCalledTimes(2);
+});
+
+test('TanMar leads the new case study and the recent script appears before the archive', async () => {
+  render(<App />);
+  await screen.findByRole('heading', { name: 'Projects & case studies' });
+  const selectedTitles = ['TanMar Safety Platform', 'Linux Ticket Generator & RHEL Lab', 'PaleHorse Intro Script', 'XLRX Logistics LLC Website Redesign'];
+  const headings = screen.getAllByRole('heading', { level: 3 }).map(heading => heading.textContent);
+  expect(headings.filter(title => selectedTitles.includes(title))).toEqual(selectedTitles);
+  const card = screen.getByRole('article', { name: 'Linux Ticket Generator & RHEL Lab' });
+  fireEvent.click(within(card).getByRole('link', { name: 'Read case study', exact: true }));
+  expect(await screen.findByRole('heading', { name: 'Linux Ticket Generator & RHEL Lab', level: 2 })).toHaveFocus();
+  expect(window.location.pathname).toBe('/case-studies/linux-ticket-queue');
+  expect(global.fetch).toHaveBeenCalledTimes(2);
+});
+
+test('the Linux case study supports direct sections and Japanese GitHub source links', async () => {
+  window.history.replaceState({}, '', '/case-studies/linux-ticket-queue#case-ai');
+  render(<App />);
+  const study = english.case_studies.find(item => item.id === 'linux-ticket-queue');
+  const aiSection = study.sections.find(item => item.id === 'ai');
+  expect(await screen.findByRole('heading', { name: aiSection.title })).toHaveFocus();
+  for (const source of study.sources) {
+    expect(screen.getByRole('link', { name: new RegExp(source.title) })).toHaveAttribute('href', source.url);
+  }
+  fireEvent.change(screen.getByRole('combobox', { name: 'Language' }), { target: { value: 'ja' } });
+  const translated = japanese.case_studies.find(item => item.id === 'linux-ticket-queue');
+  expect(await screen.findByRole('heading', { name: translated.title, level: 2 })).toBeInTheDocument();
+  expect(screen.getByRole('heading', { name: translated.sections.find(item => item.id === 'ai').title })).toBeInTheDocument();
+  expect(screen.queryByRole('heading', { name: aiSection.title })).not.toBeInTheDocument();
+  expect(document.documentElement).toHaveAttribute('lang', 'ja');
+  expect(screen.getByRole('option', { name: 'English' })).toBeInTheDocument();
+  for (const source of translated.sources) {
+    expect(screen.getByRole('link', { name: new RegExp(source.title) })).toHaveAttribute('href', source.url);
+  }
+  expect(screen.queryByText(/Linux\+/)).not.toBeInTheDocument();
+});
+
+test('the PaleHorse script opens current project details with code and journal links', async () => {
+  render(<App />);
+  const trigger = await screen.findByRole('button', { name: 'View project details: PaleHorse Intro Script' });
+  trigger.focus();
+  fireEvent.click(trigger);
+  const dialog = within(await screen.findByRole('dialog', { name: 'PaleHorse Intro Script' }));
+  expect(dialog.queryByText('Archived project')).not.toBeInTheDocument();
+  expect(dialog.queryByText(/Live demos are retired/)).not.toBeInTheDocument();
+  expect(dialog.getByRole('link', { name: /View repository/ })).toHaveAttribute('href', 'https://github.com/traceadugar/ProjectJournal/blob/main/April%2026/intoScript/intro.sh');
+  expect(dialog.getByRole('link', { name: /Read project journal/ })).toHaveAttribute('href', 'https://github.com/traceadugar/ProjectJournal/blob/main/April%2026/introScript.md');
+  expect(dialog.getByRole('img')).toHaveAttribute('src', english.current_projects[0].images[0]);
+  fireEvent.click(dialog.getByRole('button', { name: 'Close project details' }));
+  await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument());
+  expect(trigger).toHaveFocus();
 });
 
 test('a direct case study section link focuses the section and the writeup switches to Japanese', async () => {

@@ -6,13 +6,14 @@ export default function ProjectDetailsModal({ show, onHide, data, labels }) {
   const [imageIndex, setImageIndex] = useState(0);
   useEffect(() => { setImageIndex(0); }, [data]);
   if (!data) return null;
+  const current = data.kind === 'current';
   const count = data.images.length;
   const moveImage = direction => setImageIndex(index => (index + direction + count) % count);
   return (
     <Modal show={show} onHide={onHide} size="lg" centered className="modal-inside" aria-labelledby="project-modal-title">
       <Modal.Header>
         <div className="project-modal-heading">
-          <p className="project-modal-year"><Icon name="shore-anchor" /> {labels.archived} <span aria-hidden="true">·</span> {data.startDate}</p>
+          <p className="project-modal-year"><Icon name={current ? 'shore-code' : 'shore-anchor'} /> {current ? labels.currentProject : labels.archived} <span aria-hidden="true">·</span> {data.startDate}</p>
           <Modal.Title as="h2" id="project-modal-title">{data.title}</Modal.Title>
         </div>
         <button type="button" className="project-close shore-icon-button" onClick={onHide} aria-label={labels.close}><Icon name="shore-close" /></button>
@@ -24,8 +25,8 @@ export default function ProjectDetailsModal({ show, onHide, data, labels }) {
           }
         }}>
           <figure className="project-screenshot">
-            <img src={data.images[imageIndex]} alt={`${data.title} — ${labels.screenshot} ${imageIndex + 1}`} decoding="async" />
-            <figcaption aria-live="polite" aria-atomic="true">{labels.image} {imageIndex + 1} {labels.of} {count}</figcaption>
+            <img src={data.images[imageIndex]} alt={data.imageAlt || `${data.title} — ${labels.screenshot} ${imageIndex + 1}`} decoding="async" />
+            <figcaption aria-live="polite" aria-atomic="true">{data.attribution || <>{labels.image} {imageIndex + 1} {labels.of} {count}</>}</figcaption>
           </figure>
           {count > 1 && <div className="gallery-controls">
             <button type="button" className="gallery-step shore-icon-button" onClick={() => moveImage(-1)} aria-label={labels.previous}><Icon name="shore-chevron-left" /></button>
@@ -44,8 +45,17 @@ export default function ProjectDetailsModal({ show, onHide, data, labels }) {
               <Icon name={tech.icon} /> <span>{tech.name}</span>
             </li>)}
           </ul>
-          <p className="archive-note"><Icon name="shore-shell" /> <span>{labels.archiveNote}</span></p>
-          {data.repositoryUrl && <div className="project-detail-actions"><a className="repository-link shore-button" href={data.repositoryUrl} target="_blank" rel="noopener noreferrer"><Icon name="shore-code" /> {labels.repository} <Icon name="shore-arrow" /></a></div>}
+          {!current && <p className="archive-note"><Icon name="shore-shell" /> <span>{labels.archiveNote}</span></p>}
+          {(data.repositoryUrl || data.journalUrl) && <div className="project-detail-actions">
+            {data.repositoryUrl && <a className="repository-link shore-button" href={data.repositoryUrl} target="_blank" rel="noopener noreferrer">
+              <Icon name="shore-code" /> {labels.repository} <Icon name="shore-arrow" />
+              {current && <span className="visually-hidden"> ({labels.opensNewTab})</span>}
+            </a>}
+            {data.journalUrl && <a className="journal-link shore-button shore-button-secondary" href={data.journalUrl} target="_blank" rel="noopener noreferrer">
+              <Icon name="shore-book" /> {labels.readJournal} <Icon name="shore-arrow" />
+              <span className="visually-hidden"> ({labels.opensNewTab})</span>
+            </a>}
+          </div>}
         </div>
       </Modal.Body>
     </Modal>

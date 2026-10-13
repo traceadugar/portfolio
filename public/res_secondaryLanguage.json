@@ -94,6 +94,102 @@
           ]
         }
       ]
+    },
+    {
+      "id": "linux-ticket-queue",
+      "sortDate": "2026-04",
+      "title": "Linuxチケット生成とRHEL検証環境",
+      "subtitle": "状態を引き継ぐAIワークフローでLinux運用を実践",
+      "summary": "画面を接続せずに運用するRHELの自宅検証環境と、AIを使ったLinux課題チケットの生成を組み合わせました。環境の状態、課題の履歴、理解が不十分な点をセッション間で引き継ぎ、調査・検証・記録を毎回の実践に組み込む再利用可能なワークフローを設計しました。",
+      "status": "RHEL環境の構築と、再利用可能なAI支援による実践ワークフローの文書化を完了しました。",
+      "organization": "自主制作・PaleHorse自宅検証環境",
+      "icon": "shore-network",
+      "image": "/images/portfolio/palehorse-lab/rhel-server.webp",
+      "imageAlt": "PaleHorseのRHEL自宅検証環境に再利用したHP ProDeskのハードウェア",
+      "imageCaption": "PaleHorseのRHEL自宅検証環境に再利用したHP ProDeskのハードウェア。",
+      "technologies": [
+        { "name": "RHEL", "icon": "shore-network" },
+        { "name": "Claude Code", "icon": "shore-code" },
+        { "name": "AIワークフロー設計", "icon": "shore-code" },
+        { "name": "SSH", "icon": "shore-shield" },
+        { "name": "技術文書の作成", "icon": "shore-book" }
+      ],
+      "sections": [
+        {
+          "id": "overview",
+          "title": "プロジェクト概要",
+          "paragraphs": [
+            "画面を接続せずに運用するRHELの自宅検証環境「PaleHorse」を構築し、障害調査を繰り返し実践できるよう、AI支援による課題チケットの生成を設計しました。実際のハードウェアを扱う作業とAIワークフロー設計を組み合わせた取り組みです。実機の状態を基準とし、文書化したシミュレーションによって現実的な運用上の課題を提示します。",
+            "コマンドだけでなく、状況に応じた判断力を身に付けることが目標です。各チケットは症状と限られた情報から始まり、調査、結果の検証、対応記録の作成までを一連の作業として扱います。"
+          ]
+        },
+        {
+          "id": "lab",
+          "title": "RHEL環境の構築",
+          "paragraphs": [
+            "HP ProDesk 600 G2を再利用し、CPUをi7-6700へ、ストレージを1 TBのSSDへ更新しました。メモリーは16 GBです。RHELをインストールして開発者向けサブスクリプションを登録した後、nmcliによるネットワーク設定、固定アドレスの割り当て、自動接続の有効化を行い、作業用PCからSSHで接続できるようにしました。",
+            "構築中には、無効になっていたネットワークインターフェースの原因を調べて対処しました。また、標準リポジトリーで利用できなかったbtopをソースからコンパイルしました。後の作業で構成の基準を確認できるよう、インストール、設定、障害対応、検証を記録しました。"
+          ]
+        },
+        {
+          "id": "ai",
+          "title": "AIワークフローの設計",
+          "paragraphs": [
+            "Claude Codeを課題の生成と学習支援に使っています。再利用可能な/linux-ticketスキルには、一件のチケットを発行する前に三つの永続ファイルを読むよう指示しています。environment_state.mdには環境の状態、ticket_log.mdには完了した課題の履歴、weak_areas.mdには次の実践で重点的に扱う理解の不足を記録します。",
+            "チャットの履歴だけに頼らず、継続性を設計に組み込みました。私が実機の基準情報を提供・確認し、チケットと振り返りの形式を定義して、AIの提案を評価します。初期にはスキルが読み込まれない問題もあり、名前付きフォルダーの中にSKILL.mdを配置する構成へ修正しました。"
+          ]
+        },
+        {
+          "id": "decisions",
+          "title": "設計上の判断と適用範囲",
+          "paragraphs": [
+            "状態の記録では、実機の事実と、模擬・計画中・不明のリソースを区別しています。架空の権限問題を、実際のサーバーの状態だと思い込まないために重要な区別です。文書化した課題の段階は、ユーザーと権限から複合的な障害まで九つの領域を扱い、一度に一件ずつ取り組む構成です。",
+            "ワークフローには、変更を伴わない調査、根拠のある診断、必要な範囲に絞った修正、最小権限、変更前後の確認を含めています。リスクの高い作業では、バックアップ、使い捨ての環境、またはシミュレーションを使う方針です。これらは実践のための指示であり、AIの提案を評価したりシステムを変更したりする際には、人による確認が必要です。"
+          ]
+        },
+        {
+          "id": "verification",
+          "title": "検証と対応記録",
+          "paragraphs": [
+            "RHELの構築では、ネットワーク接続、digによる名前解決、SSH接続の成功、btopでのリソース確認、再起動後のネットワーク接続を検証して記録しました。これらは、構築時に実際に確かめた動作を示すものです。",
+            "文書化したチケットの完了手順では、関連する状態の調査、変更内容の説明、意図した結果の検証、対応記録の作成を求めています。振り返りの形式には、環境の変更と理解が不十分な点の記録を含め、後の課題に引き継ぐ設計です。"
+          ]
+        },
+        {
+          "id": "lessons",
+          "title": "得られた知見と今後の取り組み",
+          "paragraphs": [
+            "有用なAIワークフローには、明示的な状態、明確な責任分担、出力を確かめる方法が必要だと学びました。再利用可能なスキルによって準備の手間を減らし、ジャーナルによって判断や障害対応の背景を残せます。実機の構築では、設定が維持されると決めつけず、再起動後のリモート接続まで確かめる大切さも学びました。",
+            "次に残したい成果は、機密情報を除いた一件の完了済みチケットです。調査結果、診断、選んだ修正、検証をまとめます。リンク先のGitHubジャーナルには、詳しい構築手順と再利用可能なワークフローを掲載しています。"
+          ]
+        }
+      ],
+      "sources": [
+        { "title": "Linux管理チケットキュー・プロジェクト記録", "url": "https://github.com/traceadugar/ProjectJournal/blob/main/April%2026/LinuxAdminTicketQueue.md" },
+        { "title": "画面を接続しないRHELサーバー・構築と障害対応", "url": "https://github.com/traceadugar/ProjectJournal/blob/main/March%2026/RHELServer.md" },
+        { "title": "再利用可能なシミュレーターの前提情報とスキル手順", "url": "https://github.com/traceadugar/ProjectJournal/blob/main/April%2026/context_file/context.md" }
+      ]
+    }
+  ],
+  "current_projects": [
+    {
+      "id": "palehorse-intro-script",
+      "title": "PaleHorseターミナル紹介スクリプト",
+      "startDate": "2026年4月",
+      "sortDate": "2026-04",
+      "kind": "current",
+      "summary": "RHELマシン向けに制作したBashのターミナル紹介画面です。馬のASCIIアート、ANSIカラー、読みやすいシステム情報を組み合わせ、実際のスクリプト作成とAI支援による試行を通じて配置・書式・表示を調整しました。",
+      "description": "RHELマシン「PaleHorse」向けに、BashとAI支援による試行を通じて独自のターミナル紹介画面を制作しました。画面をクリアし、馬のASCIIアートと赤いPaleHorseのロゴ文字を描画してから、稼働時間、ロードアベレージ、ディストリビューション、バージョンを整列した列に表示します。/etc/os-releaseからOS情報を読み込み、awkでuptimeの出力を解析し、ANSIの256色表示とBashの文字列置換でアートに色を付けています。私が見た目の方針を決め、繰り返し確認しながら書式を調整しました。読みやすいターミナル表示と、再利用できるシェル出力の書式を試した小規模なプロジェクトです。公開スクリプトとリンク先のジャーナルで、実装とアートの出典を確認できます。",
+      "images": ["/images/portfolio/palehorse-intro-script/palehorseintro.webp"],
+      "imageAlt": "馬のASCIIアート、赤いロゴ文字、システム情報を表示したPaleHorseのターミナル紹介画面",
+      "technologies": [
+        { "name": "Bash", "icon": "shore-code" },
+        { "name": "RHEL", "icon": "shore-network" },
+        { "name": "ANSIカラー", "icon": "shore-code" }
+      ],
+      "repositoryUrl": "https://github.com/traceadugar/ProjectJournal/blob/main/April%2026/intoScript/intro.sh",
+      "journalUrl": "https://github.com/traceadugar/ProjectJournal/blob/main/April%2026/introScript.md",
+      "attribution": "ASCIIアートとフォントの出典は、リンク先のジャーナルに記載しています。"
     }
   ],
   "projects": [

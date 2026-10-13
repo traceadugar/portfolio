@@ -41,6 +41,17 @@ The featured TanMar Safety Platform card opens `/case-studies/tanmar-safety-plat
 
 The supplied official TanMar Communications SVG is self-hosted at `public/images/brands/tanmar-communications-color.svg`, sourced from https://www.tanmarcompanies.com/images/logos/tanmar-communications-color.svg. Its colors remain unchanged on a warm neutral plaque in both themes. The case study uses a shareable route, section anchors, and return links that preserve the shared seaside animation clock.
 
+## PaleHorse case study and script
+
+The Linux Ticket Generator & RHEL Lab case study opens `/case-studies/linux-ticket-queue`. Its English and Japanese copy combines the public RHEL build journal with the AI-guided ticket workflow: a real lab baseline, explicit simulated state, three persistent tracking files, and inspection, diagnosis, verification, and resolution notes. The writeup describes the documented design and lab checks without claiming completion of every training tier, production deployment, or guaranteed enforcement by an AI prompt.
+
+TanMar stays pinned first. Other case studies and the `current_projects` array use descending `sortDate` values (`YYYY-MM`); the PaleHorse script appears ahead of the older project archive. Keep IDs and source URLs aligned in both locale files. Current project modals show code and journal links and omit the retired-demo notice used for archived projects.
+
+Images are optimized copies of the user's public GitHub assets:
+
+- RHEL hardware: [RHELheadless.png](https://github.com/traceadugar/ProjectJournal/blob/main/March%2026/Images/RHELheadless.png), saved as `public/images/portfolio/palehorse-lab/rhel-server.webp`.
+- PaleHorse terminal: [palehorseintro.png](https://github.com/traceadugar/ProjectJournal/blob/main/April%2026/images/palehorseintro.png), saved as `public/images/portfolio/palehorse-intro-script/palehorseintro.webp`, with 480- and 960-pixel thumbnails. The gallery preserves the full screenshot. ASCII-art and font attribution remains in the linked [script journal](https://github.com/traceadugar/ProjectJournal/blob/main/April%2026/introScript.md).
+
 ## Deploy
 
 Netlify builds the `main` branch of [traceadugar/portfolio](https://github.com/traceadugar/portfolio), using `npm run build` and publishing `build/`. Push a tested commit to that branch, then confirm the deployment has published and check the live site.
@@ -84,7 +95,7 @@ The interface extends the artwork through warm sand surfaces, dark teal controls
 
 The page surfaces and scene lighting share one 1.2-second cosine fade in `SeasideBackground`. Each canvas paint sends its exact blend value to `themePalette.js`; posters use that same scalar. No independent CSS color timers can drift behind it. Text, links, and focus colors resolve against their actual page, card, chip, or wash background throughout the fade, because a continuous light-to-dark foreground crossing would briefly become unreadable. Primary button labels also account for the decorative sheen. Reversals start from the current blend, pause freezes only the waves, and reduced motion selects the final palette immediately. Palette tests sample 1,201 blend positions to check text and button contrast of at least 4.5:1 and control outlines of at least 3:1.
 
-Project cards show a short description, technology chips, archive status, and a clear details action; XLRX's delivered client work appears first. The gallery keeps the original screenshots, supports arrow keys and Escape, and restores focus to the card on closing. About separates biography, qualifications, and contact actions. Qualification text is based on the supplied profile.
+Project cards show a short description, technology chips, project status, and a clear details action; XLRX's delivered client work appears first within the archive. The gallery keeps the original screenshots, supports arrow keys and Escape, and restores focus to the card on closing. About separates biography, qualifications, and contact actions. Qualification text is based on the supplied profile.
 
 The sticky navigation offers page and section links, language selection, theme, and motion controls. `RouteNavigation` waits for content before following a section fragment and places keyboard focus at the destination. Navigation uses React Router links to preserve the shared video clock. A skip link, visible focus indicators, labelled icon controls, and touch targets of at least 44 pixels support keyboard and mobile use.
 

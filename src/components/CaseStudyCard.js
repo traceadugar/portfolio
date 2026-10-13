@@ -4,9 +4,11 @@ import Icon from './Icon';
 
 export default function CaseStudyCard({ data, labels }) {
   return <article className="case-study-card shore-panel" aria-labelledby={`case-study-${data.id}-title`}>
-    <div className="case-study-brand">
+    {data.logo ? <div className="case-study-brand">
       <img src={data.logo} width="800" height="350" alt={data.logoAlt} loading="lazy" decoding="async" />
-    </div>
+    </div> : data.image ? <div className="case-study-card-photo">
+      <img src={data.image} width="1200" height="904" alt={data.imageAlt} loading="lazy" decoding="async" />
+    </div> : <div className="case-study-emblem"><Icon name={data.icon || 'shore-code'} /></div>}
     <div className="case-study-card-copy">
       <p className="section-kicker"><Icon name="shore-compass" /> {labels.featuredCaseStudy}</p>
       <h3 id={`case-study-${data.id}-title`}>{data.title}</h3>

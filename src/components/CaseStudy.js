@@ -13,9 +13,9 @@ export default function CaseStudy({ data, labels }) {
       <p className="section-intro case-study-subtitle">{data.subtitle}</p>
     </header>
     <div className="case-study-overview shore-panel">
-      <div className="case-study-brand">
+      {data.logo ? <div className="case-study-brand">
         <img src={data.logo} width="800" height="350" alt={data.logoAlt} decoding="async" />
-      </div>
+      </div> : <div className="case-study-emblem"><Icon name={data.icon || 'shore-code'} /></div>}
       <div className="case-study-overview-copy">
         <p className="case-study-organization">{data.organization}</p>
         <p className="case-study-status">{data.status}</p>
@@ -25,6 +25,10 @@ export default function CaseStudy({ data, labels }) {
           </li>)}
         </ul>
       </div>
+      {data.image && <figure className="case-study-figure">
+        <img src={data.image} alt={data.imageAlt} loading="lazy" decoding="async" />
+        {data.imageCaption && <figcaption>{data.imageCaption}</figcaption>}
+      </figure>}
     </div>
     <div className="case-study-layout">
       <nav className="case-study-contents" aria-label={labels.caseStudyContents}>
@@ -46,6 +50,17 @@ export default function CaseStudy({ data, labels }) {
             </li>)}
           </ul>}
         </section>)}
+        {data.sources?.length > 0 && <section className="case-study-section case-study-sources" aria-labelledby="case-study-sources-heading">
+          <h3 id="case-study-sources-heading">{labels.caseStudySources}</h3>
+          <ul>
+            {data.sources.map(source => <li key={source.url}>
+              <a href={source.url} target="_blank" rel="noopener noreferrer">
+                <Icon name="shore-book" /> {source.title} <Icon name="shore-arrow" />
+                <span className="visually-hidden"> ({labels.opensNewTab})</span>
+              </a>
+            </li>)}
+          </ul>
+        </section>}
       </div>
     </div>
     <div className="case-study-footer-actions">

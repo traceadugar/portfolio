@@ -94,6 +94,102 @@
           ]
         }
       ]
+    },
+    {
+      "id": "linux-ticket-queue",
+      "sortDate": "2026-04",
+      "title": "Linux Ticket Generator & RHEL Lab",
+      "subtitle": "Designing a Stateful AI Workflow for Linux Operations Practice",
+      "summary": "A headless RHEL homelab paired with an AI-guided Linux ticket generator. I designed a reusable workflow that carries environment state, ticket history, and learning gaps across sessions while making investigation, verification, and documentation part of each exercise.",
+      "status": "RHEL lab configured; reusable AI-guided practice workflow documented.",
+      "organization": "Independent project · PaleHorse homelab",
+      "icon": "shore-network",
+      "image": "/images/portfolio/palehorse-lab/rhel-server.webp",
+      "imageAlt": "HP ProDesk hardware repurposed for the PaleHorse RHEL homelab",
+      "imageCaption": "Repurposed HP ProDesk hardware for the PaleHorse RHEL homelab.",
+      "technologies": [
+        { "name": "RHEL", "icon": "shore-network" },
+        { "name": "Claude Code", "icon": "shore-code" },
+        { "name": "AI Workflow Design", "icon": "shore-code" },
+        { "name": "SSH", "icon": "shore-shield" },
+        { "name": "Technical Documentation", "icon": "shore-book" }
+      ],
+      "sections": [
+        {
+          "id": "overview",
+          "title": "Project overview",
+          "paragraphs": [
+            "I built a Linux practice environment around PaleHorse, my headless RHEL homelab, and designed an AI-guided ticket generator to make that environment useful for repeatable troubleshooting practice. The combination connects physical infrastructure work with AI workflow design: a real machine provides the baseline, while a documented simulation introduces realistic operational problems.",
+            "My goal was to practice judgment as well as commands. Each ticket presents symptoms and incomplete context, asks me to investigate, and ends with verification and a written resolution."
+          ]
+        },
+        {
+          "id": "lab",
+          "title": "Building the RHEL foundation",
+          "paragraphs": [
+            "I repurposed an HP ProDesk 600 G2 with an upgraded i7-6700, 1 TB SSD, and 16 GB RAM. After installing RHEL and registering a developer subscription, I configured networking with nmcli, assigned a static address, enabled network auto-connect, and established SSH access from my workstation.",
+            "The setup involved diagnosing an inactive network interface and working around package availability limits by compiling btop from source. I documented installation, configuration, troubleshooting, and validation so the lab has an understandable baseline for later work."
+          ]
+        },
+        {
+          "id": "ai",
+          "title": "Designing the AI workflow",
+          "paragraphs": [
+            "I use Claude Code as the scenario engine and learning mentor. The reusable /linux-ticket skill is instructed to read three persistent files before issuing one ticket: environment_state.md records the environment, ticket_log.md records completed exercises, and weak_areas.md guides targeted follow-up practice.",
+            "This makes continuity part of the design rather than relying on chat history. I provide and review the baseline, define the ticket and review formats, and evaluate the AI’s guidance. An early skill-loading problem also required correcting the directory structure to use a named folder containing SKILL.md."
+          ]
+        },
+        {
+          "id": "decisions",
+          "title": "Design decisions and boundaries",
+          "paragraphs": [
+            "The state model distinguishes real machine facts from simulated, planned, and unknown resources. That separation matters: a fictional permission problem should not become an assumed fact about the actual server. The documented progression covers nine areas, from users and permissions to mixed incidents, with one exercise at a time.",
+            "The workflow asks for read-only inspection, a reasoned diagnosis, a narrow fix, least privilege, and before-and-after checks. Higher-risk work calls for backups, disposable environments, or simulation. These are instructions for practice; human review remains necessary when evaluating AI suggestions or making system changes."
+          ]
+        },
+        {
+          "id": "verification",
+          "title": "Verification and resolution",
+          "paragraphs": [
+            "For the RHEL setup, I documented connectivity checks, DNS resolution with dig, a successful SSH session, resource visibility through btop, and network accessibility after reboot. These checks establish the specific behavior tested during setup.",
+            "The documented closure process calls for inspecting the relevant state, explaining the change, verifying the intended result, and writing a resolution note. The review format includes environment changes and learning gaps for follow-up exercises."
+          ]
+        },
+        {
+          "id": "lessons",
+          "title": "Lessons and next steps",
+          "paragraphs": [
+            "The strongest lesson is that useful AI workflows need explicit state, clear responsibilities, and a way to check their output. A reusable skill reduces setup friction, while the journal preserves decisions and troubleshooting context. The hardware lab also reinforced the need to test remote access after reboot rather than assuming configuration persists.",
+            "The next useful evidence is a redacted completed ticket with inspection output, diagnosis, the chosen fix, and verification. The linked GitHub journal contains the full setup and reusable workflow."
+          ]
+        }
+      ],
+      "sources": [
+        { "title": "Linux Admin Ticket Queue — project journal", "url": "https://github.com/traceadugar/ProjectJournal/blob/main/April%2026/LinuxAdminTicketQueue.md" },
+        { "title": "Headless RHEL Server — setup and troubleshooting", "url": "https://github.com/traceadugar/ProjectJournal/blob/main/March%2026/RHELServer.md" },
+        { "title": "Reusable simulator context and skill instructions", "url": "https://github.com/traceadugar/ProjectJournal/blob/main/April%2026/context_file/context.md" }
+      ]
+    }
+  ],
+  "current_projects": [
+    {
+      "id": "palehorse-intro-script",
+      "title": "PaleHorse Intro Script",
+      "startDate": "Apr 2026",
+      "sortDate": "2026-04",
+      "kind": "current",
+      "summary": "A custom Bash terminal intro for my RHEL machine, combining an ASCII horse, ANSI color, and readable system information. Built through hands-on scripting and AI-assisted iteration on layout, formatting, and terminal presentation.",
+      "description": "I created a custom terminal intro for PaleHorse, my RHEL machine, using Bash and AI-assisted iteration. The script clears the terminal, renders an ASCII horse and a red PaleHorse wordmark, then displays uptime, load averages, distribution, and version in aligned columns. It reads distribution metadata from /etc/os-release, parses uptime output with awk, and uses ANSI 256-color sequences and Bash string replacement to color the artwork. I directed the visual choices and refined formatting through repeated feedback. This small project explores readable terminal presentation and reusable shell formatting patterns. The public script and linked journal document the implementation and artwork sources.",
+      "images": ["/images/portfolio/palehorse-intro-script/palehorseintro.webp"],
+      "imageAlt": "PaleHorse terminal intro showing an ASCII horse, red wordmark, and system information",
+      "technologies": [
+        { "name": "Bash", "icon": "shore-code" },
+        { "name": "RHEL", "icon": "shore-network" },
+        { "name": "ANSI Color", "icon": "shore-code" }
+      ],
+      "repositoryUrl": "https://github.com/traceadugar/ProjectJournal/blob/main/April%2026/intoScript/intro.sh",
+      "journalUrl": "https://github.com/traceadugar/ProjectJournal/blob/main/April%2026/introScript.md",
+      "attribution": "ASCII art and font sources are documented in the linked journal."
     }
   ],
   "projects": [
