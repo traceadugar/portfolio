@@ -6,11 +6,96 @@
     "description": "I combine IT and network operations experience with AI-assisted software development. My current work focuses on Python, application modernization, and secure, maintainable systems. Network support, field troubleshooting, and technical documentation shape how I approach engineering: understand the requirements, investigate failures, protect data, and verify the results. My background also includes audio engineering and full stack JavaScript training.",
     "section_name": {
       "about": "About me",
-      "projects": "Project archive",
+      "projects": "Projects & case studies",
       "skills": "Skills",
       "experience": "Experience"
     }
   },
+  "case_studies": [
+    {
+      "id": "tanmar-safety-platform",
+      "title": "TanMar Safety Platform",
+      "subtitle": "AI-Assisted Modernization and Application Consolidation",
+      "summary": "Leading the AI-assisted modernization of a legacy safety-training application and several smaller HR applications into one bilingual web platform. The work spans architecture, historical-data migration, access controls, performance, and verification.",
+      "status": "Core workflows implemented in the test environment; production hardening underway.",
+      "organization": "TanMar Communications",
+      "logo": "/images/brands/tanmar-communications-color.svg",
+      "logoAlt": "TanMar Communications logo",
+      "technologies": [
+        { "name": "Python", "icon": "devicon-python-plain" },
+        { "name": "FastAPI", "icon": "shore-code" },
+        { "name": "PostgreSQL", "icon": "devicon-postgresql-plain" },
+        { "name": "Svelte", "icon": "shore-code" },
+        { "name": "TypeScript", "icon": "shore-code" }
+      ],
+      "sections": [
+        {
+          "id": "overview",
+          "title": "Project overview",
+          "paragraphs": [
+            "I’m leading the AI-assisted development of the TanMar Safety Platform, bringing a legacy safety-training application and several smaller HR applications into a unified bilingual web system. The project combines application modernization, requirements analysis, database redesign, security controls, performance optimization, and production-readiness planning.",
+            "The goal is to consolidate employee training and related administrative workflows while preserving the business rules and historical records those systems depend on. SafetyExam, the legacy Xojo training application, provides a substantial part of the behavior being analyzed and modernized."
+          ]
+        },
+        {
+          "id": "platform",
+          "title": "Platform workflows",
+          "paragraphs": [
+            "The employee experience covers assigned training, instructional media, randomized exams, signatures, results, retakes, and completion tracking. The management experience supports employee administration, role- and location-scoped dashboards, announcements, training maintenance, reporting, exports, and annual scheduling."
+          ]
+        },
+        {
+          "id": "ai",
+          "title": "Directing AI-assisted development",
+          "paragraphs": [
+            "I use Codex as an AI development partner and direct the work through documented requirements, legacy-system evidence, and testable product contracts. My responsibilities include defining the problem, guiding architectural and implementation decisions, investigating discrepancies, and evaluating the resulting application against its requirements.",
+            "Understanding the existing systems is central to that process. I reconcile observed legacy behavior with source code, database evidence, and business requirements to establish what the consolidated platform must preserve. That evidence also provides a basis for evaluating AI-assisted changes."
+          ]
+        },
+        {
+          "id": "decisions",
+          "title": "Engineering decisions",
+          "paragraphs": [],
+          "items": [
+            {
+              "title": "Separate application responsibilities",
+              "description": "Domain rules, API contracts, persistence, and frontend concerns are organized separately to support testing and maintainability."
+            },
+            {
+              "title": "Preserve historical compliance records",
+              "description": "The PostgreSQL redesign and migration work account for existing training results, signatures, employee obligations, and bilingual relationships. Transactional migrations and explicit database-target checks provide safeguards around data changes."
+            },
+            {
+              "title": "Make training rules explicit",
+              "description": "English and Spanish variants remain consistent across assignments, attempts, results, and completion credit. Scored exams and media-only training use distinct completion rules that preserve their respective score and signature requirements."
+            },
+            {
+              "title": "Enforce organizational access on the server",
+              "description": "Authorization reflects employee, management, and administrator responsibilities, including role and location scope."
+            },
+            {
+              "title": "Optimize complete workflows",
+              "description": "Dashboard and Training Matrix improvements address database queries, filtering, data transport, resource loading, and browser rendering while preserving search, keyboard, print, and export behavior."
+            }
+          ]
+        },
+        {
+          "id": "verification",
+          "title": "Verification and acceptance",
+          "paragraphs": [
+            "The verification strategy combines Python unit and contract tests, frontend component and build-contract tests, and Playwright workflow coverage. Feature acceptance includes PostgreSQL-backed checks so that database-dependent behavior is tested against the platform’s database system. Documented requirements and verification evidence guide acceptance throughout the AI-assisted development process."
+          ]
+        },
+        {
+          "id": "status",
+          "title": "Current status",
+          "paragraphs": [
+            "Core employee, management, reporting, and training workflows are implemented in the authoritative test environment. Current work focuses on operational hardening, portable deployment configuration, and final physical-device and accessibility acceptance before a production rollout."
+          ]
+        }
+      ]
+    }
+  ],
   "projects": [
     {
       "title": "Salmon Cookies",

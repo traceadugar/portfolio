@@ -33,7 +33,13 @@ Keep experience ordered newest to oldest in both language files. Translate descr
 
 Certification issuers, issue/expiry months, and verification URLs were observed on LinkedIn. Titles and date labels are localized in `src/translations.js`; About renders the dates in the selected language. A credential without a verification URL remains plain text.
 
-Projects are historical work. Their hosted demos and dependent APIs have retired, so cards retain screenshots and verified repository links without demo buttons. A project with no verified public repository omits that link.
+Archive projects are historical work. Their hosted demos and dependent APIs have retired, so cards retain screenshots and verified repository links without demo buttons. A project with no verified public repository omits that link.
+
+## TanMar case study
+
+The featured TanMar Safety Platform card opens `/case-studies/tanmar-safety-platform`, a text-only case study of AI-assisted modernization and consolidation. The user-reviewed professional summary is stored in the `case_studies` array in each locale JSON file. Keep the English and Japanese section IDs aligned, and preserve the distinction between implemented test-environment workflows and production hardening.
+
+The supplied official TanMar Communications SVG is self-hosted at `public/images/brands/tanmar-communications-color.svg`, sourced from https://www.tanmarcompanies.com/images/logos/tanmar-communications-color.svg. Its colors remain unchanged on a warm neutral plaque in both themes. The case study uses a shareable route, section anchors, and return links that preserve the shared seaside animation clock.
 
 ## Deploy
 

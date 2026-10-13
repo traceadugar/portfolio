@@ -22,7 +22,7 @@ export default function Home({ resumeData, sharedData, labels }) {
         <Link className="shore-button shore-button-secondary" to="/#resume">{resumeData.basic_info.section_name.experience}</Link>
       </div>
     </section>
-    <Projects resumeProjects={resumeData.projects} resumeBasicInfo={resumeData.basic_info} labels={labels} />
+    <Projects resumeProjects={resumeData.projects} resumeCaseStudies={resumeData.case_studies} resumeBasicInfo={resumeData.basic_info} labels={labels} />
     <Skills sharedSkills={sharedData.skills} resumeBasicInfo={resumeData.basic_info} labels={labels} />
     <Experience resumeExperience={resumeData.experience} resumeBasicInfo={resumeData.basic_info} />
   </>;

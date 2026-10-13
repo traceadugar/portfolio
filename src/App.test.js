@@ -168,7 +168,7 @@ test('section links from About reach the loaded home section without reloading t
   render(<App />);
   await screen.findByRole('heading', { name: 'About me' });
   fireEvent.click(screen.getByRole('link', { name: 'Projects', exact: true }));
-  const heading = await screen.findByRole('heading', { name: 'Project archive' });
+  const heading = await screen.findByRole('heading', { name: 'Projects & case studies' });
   expect(window.location.pathname).toBe('/');
   expect(window.location.hash).toBe('#portfolio');
   expect(heading).toHaveFocus();
@@ -184,4 +184,39 @@ test('Home returns to the header after navigating within the home page', async (
   fireEvent.click(navigation.getByRole('link', { name: 'Home', exact: true }));
   expect(window.location.hash).toBe('');
   expect(screen.getByRole('heading', { name: 'Trace Dugar', exact: true })).toHaveFocus();
+});
+
+test('the featured case study opens a text-only writeup and returns to the projects section without reloading', async () => {
+  render(<App />);
+  const link = await screen.findByRole('link', { name: 'Read case study', exact: true });
+  expect(link).toHaveAttribute('href', '/case-studies/tanmar-safety-platform');
+  expect(screen.getByRole('img', { name: 'TanMar Communications logo' })).toHaveAttribute('src', '/images/brands/tanmar-communications-color.svg');
+  fireEvent.click(link);
+  const heading = await screen.findByRole('heading', { name: 'TanMar Safety Platform', level: 2 });
+  expect(heading).toHaveFocus();
+  const main = within(screen.getByRole('main'));
+  expect(main.getByText(english.case_studies[0].status)).toBeInTheDocument();
+  expect(main.getByRole('heading', { name: 'Directing AI-assisted development' })).toBeInTheDocument();
+  expect(main.queryByRole('group', { name: 'Project screenshots' })).not.toBeInTheDocument();
+  expect(main.queryByRole('link', { name: 'View repository' })).not.toBeInTheDocument();
+  fireEvent.click(main.getAllByRole('link', { name: 'Back to projects', exact: true })[0]);
+  const projects = await screen.findByRole('heading', { name: 'Projects & case studies' });
+  expect(projects).toHaveFocus();
+  expect(window.location.hash).toBe('#portfolio');
+  expect(global.fetch).toHaveBeenCalledTimes(2);
+});
+
+test('a direct case study section link focuses the section and the writeup switches to Japanese', async () => {
+  window.history.replaceState({}, '', '/case-studies/tanmar-safety-platform#case-ai');
+  render(<App />);
+  const section = await screen.findByRole('heading', { name: 'Directing AI-assisted development' });
+  expect(section).toHaveFocus();
+  expect(screen.getByRole('navigation', { name: 'In this case study' })).toBeInTheDocument();
+  fireEvent.change(screen.getByRole('combobox', { name: 'Language' }), { target: { value: 'ja' } });
+  const main = within(screen.getByRole('main'));
+  expect(await main.findByText(japanese.case_studies[0].status)).toBeInTheDocument();
+  expect(main.getByRole('heading', { name: japanese.case_studies[0].sections.find(item => item.id === 'ai').title })).toBeInTheDocument();
+  expect(document.documentElement).toHaveAttribute('lang', 'ja');
+  expect(main.getByRole('img', { name: japanese.case_studies[0].logoAlt })).toBeInTheDocument();
+  expect(main.queryByText('Directing AI-assisted development')).not.toBeInTheDocument();
 });

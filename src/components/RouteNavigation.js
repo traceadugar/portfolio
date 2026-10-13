@@ -17,7 +17,7 @@ export default function RouteNavigation({ ready }) {
     if (!target) return;
     const scrollTarget = target.querySelector('.section-heading') || target;
     scrollTarget.scrollIntoView?.({ block: 'start', behavior: 'auto' });
-    const focusTarget = target.querySelector('h2, h1') || target;
+    const focusTarget = target.querySelector('h2, h1, h3') || target;
     focusTarget.tabIndex = -1;
     focusTarget.focus({ preventScroll: true });
   }, [location, ready]);

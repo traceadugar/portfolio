@@ -5,6 +5,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import About from './components/About';
 import Home from './components/Home';
+import CaseStudy from './components/CaseStudy';
 import RouteNavigation from './components/RouteNavigation';
 import { getLabels, readPreference, savePreference } from './translations';
 
@@ -101,6 +102,7 @@ class App extends Component {
           {resumeData && sharedData && <Routes>
             <Route path="/" element={<Home resumeData={resumeData} sharedData={sharedData} labels={labels} />} />
             <Route path="/about" element={<About resumeBasicInfo={resumeData.basic_info} sharedBasicInfo={sharedData.basic_info} labels={labels} />} />
+            <Route path="/case-studies/tanmar-safety-platform" element={<CaseStudy data={resumeData.case_studies?.find(study => study.id === 'tanmar-safety-platform')} labels={labels} />} />
             <Route path="*" element={<section className="portfolio-status">
               <h2>{labels.notFound}</h2><p>{labels.notFoundDetail}</p><Link to="/">{labels.backHome}</Link>
             </section>} />

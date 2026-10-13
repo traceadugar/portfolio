@@ -1,9 +1,10 @@
 import React, { lazy, Suspense, useState } from 'react';
 import Icon from './Icon';
+import CaseStudyCard from './CaseStudyCard';
 
 const ProjectDetailsModal = lazy(() => import('./ProjectDetailsModal'));
 
-export default function Projects({ resumeProjects, resumeBasicInfo, labels }) {
+export default function Projects({ resumeProjects, resumeCaseStudies = [], resumeBasicInfo, labels }) {
   const [selectedProject, setSelectedProject] = useState(null);
   return (
     <section id="portfolio" className="shore-section portfolio-section" aria-labelledby="portfolio-title">
@@ -11,6 +12,10 @@ export default function Projects({ resumeProjects, resumeBasicInfo, labels }) {
         <div className="section-heading">
           <p className="section-kicker"><Icon name="shore-code" /> {labels.projectsKicker}</p>
           <h2 className="section-title" id="portfolio-title">{resumeBasicInfo.section_name.projects}</h2>
+        </div>
+        {resumeCaseStudies.map(caseStudy => <CaseStudyCard data={caseStudy} labels={labels} key={caseStudy.id} />)}
+        <div className="project-archive-heading">
+          <h3>{labels.archiveHeading}</h3>
           <p className="section-intro archive-intro">{labels.archiveNote}</p>
         </div>
         <div className="project-grid">

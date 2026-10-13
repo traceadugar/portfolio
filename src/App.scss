@@ -90,7 +90,7 @@ h1, h2, h3, h4 { color: inherit; line-height: 1.2; font-weight: 800; letter-spac
 p { margin: 0 0 1rem; }
 img { max-width: 100%; }
 main:focus { outline: none; }
-h1[tabindex='-1']:focus, h2[tabindex='-1']:focus { outline: none; }
+h1[tabindex='-1']:focus, h2[tabindex='-1']:focus, h3[tabindex='-1']:focus { outline: none; }
 :where(button, a, select, [tabindex]):focus-visible { outline: 3px solid var(--focus); outline-offset: 5px; }
 .icon { display: inline-block; width: 1.15em; height: 1.15em; flex-shrink: 0; fill: currentColor; vertical-align: -.15em; }
 .icon.shore-icon { fill: none; }
@@ -180,6 +180,42 @@ h1[tabindex='-1']:focus, h2[tabindex='-1']:focus { outline: none; }
 .technology-chip, .tech-list li { display: inline-flex; align-items: center; gap: .35rem; padding: .32rem .6rem; border-radius: .55rem; border: 1px solid var(--edge); background-color: var(--surface-alt); color: var(--muted); font-size: .75rem; line-height: 1.35; font-weight: 700; }
 .project-card-action { display: flex; align-items: center; justify-content: space-between; gap: .6rem; padding-top: .9rem; margin-top: auto; border-top: 1px solid var(--edge); color: var(--accent); font-size: .83rem; font-weight: 900; }
 .project-card-action .icon { font-size: 1.25rem; }
+
+.case-study-card { display: grid; grid-template-columns: minmax(220px, .7fr) minmax(0, 1.5fr); gap: clamp(1.5rem, 3vw, 2.5rem); align-items: center; padding: clamp(1.25rem, 3vw, 2rem); margin-bottom: 3.5rem; }
+// The official logo keeps its original colors on a day-palette plaque in both themes.
+.case-study-brand { display: flex; align-items: center; justify-content: center; background-color: #fffcf6; border: 1px solid var(--edge); border-radius: 1rem; padding: clamp(1.25rem, 3vw, 2rem); min-height: 200px; }
+.case-study-brand img { display: block; width: 100%; height: auto; max-width: 320px; }
+.case-study-card-copy { min-width: 0; }
+.case-study-card h3 { font-size: clamp(1.5rem, 3vw, 2rem); margin: .6rem 0; }
+.case-study-subtitle { color: var(--muted); line-height: 1.6; font-weight: 750; margin-bottom: .9rem; }
+.case-study-summary { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; color: var(--muted); max-width: 70ch; margin-bottom: 1rem; }
+.case-study-status { @include foregrounds(wash); background-color: var(--wash); color: var(--muted); border: 1px solid var(--edge); border-radius: .75rem; padding: .75rem 1rem; font-size: .85rem; line-height: 1.6; }
+.case-study-card .technology-chips { margin: 1.1rem 0 1.5rem; }
+.project-archive-heading { margin-bottom: 1.5rem; max-width: 70ch; }
+.project-archive-heading h3 { font-size: 1.4rem; margin-bottom: .6rem; }
+.case-study-page { padding-block: clamp(2.5rem, 6vw, 4.5rem); }
+.case-study-back-link { display: inline-flex; gap: .6rem; align-items: center; min-height: 44px; font-size: .9rem; font-weight: 800; margin-bottom: 1.4rem; }
+.case-study-page .section-heading { max-width: 850px; }
+.case-study-page .section-intro { font-size: 1.05rem; }
+.case-study-overview { display: grid; grid-template-columns: 230px minmax(0, 1fr); gap: 1.6rem; align-items: center; padding: clamp(1.25rem, 3vw, 2rem); margin-bottom: 2rem; }
+.case-study-overview .case-study-brand { min-height: 150px; padding: 1.2rem; }
+.case-study-overview-copy { min-width: 0; }
+.case-study-organization { font-weight: 800; margin-bottom: .6rem; }
+.case-study-overview .technology-chips { margin-top: 1rem; }
+.case-study-layout { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 1.5rem; align-items: start; }
+.case-study-contents { @include foregrounds(surface); position: sticky; top: 7rem; background-color: var(--surface); color: var(--ink); padding: 1.25rem; border: 1px solid var(--edge); border-radius: 1rem; }
+.case-study-contents-label { font-size: 1rem; font-weight: 800; margin: 0 0 .8rem; }
+.case-study-contents ul { list-style: none; padding: 0; margin: 0; }
+.case-study-contents a { display: flex; align-items: center; min-height: 44px; padding: .6rem 0; font-size: .85rem; line-height: 1.5; color: var(--muted); text-decoration: none; }
+.case-study-contents a:hover { color: var(--accent); text-decoration: underline; }
+.case-study-body { padding: clamp(1.3rem, 3vw, 2.4rem); }
+.case-study-section h3 { font-size: 1.4rem; margin: 0 0 1rem; }
+.case-study-section p { color: var(--muted); line-height: 1.85; max-width: 72ch; }
+.case-study-section p:last-child { margin-bottom: 0; }
+.case-study-section + .case-study-section { border-top: 1px solid var(--edge); padding-top: 2rem; margin-top: 2rem; }
+.case-study-decisions { list-style: none; padding: 0; margin: 0; display: grid; gap: 1.5rem; }
+.case-study-decisions h4 { font-size: 1.05rem; line-height: 1.5; margin: 0 0 .4rem; }
+.case-study-footer-actions { margin-top: 2rem; }
 
 .skills-section { border-top: 1px solid var(--edge); border-bottom: 1px solid var(--edge); }
 .skills-groups { display: grid; grid-template-columns: .85fr 1.5fr; gap: 1.5rem; }
@@ -289,6 +325,10 @@ html[lang='ja'] .site-header h1 { letter-spacing: -.015em; }
   .project-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 800px) {
+  .case-study-layout { grid-template-columns: 1fr; }
+  .case-study-contents { position: static; }
+  .case-study-contents ul { display: grid; grid-template-columns: 1fr 1fr; gap: .2rem 1rem; }
+  .case-study-card { grid-template-columns: 230px minmax(0, 1fr); gap: 1.25rem; }
   .site-nav { grid-template-columns: 1fr auto; gap: .4rem 1rem; }
   .nav-links { grid-column: 1 / -1; grid-row: 2; justify-content: space-between; }
   .nav-controls { grid-column: 2; grid-row: 1; }
@@ -302,6 +342,12 @@ html[lang='ja'] .site-header h1 { letter-spacing: -.015em; }
   html { scroll-padding-top: 9rem; }
 }
 @media (max-width: 600px) {
+  .case-study-card, .case-study-overview { grid-template-columns: 1fr; }
+  .case-study-brand { min-height: 160px; }
+  .case-study-brand img { max-width: 260px; }
+  .case-study-card { margin-bottom: 2.5rem; }
+  .case-study-card .shore-button { width: 100%; }
+  .case-study-contents ul { grid-template-columns: 1fr; }
   .section-shell, .footer-shell, .footer-bottom { width: calc(100% - 2rem); }
   .project-grid, .about-layout, .credentials-grid { grid-template-columns: 1fr; }
   .profile-panel { max-width: 280px; width: 100%; justify-self: center; }
