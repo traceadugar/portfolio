@@ -2,6 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Icon from './Icon';
 
+function formatCredentialDate(month, locale) {
+  return new Intl.DateTimeFormat(locale, { year: 'numeric', month: 'long', timeZone: 'UTC' })
+    .format(new Date(`${month}-01T00:00:00Z`));
+}
+
 export default function About({ resumeBasicInfo, sharedBasicInfo, labels }) {
   // Keep the supplied biography intact while giving each topic room to breathe.
   const sentences = resumeBasicInfo.description.match(/[^。.!?]+[。.!?]?/g)?.map(sentence => sentence.trim()) || [];
@@ -38,11 +43,17 @@ export default function About({ resumeBasicInfo, sharedBasicInfo, labels }) {
       <section className="shore-panel credentials-panel" aria-labelledby="certifications-heading">
         <h3 id="certifications-heading"><Icon name="shore-shield" />{labels.credentialsHeading}</h3>
         <ul className="credentials-list">
-          <li>CompTIA Security+</li>
-          <li>{labels.certGoogleIT}</li>
-          <li>{labels.certGoogleSecurity}</li>
+          {sharedBasicInfo?.certifications?.map(credential => <li key={credential.id}>
+            {credential.url ? <a className="credential-link" href={credential.url} target="_blank" rel="noopener noreferrer"
+              aria-label={`${labels[credential.label]} (${labels.opensNewTab})`}>
+              {labels[credential.label]}<Icon name="shore-arrow" />
+            </a> : <span className="credential-title">{labels[credential.label]}</span>}
+            <span className="credential-meta">
+              {credential.issuer} · {labels.credentialIssued} {formatCredentialDate(credential.issued, labels.locale)}
+              {credential.expires && ` · ${labels.credentialExpires} ${formatCredentialDate(credential.expires, labels.locale)}`}
+            </span>
+          </li>)}
         </ul>
-        <p className="study-note">{labels.studyingLinux}</p>
       </section>
       <section className="shore-panel credentials-panel" aria-labelledby="education-heading">
         <h3 id="education-heading"><Icon name="shore-book" />{labels.educationHeading}</h3>

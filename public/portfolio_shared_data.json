@@ -18,7 +18,37 @@
         "icon": "fa-medium"
       }
     ],
-    "image": "Trace.JPG"
+    "image": "Trace.JPG",
+    "certifications": [
+      {
+        "id": "llssa-video-surveillance",
+        "label": "certVideoSurveillance",
+        "issuer": "LLSSA",
+        "issued": "2025-06"
+      },
+      {
+        "id": "comptia-security-plus",
+        "label": "certSecurity",
+        "issuer": "CompTIA",
+        "issued": "2024-04",
+        "expires": "2027-04",
+        "url": "https://www.credly.com/badges/37f0df2a-7dce-405f-a097-2f81c667739a/linked_in_profile"
+      },
+      {
+        "id": "google-cybersecurity",
+        "label": "certGoogleSecurity",
+        "issuer": "Google",
+        "issued": "2024-04",
+        "url": "https://www.coursera.org/account/accomplishments/specialization/QDF3Y3VLNBQU"
+      },
+      {
+        "id": "google-it-support",
+        "label": "certGoogleIT",
+        "issuer": "Google",
+        "issued": "2023-07",
+        "url": "https://www.coursera.org/account/accomplishments/professional-cert/29JZTFR78GY4"
+      }
+    ]
   },
   "skills": {
     "icons": [

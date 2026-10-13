@@ -25,11 +25,13 @@ The regression suite covers routing and section navigation, Japanese localizatio
 
 - `public/res_primaryLanguage.json`: English profile, projects, and experience.
 - `public/res_secondaryLanguage.json`: Japanese equivalents, with matching project IDs and experience order.
-- `public/portfolio_shared_data.json`: shared identity, social links, and skills.
+- `public/portfolio_shared_data.json`: shared identity, social links, skills, and certification metadata.
 - `src/translations.js`: translated navigation, gallery controls, status messages, and accessibility labels.
 - `public/images/portfolio/`: preserved screenshots of the projects when they were operational.
 
 Keep experience ordered newest to oldest in both language files. Translate descriptive text, controls, and dates; retain official technology and brand names where appropriate. The document language is `en` or `ja`, and language and theme preferences persist locally.
+
+Certification issuers, issue/expiry months, and verification URLs were observed on LinkedIn. Titles and date labels are localized in `src/translations.js`; About renders the dates in the selected language. A credential without a verification URL remains plain text.
 
 Projects are historical work. Their hosted demos and dependent APIs have retired, so cards retain screenshots and verified repository links without demo buttons. A project with no verified public repository omits that link.
 
@@ -72,11 +74,11 @@ Pause freezes the current wave position and still permits a lighting fade. Reduc
 
 ## Seaside interface
 
-The interface extends the artwork through warm sand surfaces, dark teal controls, terracotta accents, rounded panels, and lightly raised buttons. Dusk uses ocean and violet surfaces with lantern gold and lavender accents. Colors were sampled from the approved GIF frames and adjusted for readable contrast; the samples, coordinates, derivations, and contrast checks are retained in `assets/design/seaside-palette.json`. Edit the theme tokens at the top of `src/App.scss` rather than adding unrelated colors to individual components.
+The interface extends the artwork through warm sand surfaces, dark teal controls, terracotta accents, rounded panels, and lightly raised buttons. Dusk uses ocean and violet surfaces with lantern gold and lavender accents. Colors were sampled from the approved GIF frames and adjusted for readable contrast; the samples, coordinates, derivations, and contrast checks are retained in `assets/design/seaside-palette.json`. Edit the approved endpoint palettes in `src/themePalette.js` and their initial CSS fallbacks in `src/App.scss` rather than adding unrelated colors to individual components.
 
-Text and its surface change together when switching themes. Tweening light text and dark text alongside opposing background colors produced an unreadable midpoint, so the content palette switches together while the animated scene keeps its 1.2-second lighting fade. Reduced-motion settings also remove hover movement and transitions.
+The page surfaces and scene lighting share one 1.2-second cosine fade in `SeasideBackground`. Each canvas paint sends its exact blend value to `themePalette.js`; posters use that same scalar. No independent CSS color timers can drift behind it. Text, links, and focus colors resolve against their actual page, card, chip, or wash background throughout the fade, because a continuous light-to-dark foreground crossing would briefly become unreadable. Primary button labels also account for the decorative sheen. Reversals start from the current blend, pause freezes only the waves, and reduced motion selects the final palette immediately. Palette tests sample 1,201 blend positions to check text and button contrast of at least 4.5:1 and control outlines of at least 3:1.
 
-Project cards show a short description, technology chips, archive status, and a clear details action; XLRX's delivered client work appears first. The gallery keeps the original screenshots, supports arrow keys and Escape, and restores focus to the card on closing. About separates biography, qualifications, and contact actions. Qualification text is based on the supplied profile; Linux+ is explicitly marked as study in progress.
+Project cards show a short description, technology chips, archive status, and a clear details action; XLRX's delivered client work appears first. The gallery keeps the original screenshots, supports arrow keys and Escape, and restores focus to the card on closing. About separates biography, qualifications, and contact actions. Qualification text is based on the supplied profile.
 
 The sticky navigation offers page and section links, language selection, theme, and motion controls. `RouteNavigation` waits for content before following a section fragment and places keyboard focus at the destination. Navigation uses React Router links to preserve the shared video clock. A skip link, visible focus indicators, labelled icon controls, and touch targets of at least 44 pixels support keyboard and mobile use.
 

@@ -126,11 +126,24 @@ test('the navigation language selector translates About qualifications and prese
   window.history.replaceState({}, '', '/about');
   render(<App />);
   await screen.findByRole('heading', { name: 'Certifications' });
-  expect(screen.getByText('Currently studying for CompTIA Linux+')).toBeInTheDocument();
+  expect(screen.getByText('Google Cybersecurity Certificate')).toBeInTheDocument();
+  expect(screen.getByText('Video Surveillance Tech')).toBeInTheDocument();
+  expect(screen.getByText('LLSSA · Issued June 2025')).toBeInTheDocument();
+  expect(screen.getByText('CompTIA · Issued April 2024 · Expires April 2027')).toBeInTheDocument();
+  expect(screen.getByRole('link', { name: 'CompTIA Security+ (opens in a new tab)' })).toHaveAttribute('href',
+    'https://www.credly.com/badges/37f0df2a-7dce-405f-a097-2f81c667739a/linked_in_profile');
+  expect(screen.getByRole('link', { name: 'Google Cybersecurity Certificate (opens in a new tab)' })).toHaveAttribute('href',
+    'https://www.coursera.org/account/accomplishments/specialization/QDF3Y3VLNBQU');
+  expect(screen.getByRole('link', { name: 'Google IT Support Professional Certificate (opens in a new tab)' })).toHaveAttribute('href',
+    'https://www.coursera.org/account/accomplishments/professional-cert/29JZTFR78GY4');
+  expect(screen.queryByText(/Linux\+/)).not.toBeInTheDocument();
   fireEvent.change(screen.getByRole('combobox', { name: 'Language' }), { target: { value: 'ja' } });
   await screen.findByRole('heading', { name: '認定資格' });
-  expect(screen.getByText('CompTIA Linux+を学習中')).toBeInTheDocument();
+  expect(screen.queryByText(/Linux\+/)).not.toBeInTheDocument();
   expect(screen.getByText('Google サイバーセキュリティ認定資格')).toBeInTheDocument();
+  expect(screen.getByText('映像監視技術者')).toBeInTheDocument();
+  expect(screen.getByText('LLSSA · 取得 2025年6月')).toBeInTheDocument();
+  expect(screen.getByText('CompTIA · 取得 2024年4月 · 有効期限 2027年4月')).toBeInTheDocument();
   expect(screen.getByRole('option', { name: 'English' })).toBeInTheDocument();
   expect(screen.getByRole('button', { name: 'English', exact: true })).toHaveAttribute('lang', 'en');
 });

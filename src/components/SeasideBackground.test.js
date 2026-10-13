@@ -75,6 +75,9 @@ test('theme fades sample both halves of one video without restarting its clock',
   expect(video.currentTime).toBe(1.6);
   expect(video.play.mock.calls).toHaveLength(playCalls);
   expect(video.pause.mock.calls).toHaveLength(pauseCalls);
+  // One scalar colors the page and blends the two halves at the same instant.
+  expect(Number(document.body.style.getPropertyValue('--theme-blend'))).toBeCloseTo(.5);
+  expect(document.body.style.getPropertyValue('--surface')).toBe('rgb(142.5, 142, 158)');
   expect(container.querySelector('.seaside-background')).toHaveAttribute('data-ready', 'true');
 });
 
@@ -86,6 +89,7 @@ test('pausing freezes playback while a theme fade can still finish', () => {
   expect(video.paused).toBe(true);
   advance(1200);
   expect(video.currentTime).toBe(1.6);
+  expect(Number(document.body.style.getPropertyValue('--theme-blend'))).toBe(1);
   expect(context.drawImage.mock.calls.at(-1).slice(0, 5)).toEqual([video, 960, 0, 960, 540]);
   expect(callbacks.size).toBe(0);
 });
@@ -99,11 +103,13 @@ test('reversing a fade keeps the current lighting and finishes back at day', () 
   rerender(<SeasideBackground theme="dark" paused={false} />);
   advance(600);
   expect(alphas.at(-1)).toBeCloseTo(.5);
+  expect(Number(document.body.style.getPropertyValue('--theme-blend'))).toBeCloseTo(alphas.at(-1));
   rerender(<SeasideBackground theme="light" paused={false} />);
   advance(1);
   expect(alphas.at(-1)).toBeCloseTo(.5);
   advance(1199);
   expect(alphas.at(-1)).toBe(1);
+  expect(Number(document.body.style.getPropertyValue('--theme-blend'))).toBe(0);
 });
 
 test('reduced motion unloads the moving scene and media errors leave the poster visible', () => {
@@ -113,10 +119,12 @@ test('reduced motion unloads the moving scene and media errors leave the poster 
   fireEvent.error(video);
   advance(80);
   expect(container.querySelector('.seaside-background')).toHaveAttribute('data-ready', 'false');
-  expect(container.querySelector('.seaside-poster-dusk').style.opacity).toBe('1');
+  expect(Number(document.body.style.getPropertyValue('--theme-blend'))).toBe(1);
   rerender(<SeasideBackground theme="light" paused={false} />);
   advance(600);
   expect(container.querySelector('.seaside-background')).toHaveAttribute('data-ready', 'false');
+  expect(Number(document.body.style.getPropertyValue('--theme-blend'))).toBeCloseTo(.5);
+  advance(600);
   expect(callbacks.size).toBe(0);
   act(() => motionListeners.forEach(listener => listener({ matches: true })));
   expect(container.querySelector('video')).toBeNull();
@@ -131,7 +139,21 @@ test('an initial reduced-motion preference uses posters without starting a decod
   const { container } = render(<SeasideBackground theme="dark" paused={false} />);
   expect(container.querySelector('video')).toBeNull();
   expect(container.querySelector('.seaside-poster-day')).toBeInTheDocument();
-  expect(container.querySelector('.seaside-poster-dusk').style.opacity).toBe('1');
+  expect(Number(document.body.style.getPropertyValue('--theme-blend'))).toBe(1);
   expect(window.requestAnimationFrame).not.toHaveBeenCalled();
   expect(HTMLCanvasElement.prototype.getContext).not.toHaveBeenCalled();
+});
+
+test('an unavailable canvas still fades the interface and poster on the shared clock', () => {
+  HTMLCanvasElement.prototype.getContext.mockReturnValue(null);
+  const { container, rerender } = render(<SeasideBackground theme="light" paused={false} />);
+  advance(80);
+  rerender(<SeasideBackground theme="dark" paused={false} />);
+  advance(600);
+  expect(Number(document.body.style.getPropertyValue('--theme-blend'))).toBeCloseTo(.5);
+  advance(600);
+  expect(Number(document.body.style.getPropertyValue('--theme-blend'))).toBe(1);
+  expect(container.querySelector('.seaside-background')).toHaveAttribute('data-ready', 'false');
+  expect(HTMLMediaElement.prototype.play).not.toHaveBeenCalled();
+  expect(callbacks.size).toBe(0);
 });

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { applyThemeBlend } from '../themePalette';
 
 const FADE_MS = 1200;
 const FRAME_SECONDS = .08;
@@ -26,12 +27,14 @@ export default function SeasideBackground({ theme, paused }) {
 
   useEffect(() => {
     setReady(false);
-    if (reducedMotion) return undefined;
+    if (reducedMotion) {
+      applyThemeBlend(preferencesRef.current.theme === 'dark' ? 1 : 0);
+      return undefined;
+    }
     const video = videoRef.current;
     const canvas = canvasRef.current;
     let context;
-    try { context = canvas.getContext('2d', { alpha: false }); } catch { return undefined; }
-    if (!context) return undefined;
+    try { context = canvas.getContext('2d', { alpha: false }); } catch { context = null; }
 
     // Both lighting variants are packed into each video frame. A theme change
     // blends its two halves without changing the source or playback position.
@@ -41,18 +44,23 @@ export default function SeasideBackground({ theme, paused }) {
     let fadeStarted = 0;
     let raf = 0;
     let disposed = false;
-    let failed = false;
+    let failed = !context;
     let lastFrame = -1;
     let lastBlend = -1;
     let shown = false;
+    let appliedBlend = blend;
+    applyThemeBlend(blend);
 
     const paint = now => {
       raf = 0;
-      if (disposed || failed) return;
+      if (disposed) return;
       const progress = Math.min(1, Math.max(0, (now - fadeStarted) / FADE_MS));
       blend = startBlend + (targetBlend - startBlend) * (1 - Math.cos(Math.PI * progress)) / 2;
+      // The interface and both poster/video lighting variants use this exact
+      // blend and clock. Stable waves do not rewrite the page's color tokens.
+      if (appliedBlend !== blend) { applyThemeBlend(blend); appliedBlend = blend; }
       const frame = Math.floor(video.currentTime / FRAME_SECONDS);
-      if (video.readyState >= 2 && video.videoWidth && video.videoHeight &&
+      if (!failed && video.readyState >= 2 && video.videoWidth && video.videoHeight &&
           (lastFrame !== frame || lastBlend !== blend)) {
         const sourceWidth = video.videoWidth / 2;
         const scale = Math.max(canvas.width / sourceWidth, canvas.height / video.videoHeight);
@@ -74,9 +82,9 @@ export default function SeasideBackground({ theme, paused }) {
         lastBlend = blend;
         if (!shown) { shown = true; setReady(true); }
       }
-      if (!video.paused || blend !== targetBlend) schedule();
+      if ((!failed && !video.paused) || blend !== targetBlend) schedule();
     };
-    const schedule = () => { if (!disposed && !failed && !raf) raf = requestAnimationFrame(paint); };
+    const schedule = () => { if (!disposed && !raf) raf = requestAnimationFrame(paint); };
     const resize = () => {
       const { clientWidth, clientHeight } = containerRef.current;
       if (!clientWidth || !clientHeight) return;
@@ -92,10 +100,11 @@ export default function SeasideBackground({ theme, paused }) {
       video.pause();
       shown = false;
       setReady(false);
+      if (blend !== targetBlend) schedule();
     };
-    const playing = () => { failed = false; lastFrame = -1; schedule(); };
+    const playing = () => { failed = !context; lastFrame = -1; schedule(); };
     const updatePlayback = () => {
-      if (preferencesRef.current.paused || document.hidden) video.pause();
+      if (preferencesRef.current.paused || document.hidden || !context) video.pause();
       else {
         const playback = video.play();
         if (playback) playback.catch(() => {
@@ -138,14 +147,17 @@ export default function SeasideBackground({ theme, paused }) {
     };
   }, [reducedMotion]);
 
-  useEffect(() => { controlsRef.current?.setTheme(theme); }, [theme]);
+  useEffect(() => {
+    if (reducedMotion) applyThemeBlend(theme === 'dark' ? 1 : 0);
+    else controlsRef.current?.setTheme(theme);
+  }, [theme, reducedMotion]);
   useEffect(() => { controlsRef.current?.updatePlayback(); }, [paused]);
 
   return <div ref={containerRef} className="seaside-background" data-ready={ready} aria-hidden="true">
     <div className="seaside-poster seaside-poster-day"
       style={{ backgroundImage: `url(${mediaRoot}/seaside-town-poster.webp)` }} />
     <div className="seaside-poster seaside-poster-dusk"
-      style={{ backgroundImage: `url(${mediaRoot}/seaside-town-dusk-poster.webp)`, opacity: theme === 'dark' ? 1 : 0 }} />
+      style={{ backgroundImage: `url(${mediaRoot}/seaside-town-dusk-poster.webp)` }} />
     {!reducedMotion && <video ref={videoRef} className="seaside-video" muted loop playsInline preload="auto"
       src={`${mediaRoot}/seaside-town-synced${mobile ? '-mobile' : ''}.mp4`} />}
     <canvas ref={canvasRef} className="seaside-canvas" />

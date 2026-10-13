@@ -1,5 +1,6 @@
 const translations = {
   en: {
+    locale: 'en-US',
     home: 'Home', about: 'About', darkMode: 'Dark mode', github: 'View my current GitHub profile',
     projects: 'View projects', contact: 'Connect on LinkedIn', language: 'Language', english: 'English', japanese: '日本語',
     loading: 'Loading portfolio…', loadError: 'The portfolio could not be loaded. Please try again.', retry: 'Try again',
@@ -17,10 +18,13 @@ const translations = {
     connectHeading: 'Let’s connect', connectNote: 'Find my code, professional background, and writing.', backToTop: 'Back to top',
     credentialsHeading: 'Certifications', educationHeading: 'Education & training',
     degreeAudio: 'Associate’s degree in Recording Technology, Audio Engineering & Production',
-    trainingCode: 'Code Fellows · Full Stack JavaScript certificate', studyingLinux: 'Currently studying for CompTIA Linux+',
+    trainingCode: 'Code Fellows · Full Stack JavaScript certificate',
     certGoogleIT: 'Google IT Support Professional Certificate', certGoogleSecurity: 'Google Cybersecurity Certificate',
+    certSecurity: 'CompTIA Security+', certVideoSurveillance: 'Video Surveillance Tech',
+    credentialIssued: 'Issued', credentialExpires: 'Expires', opensNewTab: 'opens in a new tab',
   },
   ja: {
+    locale: 'ja-JP',
     home: 'ホーム', about: 'プロフィール', darkMode: 'ダークモード', github: '現在のGitHubプロフィールを開く',
     projects: 'プロジェクトを見る', contact: 'LinkedInで連絡する', language: '表示言語', english: 'English', japanese: '日本語',
     loading: 'ポートフォリオを読み込んでいます…', loadError: 'ポートフォリオを読み込めませんでした。もう一度お試しください。', retry: '再試行',
@@ -38,8 +42,10 @@ const translations = {
     connectHeading: '連絡先', connectNote: 'ソースコード、職歴、執筆記事はこちらからご覧いただけます。', backToTop: 'ページの先頭へ',
     credentialsHeading: '認定資格', educationHeading: '学歴・研修',
     degreeAudio: 'レコーディング技術・音響工学・音楽制作の準学士号',
-    trainingCode: 'コードフェローズ · JavaScriptフルスタック開発課程修了', studyingLinux: 'CompTIA Linux+を学習中',
+    trainingCode: 'コードフェローズ · JavaScriptフルスタック開発課程修了',
     certGoogleIT: 'Google ITサポート プロフェッショナル認定資格', certGoogleSecurity: 'Google サイバーセキュリティ認定資格',
+    certSecurity: 'CompTIA Security+', certVideoSurveillance: '映像監視技術者',
+    credentialIssued: '取得', credentialExpires: '有効期限', opensNewTab: '新しいタブで開きます',
   },
 };
 
