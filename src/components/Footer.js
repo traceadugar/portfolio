@@ -1,75 +1,23 @@
-import React, { Component } from "react";
+import React from 'react';
 
-class Footer extends Component {
-  render() {
-    if (this.props.sharedBasicInfo) {
-      var networks = this.props.sharedBasicInfo.social.map(function (network) {
-        return (
-          <span key={network.name} className="m-4">
-            <a href={network.url} target="_blank" rel="noopener noreferrer">
-              <i className={network.class}></i>
-            </a>
-          </span>
-        );
-      });
-    }
-
-    return (
-      <footer>
-        <div className="container">
-          <div className="row">
-            <div className="col social-links">{networks}</div>
-            <div className="col">
-              <div 
-                onClick={() =>
-                  this.props.applyPickedLanguage(
-                    window.$primaryLanguage,
-                    window.$secondaryLanguageIconId
-                  )
-                }
-                style={{ display: "inline" }}
-              >
-                <span
-                  className="iconify language-icon mr-5"
-                  data-icon="twemoji-flag-for-flag-united-states"
-                  data-inline="false"
-                  id={window.$primaryLanguageIconId}
-                ></span>
-              </div>
-              <div 
-                onClick={() =>
-                  this.props.applyPickedLanguage(
-                    window.$secondaryLanguage,
-                    window.$primaryLanguageIconId
-                  )
-                }
-                style={{ display: "inline" }}
-              >
-                <span
-                  className="iconify language-icon"
-                  data-icon="twemoji-flag-for-flag-japan"
-                  data-inline="false"
-                  id={window.$secondaryLanguageIconId}
-                ></span>
-              </div>
-            </div>
-            <div className="col">
-              <div className="copyright py-4 text-center">
-                <div className="container">
-                  <small>
-                    Copyright &copy;{" "}
-                    {this.props.sharedBasicInfo
-                      ? this.props.sharedBasicInfo.name
-                      : "???"}
-                  </small>
-                </div>
-              </div>
-            </div>
-          </div>
+export default function Footer({ sharedBasicInfo, labels, language, applyPickedLanguage, loading }) {
+  return (
+    <footer>
+      <div className="footer-content">
+        <div className="social-links">
+          {sharedBasicInfo?.social.map(network => <a key={network.name} href={network.url}
+            target="_blank" rel="noopener noreferrer" aria-label={network.name}>
+            <i className={network.class} aria-hidden="true" /><span className="visually-hidden">{network.name}</span>
+          </a>)}
         </div>
-      </footer>
-    );
-  }
+        <div className="language-controls" role="group" aria-label={labels.language}>
+          <button type="button" lang={language} aria-pressed={language === 'en'} disabled={loading}
+            onClick={() => applyPickedLanguage('en')}>{labels.english}</button>
+          <button type="button" lang="ja" aria-pressed={language === 'ja'} disabled={loading}
+            onClick={() => applyPickedLanguage('ja')}>{labels.japanese}</button>
+        </div>
+        <small>{labels.copyright} © {sharedBasicInfo?.name || 'Trace Dugar'}</small>
+      </div>
+    </footer>
+  );
 }
-
-export default Footer;

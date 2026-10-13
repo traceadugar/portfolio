@@ -1,25 +1,25 @@
 {
   "basic_info": {
-    "description_header": "こんにちは",
-    "description": "やあ！ 👋 オーディオ エンジニア 🔊 からソフトウェア開発者 👨‍💻 に転身した Trace Dugar です。私は、開発者に対する需要の高まりによってソフトウェア開発に惹かれ、それ以来、この技術に対する真の情熱を発見しました。生涯学習者として、私は常に自分のスキルセットを拡大し、新しいテクノロジーを探求しています。すっきりとしたユーザーフレンドリーなインターフェイスを作成することは、私の最優先事項の 1 つであり、誇りに思っています。このキャリアパスを追求し、それが私をどこに連れて行くかを見ることに興奮しています🚀",
-      
-      "section_name": {
-      "about": "私について",
-      "projects": "プロジェクト",
-      "skills": "スキル",
-      "experience": "経験"
+    "description_header": "Trace Dugarです。",
+    "headline": "AI支援によるソフトウェア開発とIT・ネットワーク運用",
+    "meta_description": "Trace Dugarのポートフォリオ。AI支援によるソフトウェア開発、Pythonを用いた既存システムの刷新、IT・ネットワーク運用の経験を紹介します。",
+    "description": "IT・ネットワーク運用の経験を生かし、AIの支援を受けながらソフトウェアを開発しています。現在はPythonを用いた既存システムの刷新と、安全で保守しやすいシステムづくりに取り組んでいます。ネットワークサポート、現場での障害対応、技術文書の作成で培った経験を基に、要件を理解し、問題の原因を調べ、データを守り、結果を検証することを大切にしています。音響エンジニアリングの経験と、JavaScriptによるフルスタック開発の学習経験もあります。",
+    "section_name": {
+      "about": "プロフィール",
+      "projects": "過去のプロジェクト",
+      "skills": "技術スキル",
+      "experience": "職歴・学習歴"
     }
   },
   "projects": [
     {
-      "title": "サーモンクッキー",
-      "startDate": "2022",
-      "description": "サーモンが入ったサーモンの形をしたクッキーを販売する架空の国際ビジネス用に作成された Web サイト。これは、標準の JavaScript、HTML、および CSS を使用して行われました。",
+      "title": "サーモンクッキー販売サイト",
+      "startDate": "2022年",
+      "description": "JavaScript、HTML、CSSを使い、架空の国際的なクッキー販売店のウェブサイトを制作しました。店舗情報の紹介と売上管理画面を実装しました。",
       "images": [
-        "images/portfolio/salmon-cookies/AboutSection.png",
-        "images/portfolio/salmon-cookies/SalesPage.png"
+        "/images/portfolio/salmon-cookies/AboutSection.png",
+        "/images/portfolio/salmon-cookies/SalesPage.png"
       ],
-      "url": "https://tracedugar.github.io/cookie-stand/",
       "technologies": [
         {
           "class": "devicon-html5-plain",
@@ -33,16 +33,18 @@
           "class": "devicon-javascript-plain",
           "name": "JavaScript"
         }
-      ]
+      ],
+      "id": "salmon-cookies",
+      "archived": true,
+      "repositoryUrl": "https://github.com/TraceDugar/cookie-stand"
     },
     {
-      "title": "オッドダック",
-      "startDate": "2022",
-      "description": "オッドダック製品アプリは、架空の会社のアプリであり、顧客が 3 つのランダムなセットに基づいてお気に入りの製品に投票できるようにします。アプリの偏りを軽減するために、重複したり、項目項目が背中合わせに表示されることを望んでいませんでした。",
+      "title": "商品投票アプリ「オッドダック」",
+      "startDate": "2022年",
+      "description": "毎回ランダムに選ばれた三つの商品から好みの商品に投票できるアプリを制作しました。選択の偏りを減らすため、同じ商品の重複や連続表示を防ぎ、投票結果をグラフで表示しました。",
       "images": [
-        "images/portfolio/odd-duck/OddDuck.jpg"
+        "/images/portfolio/odd-duck/OddDuck.jpg"
       ],
-      "url": "https://tracedugar.github.io/odd-duck/",
       "technologies": [
         {
           "class": "devicon-html5-plain",
@@ -56,17 +58,19 @@
           "class": "devicon-javascript-plain",
           "name": "JavaScript"
         }
-      ]
+      ],
+      "id": "odd-duck",
+      "archived": true,
+      "repositoryUrl": "https://github.com/TraceDugar/odd-duck"
     },
     {
-      "title": "役割ベースの To Do リスト",
-      "startDate": "2023",
-      "description": "To Do アプリは、他の todo アプリに接続されているサードパーティの API に保存されている To Do アイテムを接続します。ユーザーが完了した To Do アイテムと、ページにある To Do アイテムの数を非表示にできる設定ページを備えています。ログインすると、役割ベースのアクセス制御に基づいてアクセス許可が許可されます。",
+      "title": "権限制御付きタスク管理アプリ",
+      "startDate": "2023年",
+      "description": "外部APIを利用するReact製のタスク管理アプリを開発しました。利用者の役割に応じた権限制御、完了済みタスクの表示切り替え、表示件数の設定を実装しました。",
       "images": [
-        "images/portfolio/to-do/homePage.jpg",
-        "images/portfolio/to-do/toDoSettings.jpg"
+        "/images/portfolio/to-do/homePage.jpg",
+        "/images/portfolio/to-do/toDoSettings.jpg"
       ],
-      "url": "https://github.com/TraceDugar/todo-app",
       "technologies": [
         {
           "class": "devicon-react-plain",
@@ -78,22 +82,24 @@
         },
         {
           "class": "devicon-javascript-plain",
-          "name": "Javascript"
+          "name": "JavaScript"
         }
-      ]
+      ],
+      "id": "todo-app",
+      "archived": true,
+      "repositoryUrl": "https://github.com/TraceDugar/todo-app"
     },
     {
-      "title": "バーチャル e ストア",
-      "startDate": "2023",
-      "description": "写真用の unsplash API と在庫用のサードパーティ API に接続された e コマース アプリ。 Redux ツールキット、Material UI、および以下にリストされているその他のテクノロジを使用します。.",
+      "title": "オンラインストア",
+      "startDate": "2023年",
+      "description": "React、Redux Toolkit、Material UI、Sassを使って電子商取引アプリを開発しました。外部の在庫データと商品写真を取り込み、商品詳細画面とショッピングカートを実装しました。",
       "images": [
-        "images/portfolio/Virtual-Estore/HomePage_Food.jpg",
-        "images/portfolio/Virtual-Estore/ProductDetails_1.jpg",
-        "images/portfolio/Virtual-Estore/ProductDetails_2.jpg",
-        "images/portfolio/Virtual-Estore/ProductDetails_3.jpg",
-        "images/portfolio/Virtual-Estore/Shopping_Cart.jpg"
+        "/images/portfolio/Virtual-Estore/HomePage_Food.jpg",
+        "/images/portfolio/Virtual-Estore/ProductDetails_1.jpg",
+        "/images/portfolio/Virtual-Estore/ProductDetails_2.jpg",
+        "/images/portfolio/Virtual-Estore/ProductDetails_3.jpg",
+        "/images/portfolio/Virtual-Estore/Shopping_Cart.jpg"
       ],
-      "url": "https://virtual-store-traced.onrender.com/",
       "technologies": [
         {
           "class": "devicon-react-plain",
@@ -105,23 +111,24 @@
         },
         {
           "class": "devicon-javascript-plain",
-          "name": "Javascript"
+          "name": "JavaScript"
         }
-      ]
+      ],
+      "id": "virtual-store",
+      "archived": true,
+      "repositoryUrl": "https://github.com/TraceDugar/virtual-store"
     },
     {
-      "title": "XLRX Logistics LLC ウェブサイトの再設計",
-      "startDate": "2023",
-      "description": "XLRX Logistics の Web サイトの再設計。この Web サイトの所有者から連絡があり、サイトを完全に再構築し、カスタムのビデオ背景を追加しました。このウェブサイトがライブで使用されていることに興奮しています！",
+      "title": "XLRX Logistics LLCのウェブサイト再制作",
+      "startDate": "2023年",
+      "description": "依頼主の要望に基づき、React、HTML、CSS、Mantine UIを使ってXLRX Logistics LLCのウェブサイトを再制作しました。画面サイズに応じたレイアウトと独自の動画背景を実装しました。スクリーンショットは納品当時の画面を記録したものです。",
       "images": [
-        "images/portfolio/XLRX/XLRX_Homepage.jpg",
-        "images/portfolio/XLRX/XLRX_ServicesPage.jpg",
-        "images/portfolio/XLRX/XLRX_AboutPage.jpg",
-        "images/portfolio/XLRX/XLRX_ContactPage.jpg",
-        "images/portfolio/XLRX/XLRX_GalleryPage.jpg"
-
+        "/images/portfolio/XLRX/XLRX_Homepage.jpg",
+        "/images/portfolio/XLRX/XLRX_ServicesPage.jpg",
+        "/images/portfolio/XLRX/XLRX_AboutPage.jpg",
+        "/images/portfolio/XLRX/XLRX_ContactPage.jpg",
+        "/images/portfolio/XLRX/XLRX_GalleryPage.jpg"
       ],
-      "url": "https://www.xlrx.us/",
       "technologies": [
         {
           "class": "devicon-react-plain",
@@ -133,84 +140,99 @@
         },
         {
           "class": "devicon-javascript-plain",
-          "name": "Javascript"
+          "name": "JavaScript"
         }
-      ]
+      ],
+      "id": "xlrx",
+      "archived": true,
+      "repositoryUrl": null
     }
   ],
   "experience": [
     {
-      "company": "コードフェロー",
-      "title": "ソフトウェア開発学生",
-      "years": "08.2022 - 02.2023",
+      "id": "tanmar",
+      "company": "TanMar Communications",
+      "title": "ITサポート技術者（NOC・現場対応）",
+      "years": "2024年10月 – 現在",
+      "mainTech": [
+        "Python",
+        "IT・ネットワーク運用"
+      ],
+      "technologies": [
+        "FastAPI",
+        "PostgreSQL",
+        "Svelte",
+        "TypeScript",
+        "Linux",
+        "SSH",
+        "Ubiquiti",
+        "技術文書の作成"
+      ],
+      "summary": [
+        "安全研修・法令遵守を支援するTanMar Safety Platformの開発を担当しています。既存のXojo製アプリを刷新し、三つのアプリを二言語対応のプラットフォームに統合しています。主要機能はテスト環境で実装済みで、本番運用に向けた改善を進めています。",
+        "事務所と現場のネットワーク、NOCでの設定・障害診断、GPS・ドライブレコーダーの高度な障害対応を担当しています。技術文書と研修資料も作成しています。"
+      ]
+    },
+    {
+      "id": "ethos",
+      "company": "エソス・リスク・サービス",
+      "title": "ITサポート技術者",
+      "years": "2023年9月 – 2024年10月",
+      "mainTech": [
+        "ITサポート",
+        "情報セキュリティ教育"
+      ],
+      "technologies": [
+        "Microsoft 365",
+        "Azure AD",
+        "Freshworks",
+        "利用者サポート",
+        "セキュリティ研修"
+      ],
+      "summary": [
+        "KnowBe4の教材に代わる社内向け情報セキュリティ研修を制作し、約14,000米ドルの費用を削減しました。SOC 2への対応も支援しました。",
+        "Freshworksの業務指標で、毎月継続してヘルプデスク担当者の上位三名に入りました。"
+      ]
+    },
+    {
+      "id": "xlrx",
+      "company": "XLRXロジスティクスLLC",
+      "title": "ソフトウェア開発者（業務委託）",
+      "years": "2023年3月 – 2023年4月",
+      "mainTech": [
+        "React"
+      ],
+      "technologies": [
+        "HTML",
+        "CSS",
+        "Mantine UI",
+        "JavaScript",
+        "メディアクエリ",
+        "レスポンシブデザイン",
+        "Git"
+      ],
+      "summary": [
+        "企業のウェブサイトを再制作し、画面サイズに応じたレイアウトと独自の動画背景を実装しました。納品当時の画面は過去のプロジェクトとして保存しています。"
+      ]
+    },
+    {
+      "id": "code-fellows",
+      "company": "コードフェローズ",
+      "title": "ソフトウェア開発課程の受講生",
+      "years": "2022年8月 – 2023年2月",
       "mainTech": [
         "JavaScript"
       ],
       "technologies": [
         "React",
-        "Sass",
-        "HTML 5",
-        "CSS3",
-        "JavaScript",
-        "Material UI",
-        "Mantine UI",
-        "Bootstrap",
-        "VsCode",
-        "Ubuntu",
         "Node.js",
         "Express.js",
-        "MongoDB",
-        "Redux",
-        "Miro",
-        "Figma",
+        "SQL",
         "Git",
-        "Github",
-        "Markdown",
-        "Heroku",
-        "Netlify",
-        "Postgres",
-        "MySQL"
-      ]
-    },
-    {
-      "company": "XLRXロジスティクスLLC",
-      "title": "ソフトウェア開発者 - 請負業者",
-      "years": "03.2023 - 04.2023",
-      "mainTech": [
-        "React.js"
+        "フルスタック開発"
       ],
-      "technologies": [
-        "HTML 5",
-        "CSS 3",
-        "Matine UI",
-        "JavaScript",
-        "Media Queries",
-        "Responsive Design",
-        "React Browser Router",
-        "Git",
-        "Github",
-        "VsCode", 
-        "Render.com"
-      ]
-      },
-      {
-      "company": "エソス・リスク・サービス",
-      "title": "ITサポートテクニシャン",
-      "years": "09.2023 - 現在",
-      "mainTech": [
-        "Windows OS"
-      ],
-      "technologies": [
-        "Azure AD",
-        "Office 365 Admin Center",
-        "Ring Central",
-        "Microsoft Office",
-        "Excel",
-        "Teams",
-        "Konica Minolta Printers",
-        "IP Phones",
-        "File Conversions",
-        "Adobe Admin"
+      "summary": [
+        "JavaScriptによるフルスタック開発課程を修了しました。画面、API、データベース、バージョン管理を組み合わせたウェブアプリの制作を学びました。"
       ]
     }
   ]

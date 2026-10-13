@@ -1,216 +1,239 @@
 {
-    "basic_info": {
-      "description_header": "Hello",
-      "description": "Hi there! 👋 I'm Trace Dugar, an audio engineer 🔊 turned software developer 👨‍💻. I was drawn to software development by the growing demand for developers, and I've since discovered a true passion for the craft. As a lifelong learner, I'm constantly expanding my skillset and exploring new technologies. Creating clean, user-friendly interfaces is one of my top priorities ✨, and I take great pride in it. I'm excited to pursue this career path and see where it takes me 🚀.",
-      "section_name": {
-        "about": "About me",
-        "projects": "Projects",
-        "skills": "Skills",
-        "experience": "Experience"
-      }
-    },
-    "projects": [
-      {
-        "title": "Salmon Cookies",
-        "startDate": "2022",
-        "description": "A website that is built for a ficitonal international business that sells salmon shaped cookies that contain salmon in them.  This was done using vanilla Javascript, HTML and CSS.",
-        "images": [
-          "images/portfolio/salmon-cookies/AboutSection.png",
-          "images/portfolio/salmon-cookies/SalesPage.png"
-        ],
-        "url": "https://tracedugar.github.io/cookie-stand/",
-        "technologies": [
-          {
-            "class": "devicon-html5-plain",
-            "name": "HTML"
-          },
-          {
-            "class": "devicon-css3-plain",
-            "name": "CSS"
-          },
-          {
-            "class": "devicon-javascript-plain",
-            "name": "JavaScript"
-          }
-        ]
-      },
-      {
-        "title": "Odd Duck",
-        "startDate": "2022",
-        "description": "Thw Odd Duck Products app is and app for a fictious company which would allow their customers to vote on their favorite products based upon random sets of three.  They did not want duplicates or the item items showing up back to back in order to mitigate bias in the app.",
-        "images": [
-          "images/portfolio/odd-duck/OddDuck.jpg"
-        ],
-        "url": "https://tracedugar.github.io/odd-duck/",
-        "technologies": [
-          {
-            "class": "devicon-html5-plain",
-            "name": "HTML"
-          },
-          {
-            "class": "devicon-css3-plain",
-            "name": "CSS"
-          },
-          {
-            "class": "devicon-javascript-plain",
-            "name": "JavaScript"
-          }
-        ]
-      },
-      {
-        "title": "Role Based To-Do List",
-        "startDate": "2023",
-        "description": "To Do App connected which stores to do items in a 3rd party API, which is connected to other todo Apps. Featuring a settings page that allows the user to hide completed to do items as well as how many to do items are on the page. Login will allow permissions based on role based access controls. Please use README to github to login to try out the site.",
-        "images": [
-          "images/portfolio/to-do/homePage.jpg",
-          "images/portfolio/to-do/toDoSettings.jpg"
-        ],
-        "url": "https://github.com/TraceDugar/todo-app",
-        "technologies": [
-          {
-            "class": "devicon-react-plain",
-            "name": "React"
-          },
-          {
-            "class": "devicon-express-original",
-            "name": "Express.js"
-          },
-          {
-            "class": "devicon-javascript-plain",
-            "name": "Javascript"
-          }
-        ]
-      },
-      {
-        "title": "Virtual E-Store",
-        "startDate": "2023",
-        "description": "E-commerce app, connected to the unsplash API for photos, and a 3rd party API for the inventory. Using Redux tool-kit, Material UI as well as the other technoligies listed below. ",
-        "images": [
-          "images/portfolio/Virtual-Estore/HomePage_Food.jpg",
-          "images/portfolio/Virtual-Estore/ProductDetails_1.jpg",
-          "images/portfolio/Virtual-Estore/ProductDetails_2.jpg",
-          "images/portfolio/Virtual-Estore/ProductDetails_3.jpg",
-          "images/portfolio/Virtual-Estore/Shopping_Cart.jpg"
-        ],
-        "url": "https://virtual-store-traced.onrender.com/",
-        "technologies": [
-          {
-            "class": "devicon-react-plain",
-            "name": "React"
-          },
-          {
-            "class": "devicon-sass-plain",
-            "name": "Sass"
-          },
-          {
-            "class": "devicon-javascript-plain",
-            "name": "Javascript"
-          }
-        ]
-      },
-      {
-        "title": "XLRX Logistics LLC Website Redesign",
-        "startDate": "2023",
-        "description": "Website redesign for XLRX Logistics, I was contacted by the owners of this website and I completely rebuilt the site, as well as added a custom video background.  I am thrilled that this website is live and in use!",
-        "images": [
-          "images/portfolio/XLRX/XLRX_Homepage.jpg",
-          "images/portfolio/XLRX/XLRX_ServicesPage.jpg",
-          "images/portfolio/XLRX/XLRX_AboutPage.jpg",
-          "images/portfolio/XLRX/XLRX_ContactPage.jpg",
-          "images/portfolio/XLRX/XLRX_GalleryPage.jpg"
-
-        ],
-        "url": "https://www.xlrx.us/",
-        "technologies": [
-          {
-            "class": "devicon-react-plain",
-            "name": "React"
-          },
-          {
-            "class": "devicon-css3-plain",
-            "name": "CSS 3"
-          },
-          {
-            "class": "devicon-javascript-plain",
-            "name": "Javascript"
-          }
-        ]
-      }
-    ],
-    "experience": [
-      {
-        "company": "Code Fellows",
-        "title": "Software Development Student",
-        "years": "08.2022 - 02.2023",
-        "mainTech": [
-          "JavaScript"
-        ],
-        "technologies": [
-          "React",
-          "Sass",
-          "HTML 5",
-          "CSS3",
-          "JavaScript",
-          "Material UI",
-          "Mantine UI",
-          "Bootstrap",
-          "VsCode",
-          "Ubuntu",
-          "Node.js",
-          "Express.js",
-          "MongoDB",
-          "Redux",
-          "Miro",
-          "Figma",
-          "Git",
-          "Github",
-          "Markdown",
-          "Heroku",
-          "Netlify",
-          "Postgres",
-          "MySQL"
-        ]
-      },
-      {
-        "company": "XLRX Logistics LLC",
-        "title": "Software Developer - Contractor",
-        "years": "03.2023 - 04.2023",
-        "mainTech": [
-          "React.js"
-        ],
-        "technologies": [
-          "HTML 5",
-          "CSS 3",
-          "Matine UI",
-          "JavaScript",
-          "Media Queries",
-          "Responsive Design",
-          "React Browser Router",
-          "Git",
-          "Github",
-          "VsCode", 
-          "Render.com"
-        ]
+  "basic_info": {
+    "description_header": "Hello, I’m Trace.",
+    "headline": "AI-Assisted Software Development · IT & Network Operations",
+    "meta_description": "Trace Dugar’s portfolio: AI-assisted software development, Python application modernization, and IT and network operations.",
+    "description": "I combine IT and network operations experience with AI-assisted software development. My current work focuses on Python, application modernization, and secure, maintainable systems. Network support, field troubleshooting, and technical documentation shape how I approach engineering: understand the requirements, investigate failures, protect data, and verify the results. My background also includes audio engineering and full stack JavaScript training.",
+    "section_name": {
+      "about": "About me",
+      "projects": "Project archive",
+      "skills": "Skills",
+      "experience": "Experience"
+    }
+  },
+  "projects": [
+    {
+      "title": "Salmon Cookies",
+      "startDate": "2022",
+      "description": "Built a website for a fictional international cookie business using JavaScript, HTML, and CSS. The project includes storefront information and a sales-management page.",
+      "images": [
+        "/images/portfolio/salmon-cookies/AboutSection.png",
+        "/images/portfolio/salmon-cookies/SalesPage.png"
+      ],
+      "technologies": [
+        {
+          "class": "devicon-html5-plain",
+          "name": "HTML"
         },
-          {
-        "company": "Ethos Risk Services",
-        "title": "IT Support Technician",
-        "years": "09.2023 - Current",
-        "mainTech": [
-          "Windows OS"
-        ],
-        "technologies": [
-          "Azure AD",
-          "Office 365 Admin Center",
-          "Ring Central",
-          "Microsoft Office",
-          "Excel",
-          "Teams",
-          "Konica Minolta Printers",
-          "IP Phones",
-          "File Conversions",
-          "Adobe Admin"
-        ]
-      }
-    ]
-  }
+        {
+          "class": "devicon-css3-plain",
+          "name": "CSS"
+        },
+        {
+          "class": "devicon-javascript-plain",
+          "name": "JavaScript"
+        }
+      ],
+      "id": "salmon-cookies",
+      "archived": true,
+      "repositoryUrl": "https://github.com/TraceDugar/cookie-stand"
+    },
+    {
+      "title": "Odd Duck",
+      "startDate": "2022",
+      "description": "Built a product-voting application that presents three randomized options per round. Avoided duplicate and immediately repeated products to reduce selection bias, and displayed voting results in a chart.",
+      "images": [
+        "/images/portfolio/odd-duck/OddDuck.jpg"
+      ],
+      "technologies": [
+        {
+          "class": "devicon-html5-plain",
+          "name": "HTML"
+        },
+        {
+          "class": "devicon-css3-plain",
+          "name": "CSS"
+        },
+        {
+          "class": "devicon-javascript-plain",
+          "name": "JavaScript"
+        }
+      ],
+      "id": "odd-duck",
+      "archived": true,
+      "repositoryUrl": "https://github.com/TraceDugar/odd-duck"
+    },
+    {
+      "title": "Role Based To-Do List",
+      "startDate": "2023",
+      "description": "Built a React task-management application using a third-party API. Implemented role-based permissions and settings for completed tasks and the number of tasks displayed.",
+      "images": [
+        "/images/portfolio/to-do/homePage.jpg",
+        "/images/portfolio/to-do/toDoSettings.jpg"
+      ],
+      "technologies": [
+        {
+          "class": "devicon-react-plain",
+          "name": "React"
+        },
+        {
+          "class": "devicon-express-original",
+          "name": "Express.js"
+        },
+        {
+          "class": "devicon-javascript-plain",
+          "name": "JavaScript"
+        }
+      ],
+      "id": "todo-app",
+      "archived": true,
+      "repositoryUrl": "https://github.com/TraceDugar/todo-app"
+    },
+    {
+      "title": "Virtual E-Store",
+      "startDate": "2023",
+      "description": "Built an e-commerce application using React, Redux Toolkit, Material UI, and Sass. Integrated third-party inventory data and product photography, with product details and a shopping cart.",
+      "images": [
+        "/images/portfolio/Virtual-Estore/HomePage_Food.jpg",
+        "/images/portfolio/Virtual-Estore/ProductDetails_1.jpg",
+        "/images/portfolio/Virtual-Estore/ProductDetails_2.jpg",
+        "/images/portfolio/Virtual-Estore/ProductDetails_3.jpg",
+        "/images/portfolio/Virtual-Estore/Shopping_Cart.jpg"
+      ],
+      "technologies": [
+        {
+          "class": "devicon-react-plain",
+          "name": "React"
+        },
+        {
+          "class": "devicon-sass-plain",
+          "name": "Sass"
+        },
+        {
+          "class": "devicon-javascript-plain",
+          "name": "JavaScript"
+        }
+      ],
+      "id": "virtual-store",
+      "archived": true,
+      "repositoryUrl": "https://github.com/TraceDugar/virtual-store"
+    },
+    {
+      "title": "XLRX Logistics LLC Website Redesign",
+      "startDate": "2023",
+      "description": "Redesigned XLRX Logistics LLC’s website at the owner’s request using React, HTML, CSS, and Mantine UI. Implemented responsive layouts and a custom video background. The screenshots preserve the delivered version.",
+      "images": [
+        "/images/portfolio/XLRX/XLRX_Homepage.jpg",
+        "/images/portfolio/XLRX/XLRX_ServicesPage.jpg",
+        "/images/portfolio/XLRX/XLRX_AboutPage.jpg",
+        "/images/portfolio/XLRX/XLRX_ContactPage.jpg",
+        "/images/portfolio/XLRX/XLRX_GalleryPage.jpg"
+      ],
+      "technologies": [
+        {
+          "class": "devicon-react-plain",
+          "name": "React"
+        },
+        {
+          "class": "devicon-css3-plain",
+          "name": "CSS 3"
+        },
+        {
+          "class": "devicon-javascript-plain",
+          "name": "JavaScript"
+        }
+      ],
+      "id": "xlrx",
+      "archived": true,
+      "repositoryUrl": null
+    }
+  ],
+  "experience": [
+    {
+      "id": "tanmar",
+      "company": "TanMar Communications",
+      "title": "IT Support Technician — NOC / Field",
+      "years": "Oct 2024 – Present",
+      "mainTech": [
+        "Python",
+        "IT & Network Operations"
+      ],
+      "technologies": [
+        "FastAPI",
+        "PostgreSQL",
+        "Svelte",
+        "TypeScript",
+        "Linux",
+        "SSH",
+        "Ubiquiti",
+        "Technical Documentation"
+      ],
+      "summary": [
+        "Lead development of TanMar Safety Platform: modernize a legacy Xojo application and consolidate three applications into a bilingual training and compliance platform. Core workflows are implemented in the test environment; production hardening is underway.",
+        "Support office and field networks, NOC provisioning and diagnostics, and complex GPS and dashcam escalations. Create technical documentation and training materials."
+      ]
+    },
+    {
+      "id": "ethos",
+      "company": "Ethos Risk Services",
+      "title": "IT Support Technician",
+      "years": "Sep 2023 – Oct 2024",
+      "mainTech": [
+        "IT Support",
+        "Security Awareness"
+      ],
+      "technologies": [
+        "Microsoft 365",
+        "Azure AD",
+        "Freshworks",
+        "User Support",
+        "Security Training"
+      ],
+      "summary": [
+        "Created in-house information security training to replace KnowBe4 content, saving nearly $14,000 while supporting SOC 2 compliance efforts.",
+        "Consistently ranked among the top three help desk agents each month based on Freshworks performance metrics."
+      ]
+    },
+    {
+      "id": "xlrx",
+      "company": "XLRX Logistics LLC",
+      "title": "Software Developer — Contractor",
+      "years": "Mar 2023 – Apr 2023",
+      "mainTech": [
+        "React"
+      ],
+      "technologies": [
+        "HTML",
+        "CSS",
+        "Mantine UI",
+        "JavaScript",
+        "Media Queries",
+        "Responsive Design",
+        "Git"
+      ],
+      "summary": [
+        "Rebuilt the company website with responsive layouts and a custom video background. The delivered version is preserved in the project archive."
+      ]
+    },
+    {
+      "id": "code-fellows",
+      "company": "Code Fellows",
+      "title": "Software Development Student",
+      "years": "Aug 2022 – Feb 2023",
+      "mainTech": [
+        "JavaScript"
+      ],
+      "technologies": [
+        "React",
+        "Node.js",
+        "Express.js",
+        "SQL",
+        "Git",
+        "Full Stack Development"
+      ],
+      "summary": [
+        "Completed full stack JavaScript training and built web applications using frontend interfaces, APIs, databases, and version control."
+      ]
+    }
+  ]
+}

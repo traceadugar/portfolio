@@ -1,13 +1,10 @@
 {
   "basic_info": {
     "name": "Trace Dugar",
-    "titles": [
-      "Growth Oriented Software Developer"
-    ],
     "social": [
       {
-        "name": "Github",
-        "url": "https://github.com/TraceDugar",
+        "name": "GitHub",
+        "url": "https://github.com/traceadugar",
         "class": "fab fa-github"
       },
       {
@@ -26,64 +23,44 @@
   "skills": {
     "icons": [
       {
-        "name": "Ubuntu",
-        "class": "devicon-ubuntu-plain",
-        "level": "80"
+        "name": "Python",
+        "class": "devicon-python-plain"
+      },
+      {
+        "name": "Linux",
+        "class": "devicon-linux-plain"
+      },
+      {
+        "name": "Bash",
+        "class": "fas fa-terminal"
+      },
+      {
+        "name": "PostgreSQL",
+        "class": "devicon-postgresql-plain"
       },
       {
         "name": "Git",
-        "class": "devicon-git-plain",
-        "level": "80"
-      },
-      {
-        "name": "HTML 5",
-        "class": "devicon-html5-plain",
-        "level": "95"
-      },
-      {
-        "name": "CSS 3",
-        "class": "devicon-css3-plain",
-        "level": "95"
-      },
-      {
-        "name": "Sass",
-        "class": "devicon-sass-plain",
-        "level": "85"
+        "class": "devicon-git-plain"
       },
       {
         "name": "JavaScript",
-        "class": "devicon-javascript-plain",
-        "level": "70"
-      },
-      {
-        "name": "MongoDb",
-        "class": "devicon-mongodb-plain",
-        "level": "90"
-      },
-      {
-        "name": "Express",
-        "class": "devicon-express-original",
-        "level": "70"
+        "class": "devicon-javascript-plain"
       },
       {
         "name": "React",
-        "class": "devicon-react-original",
-        "level": "75"
+        "class": "devicon-react-original"
       },
       {
-        "name": "Node.js",
-        "class": "devicon-nodejs-plain",
-        "level": "90"
+        "name": "TypeScript",
+        "class": "fas fa-code"
       },
       {
-        "name": "Postgres",
-        "class": "devicon-postgresql-plain",
-        "level": "80"
+        "name": "FastAPI",
+        "class": "fas fa-code"
       },
       {
-        "name": "Mysql",
-        "class": "devicon-mysql-plain",
-        "level": "90"
+        "name": "Svelte",
+        "class": "fas fa-code"
       }
     ]
   }

@@ -1,106 +1,89 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import $ from "jquery";
-import "./App.scss";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import About from "./components/About";
-import Home from "./components/Home";
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import './App.scss';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import About from './components/About';
+import Home from './components/Home';
+import { getLabels, readPreference, savePreference } from './translations';
+
+async function loadJson(path) {
+  const response = await fetch(path, { cache: 'no-cache' });
+  if (!response.ok) throw new Error(`Portfolio request failed: ${response.status}`);
+  return response.json();
+}
 
 class App extends Component {
+  loadVersion = 0;
 
   constructor(props) {
-    super();
+    super(props);
     this.state = {
-      foo: "bar",
-      resumeData: {},
-      sharedData: {},
+      language: readPreference('portfolioLanguage', 'en') === 'ja' ? 'ja' : 'en',
+      theme: readPreference('portfolioTheme', 'light') === 'dark' ? 'dark' : 'light',
+      resumeData: null, sharedData: null, loading: true, error: false,
     };
   }
 
-  applyPickedLanguage = (pickedLanguage, oppositeLangIconId) => {
-    this.swapCurrentlyActiveLanguage(oppositeLangIconId);
-    document.documentElement.lang = pickedLanguage;
-    var resumePath =
-      document.documentElement.lang === window.$primaryLanguage
-        ? `res_primaryLanguage.json`
-        : `res_secondaryLanguage.json`;
-    this.loadResumeFromPath(resumePath);
+  componentDidMount() {
+    document.body.dataset.theme = this.state.theme;
+    document.documentElement.lang = this.state.language;
+    this.loadPortfolio(this.state.language);
   }
 
-  swapCurrentlyActiveLanguage = (oppositeLangIconId) => {
-    var pickedLangIconId =
-      oppositeLangIconId === window.$primaryLanguageIconId
-        ? window.$secondaryLanguageIconId
-        : window.$primaryLanguageIconId;
-    document
-      .getElementById(oppositeLangIconId)
-      .removeAttribute("filter", "brightness(40%)");
-    document
-      .getElementById(pickedLangIconId)
-      .setAttribute("filter", "brightness(40%)");
-  }
+  componentWillUnmount() { this.loadVersion += 1; }
 
-  componentDidMount = () => {
-    this.loadSharedData();
-    this.applyPickedLanguage(
-      window.$primaryLanguage,
-      window.$secondaryLanguageIconId
-    );
-  }
+  loadPortfolio = async (language) => {
+    const version = ++this.loadVersion;
+    this.setState({ loading: true, error: false });
+    try {
+      const [sharedData, resumeData] = await Promise.all([
+        loadJson('/portfolio_shared_data.json'),
+        loadJson(language === 'ja' ? '/res_secondaryLanguage.json' : '/res_primaryLanguage.json'),
+      ]);
+      // A slower response must not overwrite a more recent language selection.
+      if (version !== this.loadVersion) return;
+      this.setState({ sharedData, resumeData, language, loading: false, error: false });
+      document.documentElement.lang = language;
+      document.title = `${sharedData.basic_info.name} | ${resumeData.basic_info.headline}`;
+      const description = document.querySelector('meta[name="description"]');
+      if (description) description.content = resumeData.basic_info.meta_description;
+      savePreference('portfolioLanguage', language);
+    } catch {
+      if (version === this.loadVersion) this.setState({ loading: false, error: true });
+    }
+  };
 
-  loadResumeFromPath = (path) => {
-    $.ajax({
-      url: path,
-      dataType: "json",
-      cache: false,
-      success: function (data) {
-        this.setState({ resumeData: data });
-      }.bind(this),
-      error: function (xhr, status, err) {
-        alert(err);
-      },
-    });
-  }
-
-  loadSharedData = () => {
-    $.ajax({
-      url: `portfolio_shared_data.json`,
-      dataType: "json",
-      cache: false,
-      success: function (data) {
-        this.setState({ sharedData: data }, () => document.title = `${this.state.sharedData.basic_info.name}`);
-      }.bind(this),
-      error: function (xhr, status, err) {
-        alert(err);
-      },
-    });
-  }
+  changeTheme = () => {
+    const theme = this.state.theme === 'dark' ? 'light' : 'dark';
+    this.setState({ theme });
+    document.body.dataset.theme = theme;
+    savePreference('portfolioTheme', theme);
+  };
 
   render() {
+    const { resumeData, sharedData, language, theme, loading, error } = this.state;
+    const labels = getLabels(language);
     return (
       <Router>
-        <Header sharedData={this.state.sharedData.basic_info} />
-        <Routes>
-          <Route 
-            exact path="/" 
-            element={<Home
-              resumeData={this.state.resumeData}
-              sharedData={this.state.sharedData}
-            />}>
-          </Route>
-          <Route 
-            path="/about" 
-            element={<About
-              resumeBasicInfo={this.state.resumeData.basic_info}
-              sharedBasicInfo={this.state.sharedData.basic_info}
-            />}>
-          </Route>
-        </Routes>
-        <Footer 
-          sharedBasicInfo={this.state.sharedData.basic_info}
-          applyPickedLanguage={this.applyPickedLanguage} 
-        />  
+        <Header sharedData={sharedData?.basic_info} resumeBasicInfo={resumeData?.basic_info}
+          labels={labels} theme={theme} changeTheme={this.changeTheme} />
+        <main>
+          {loading && <p className="portfolio-status" role="status">{labels.loading}</p>}
+          {error && <div className="portfolio-status" role="alert">
+            <p>{labels.loadError}</p>
+            <button type="button" onClick={() => this.loadPortfolio(language)}>{labels.retry}</button>
+          </div>}
+          {resumeData && sharedData && <Routes>
+            <Route path="/" element={<Home resumeData={resumeData} sharedData={sharedData} labels={labels} />} />
+            <Route path="/about" element={<About resumeBasicInfo={resumeData.basic_info} sharedBasicInfo={sharedData.basic_info} labels={labels} />} />
+            <Route path="*" element={<section className="portfolio-status">
+              <h2>{labels.notFound}</h2><p>{labels.notFoundDetail}</p><Link to="/">{labels.backHome}</Link>
+            </section>} />
+          </Routes>}
+        </main>
+        <Footer sharedBasicInfo={sharedData?.basic_info} labels={labels} language={language}
+          applyPickedLanguage={this.loadPortfolio} loading={loading} />
       </Router>
     );
   }

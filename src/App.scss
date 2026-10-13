@@ -492,3 +492,116 @@ footer a:focus {
 	font-size: 3.5rem;
 }
 
+// Keep the original visual identity while making controls and text usable.
+.site-header {
+  min-height: clamp(380px, 65svh, 620px);
+  height: auto;
+  padding: 0 1.5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+.site-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(0, 0, 0, .3), rgba(0, 0, 0, .58));
+  pointer-events: none;
+}
+.site-nav, .header-content { position: relative; z-index: 1; }
+.site-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: .6rem;
+  padding: 1rem 0;
+  font-size: 1.5rem;
+}
+.site-nav a { padding: .8rem .7rem; color: #fff; text-decoration: none; }
+.site-nav a.active { text-decoration: underline; text-underline-offset: .4rem; }
+.site-nav a:hover { color: #ffe287; }
+.theme-toggle {
+  border: 1px solid #d9e4ff;
+  border-radius: 3rem;
+  width: 6.8rem;
+  height: 4.4rem;
+  background: #07045e;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .5rem;
+  font-size: 2rem;
+}
+.theme-toggle-knob { display: block; width: 2.8rem; height: 2.8rem; border-radius: 50%; background: #fff; }
+.theme-toggle.dark { background: #285779; flex-direction: row-reverse; }
+.header-content { max-width: 70rem; width: 100%; margin: 4rem auto 0; }
+.site-header h1.mb-0 { width: auto; max-width: 100%; background: transparent; border-radius: 0; font-size: clamp(3rem, 6vw, 4rem); }
+.site-header .title-container { height: auto; font-size: clamp(1.8rem, 3.5vw, 2.6rem); padding-top: 1rem; line-height: 1.55; color: #fff; text-shadow: 0 2px 4px #000; }
+.header-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
+.header-actions a, .repository-link { display: inline-block; padding: 1rem 1.5rem; border: 1px solid currentColor; border-radius: .5rem; font-size: 1.4rem; text-decoration: none; }
+.header-actions a { color: #fff; background: rgba(0, 0, 0, .4); }
+button:focus-visible, a:focus-visible { outline: 3px solid #ffad33 !important; outline-offset: 4px; }
+#portfolio .section-title, #about .section-title { color: #171717; }
+.archive-intro { text-align: center; font-size: 1.4rem; line-height: 1.7; max-width: 75rem; margin: 0 auto 3rem; padding: 0 1.5rem; }
+.project-card { width: 100%; border: 0; padding: 0; background: transparent; text-align: center; color: inherit; }
+.project-card > div { display: block; width: 100%; }
+.project-card img { aspect-ratio: 16 / 10; object-fit: contain; background: #fff; }
+.project-card .project-date { z-index: 0; display: inline-block; margin-top: .5rem; }
+.archive-label { display: block; font-size: 1.3rem; margin: 0 0 1rem; color: #555; }
+.modal-inside .modal-content { font-size: 1.5rem; }
+.modal-inside .modal-header { align-items: center; gap: 1rem; padding: 1.5rem; }
+.modal-inside .modal-title { font-size: 2rem; line-height: 1.5; }
+.project-close { border: 0; background: transparent; color: inherit; font-size: 3rem; line-height: 1; min-width: 4.4rem; min-height: 4.4rem; margin-left: auto; }
+.project-screenshot { margin: 0; text-align: center; }
+.project-screenshot img { display: block; width: 100%; height: auto; max-height: 48vh; object-fit: contain; background: #fff; }
+.project-screenshot figcaption { font-size: 1.3rem; margin-top: .8rem; }
+.gallery-controls { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: .8rem; margin: 1rem 0 2rem; }
+.gallery-controls button, .language-controls button, .portfolio-status button { border: 1px solid currentColor; background: transparent; color: inherit; border-radius: .4rem; padding: .8rem 1rem; min-height: 4.4rem; }
+.gallery-dots { display: flex; flex-wrap: wrap; gap: .5rem; }
+.gallery-dots button[aria-pressed="true"] { background: #35336f; color: #fff; }
+.archive-note { font-size: 1.3rem; line-height: 1.6; margin: 2rem 0 1rem; }
+.modal-description { font-size: 1.5rem; text-align: left; line-height: 1.8; padding: 0; }
+.project-technologies { margin-top: 2rem; font-size: 1.4rem; }
+.project-technologies li { margin: .5rem 1rem; }
+.project-technologies i { font-size: 2rem; }
+.about-copy { font-size: 1.6rem; line-height: 1.9; padding: 2rem; }
+.about-copy h3 { margin-bottom: 2rem; font-size: 2rem; }
+.about-copy p { margin: 0; }
+.experience-summary { font-size: 1.4rem; line-height: 1.8; padding-left: 1.7rem; margin: 1.5rem 0; text-align: left; }
+.timeline-badges { display: flex; flex-wrap: wrap; gap: .5rem; }
+.vertical-timeline-element-title { line-height: 1.5; }
+.vertical-timeline-element-subtitle { margin-top: .7rem; }
+.skills-tile i { font-size: 3rem; }
+.skills-tile p { font-size: 1.3rem; margin-top: .7rem; }
+.footer-content { display: flex; flex-wrap: wrap; justify-content: space-around; align-items: center; gap: 2rem; padding: 2rem; }
+.footer-content .social-links { display: flex; gap: 2rem; margin: 0; }
+.language-controls { display: flex; gap: 1rem; font-size: 1.4rem; }
+.language-controls button[aria-pressed="true"] { background: #f3d588; color: #171717; }
+.portfolio-status { text-align: center; padding: 4rem 2rem; font-size: 1.6rem; }
+html[lang="ja"] .section-title, html[lang="ja"] .project-title-settings { letter-spacing: .05em; line-height: 1.6; }
+body[data-theme="dark"] {
+  .site-header .title-container, .site-nav a { color: #fff; }
+  .archive-intro, .archive-label { color: #f4e9c9; }
+  .repository-link { color: #ffe287; }
+  .gallery-dots button[aria-pressed="true"] { background: #f3d588; color: #171717; }
+  #about .section-title { color: #ffe287; }
+  .portfolio-status { background: #0e0f45; color: #fff; }
+  .experience-summary { color: #171717; }
+}
+@media (max-width: 500px) {
+  .site-header { padding: 0 1rem 3rem; }
+  .site-nav { font-size: 1.3rem; }
+  .header-content { margin-top: 3rem; }
+  .gallery-controls { gap: .6rem; }
+  .modal-inside .modal-title { font-size: 1.7rem; }
+  .footer-content { flex-direction: column; }
+  .polaroid span { margin: 2rem auto; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-header { background-image: none !important; background-color: #254356; }
+  .foto div { transition: none; }
+}
+
