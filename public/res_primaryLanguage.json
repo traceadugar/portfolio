@@ -173,6 +173,83 @@
   ],
   "current_projects": [
     {
+      "id": "portfolio-refresh",
+      "kind": "current",
+      "sortDate": "2026-10",
+      "images": [
+        "/images/portfolio/portfolio-refresh/after-home-day.webp",
+        "/images/portfolio/portfolio-refresh/before-home-day.webp",
+        "/images/portfolio/portfolio-refresh/after-projects-day.webp",
+        "/images/portfolio/portfolio-refresh/before-projects-day.webp",
+        "/images/portfolio/portfolio-refresh/after-experience-day.webp",
+        "/images/portfolio/portfolio-refresh/before-experience-day.webp",
+        "/images/portfolio/portfolio-refresh/after-home-dusk.webp",
+        "/images/portfolio/portfolio-refresh/before-home-dusk.webp"
+      ],
+      "repositoryUrl": "https://github.com/traceadugar/portfolio",
+      "title": "Portfolio Recovery & Seaside Redesign",
+      "startDate": "Oct 2026",
+      "summary": "Recovered and refreshed my existing React portfolio through AI-assisted development, reconnecting its source to my current GitHub and Netlify deployment. A custom seaside design brings synchronized day/dusk lighting, bilingual content, responsive layouts, and keyboard-friendly project galleries into one coherent experience.",
+      "description": "I recovered my existing portfolio and reconnected its editable source to my current GitHub account and Netlify deployment. Working with Codex, I defined the visual direction, reviewed iterations, and refined the result into a miniature California seaside theme. The update extends the artwork through typography, locally hosted icons, project cards, About, and the timeline. It also improves English/Japanese content, routing, focus handling, and mobile layouts while preserving earlier project screenshots. Optimized assets and regression checks support ongoing maintenance. The gallery pairs updated views with before screenshots, and the public repository contains the implementation.",
+      "highlights": [
+        {
+          "title": "One shared animation clock",
+          "description": "Day and dusk share a packed video and one wave clock. A 1.2-second cosine blend drives scene lighting and interface colors together, allowing theme changes without restarting the ocean motion."
+        },
+        {
+          "title": "Usability across languages and devices",
+          "description": "I refined mobile navigation, route focus, keyboard galleries, and Japanese translations; reordered the timeline newest first; and removed retired demo links while retaining historical screenshots and surviving repository links."
+        },
+        {
+          "title": "Maintainable delivery",
+          "description": "I kept the existing React foundation, optimized WebP images, self-hosted the font and icons, cached local content, and deferred project details. Regression tests and browser checks preceded Netlify publication."
+        }
+      ],
+      "imageAlt": "Updated seaside portfolio homepage in day mode",
+      "imageCaptions": [
+        "After — seaside homepage in day mode.",
+        "Before — original homepage and biography in day mode.",
+        "After — refreshed project archive and skills layout.",
+        "Before — original project cards and skills layout.",
+        "After — refreshed experience timeline, newest first.",
+        "Before — original experience timeline, oldest first.",
+        "After — seaside homepage in dusk mode.",
+        "Before — original homepage and biography in night mode."
+      ],
+      "imageAlts": [
+        "Updated portfolio homepage with a miniature California seaside scene in day mode",
+        "Original portfolio homepage with a pixel-art waterfall header and biography in day mode",
+        "Updated portfolio project cards using the seaside design",
+        "Original portfolio project cards above the skills section",
+        "Updated portfolio experience timeline with the most recent work first",
+        "Original portfolio experience timeline with the oldest entry first on a peach background",
+        "Updated portfolio homepage with the seaside scene in dusk mode",
+        "Original portfolio homepage with a pixel-art waterfall header and purple biography panel in night mode"
+      ],
+      "technologies": [
+        {
+          "name": "React",
+          "icon": "devicon-react-original"
+        },
+        {
+          "name": "JavaScript",
+          "icon": "devicon-javascript-plain"
+        },
+        {
+          "name": "Sass",
+          "icon": "devicon-sass-plain"
+        },
+        {
+          "name": "AI-Assisted Development",
+          "icon": "shore-code"
+        },
+        {
+          "name": "Netlify",
+          "icon": "shore-network"
+        }
+      ]
+    },
+    {
       "id": "palehorse-intro-script",
       "title": "PaleHorse Intro Script",
       "startDate": "Apr 2026",

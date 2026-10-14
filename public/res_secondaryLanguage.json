@@ -173,6 +173,83 @@
   ],
   "current_projects": [
     {
+      "id": "portfolio-refresh",
+      "kind": "current",
+      "sortDate": "2026-10",
+      "images": [
+        "/images/portfolio/portfolio-refresh/after-home-day.webp",
+        "/images/portfolio/portfolio-refresh/before-home-day.webp",
+        "/images/portfolio/portfolio-refresh/after-projects-day.webp",
+        "/images/portfolio/portfolio-refresh/before-projects-day.webp",
+        "/images/portfolio/portfolio-refresh/after-experience-day.webp",
+        "/images/portfolio/portfolio-refresh/before-experience-day.webp",
+        "/images/portfolio/portfolio-refresh/after-home-dusk.webp",
+        "/images/portfolio/portfolio-refresh/before-home-dusk.webp"
+      ],
+      "repositoryUrl": "https://github.com/traceadugar/portfolio",
+      "title": "ポートフォリオの復旧と海辺のデザイン刷新",
+      "startDate": "2026年10月",
+      "summary": "既存のReactポートフォリオを、AIの支援を受けながら復旧・刷新し、現在のGitHubとNetlifyで更新できる構成にしました。海辺をテーマに、昼と夕暮れが同期して切り替わる配色、二言語対応、画面サイズに応じた配置、キーボードで操作できるギャラリーを、一貫したデザインにまとめました。",
+      "description": "既存のポートフォリオを復旧し、編集可能なソースを現在のGitHubアカウントとNetlifyのデプロイに接続し直しました。Codexと協働し、私が見た目の方針を定め、繰り返し確認・調整しながら、カリフォルニアの小さな海辺の町をイメージしたデザインへ刷新しました。書体、自前で配信するアイコン、プロジェクトカード、プロフィール、職歴の表示にもイラストの世界観を反映しています。過去の制作物のスクリーンショットを残しつつ、英語・日本語の内容、画面遷移、フォーカス管理、モバイル向け配置を改善しました。素材の最適化と回帰テストによって、継続的に更新しやすい構成を整えています。ギャラリーでは変更前後の画面を比較でき、実装は公開リポジトリーで確認できます。",
+      "highlights": [
+        {
+          "title": "波の動きを共有した昼と夕暮れの切り替え",
+          "description": "昼と夕暮れの映像を一つの動画に収め、同じ再生時刻から描画しています。1.2秒のコサイン曲線による補間で、風景の明るさと画面全体の配色を同期させ、波の動きを途切れさせずにテーマを切り替えます。"
+        },
+        {
+          "title": "二言語と各種端末での使いやすさ",
+          "description": "モバイル向けナビゲーション、遷移先のフォーカス、キーボード操作、日本語訳を見直しました。職歴は新しい順に並べ、終了したデモへのリンクを削除し、過去の画面と公開リポジトリーへのリンクを残しています。"
+        },
+        {
+          "title": "継続的に更新しやすい配信構成",
+          "description": "既存のReact構成を維持し、画像をWebPへ最適化しました。フォントとアイコンを自前で配信し、ローカルの内容をキャッシュし、詳細画面を必要時に読み込みます。回帰テストとブラウザー確認を経てNetlifyで公開しました。"
+        }
+      ],
+      "imageAlt": "昼の表示に刷新した海辺のポートフォリオのホーム画面",
+      "imageCaptions": [
+        "変更後：昼の海辺を描いたホーム画面。",
+        "変更前：昼のホーム画面と自己紹介。",
+        "変更後：刷新した過去のプロジェクト一覧と技術スキルの配置。",
+        "変更前：以前のプロジェクトカードと技術スキルの配置。",
+        "変更後：新しい順に並べた職歴・学習歴。",
+        "変更前：古い順に並んでいた職歴・学習歴。",
+        "変更後：夕暮れの海辺を描いたホーム画面。",
+        "変更前：夜のホーム画面と自己紹介。"
+      ],
+      "imageAlts": [
+        "カリフォルニアの小さな海辺の町を昼の風景で描いた更新後のホーム画面",
+        "ピクセルアートの滝を背景にしたヘッダーと自己紹介がある変更前の昼のホーム画面",
+        "海辺のデザインに合わせて刷新したプロジェクトカード",
+        "技術スキルの上に並ぶ変更前のプロジェクトカード",
+        "最近の仕事を先頭に配置した更新後の職歴・学習歴",
+        "桃色の背景に古い経歴から並ぶ変更前の職歴・学習歴",
+        "海辺の町を夕暮れの風景で描いた更新後のホーム画面",
+        "ピクセルアートの滝を背景にしたヘッダーと紫色の自己紹介パネルがある変更前の夜のホーム画面"
+      ],
+      "technologies": [
+        {
+          "name": "React",
+          "icon": "devicon-react-original"
+        },
+        {
+          "name": "JavaScript",
+          "icon": "devicon-javascript-plain"
+        },
+        {
+          "name": "Sass",
+          "icon": "devicon-sass-plain"
+        },
+        {
+          "name": "AI支援による開発",
+          "icon": "shore-code"
+        },
+        {
+          "name": "Netlify",
+          "icon": "shore-network"
+        }
+      ]
+    },
+    {
       "id": "palehorse-intro-script",
       "title": "PaleHorseターミナル紹介スクリプト",
       "startDate": "2026年4月",

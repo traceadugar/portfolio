@@ -6,15 +6,16 @@ const ProjectDetailsModal = lazy(() => import('./ProjectDetailsModal'));
 
 export default function Projects({ resumeProjects = [], resumeCaseStudies = [], resumeCurrentProjects = [], resumeBasicInfo, labels }) {
   const [selectedProject, setSelectedProject] = useState(null);
-  // TanMar is the featured professional work; other additions stay newest first.
-  const caseStudies = [...resumeCaseStudies].sort((left, right) => {
-    if (left.id === right.id) return 0;
-    if (left.id === 'tanmar-safety-platform') return -1;
-    if (right.id === 'tanmar-safety-platform') return 1;
-    return (right.sortDate || '').localeCompare(left.sortDate || '');
+  // TanMar stays first; case studies and personal projects otherwise share date order.
+  const selectedWork = [
+    ...resumeCaseStudies.map(data => ({ data, type: 'caseStudy' })),
+    ...resumeCurrentProjects.map(data => ({ data, type: 'project' })),
+  ].sort((left, right) => {
+    if (left.data.id === right.data.id) return 0;
+    if (left.data.id === 'tanmar-safety-platform') return -1;
+    if (right.data.id === 'tanmar-safety-platform') return 1;
+    return (right.data.sortDate || '').localeCompare(left.data.sortDate || '');
   });
-  const currentProjects = [...resumeCurrentProjects].sort((left, right) =>
-    (right.sortDate || '').localeCompare(left.sortDate || ''));
 
   const renderProjectCard = project => {
     const current = project.kind === 'current';
@@ -52,11 +53,11 @@ export default function Projects({ resumeProjects = [], resumeCaseStudies = [], 
           <p className="section-kicker"><Icon name="shore-code" /> {labels.projectsKicker}</p>
           <h2 className="section-title" id="portfolio-title">{resumeBasicInfo.section_name.projects}</h2>
         </div>
-        {caseStudies.map(caseStudy => <CaseStudyCard data={caseStudy} labels={labels} key={caseStudy.id} />)}
-        {currentProjects.length > 0 && <div className="current-projects" aria-labelledby="current-projects-title">
-          <div className="current-projects-heading"><h3 id="current-projects-title">{labels.currentProjectsHeading}</h3></div>
-          <div className="project-grid current-project-grid">{currentProjects.map(renderProjectCard)}</div>
-        </div>}
+        {selectedWork.map(({ data, type }) => type === 'caseStudy'
+          ? <CaseStudyCard data={data} labels={labels} key={data.id} />
+          : <div className="project-grid current-project-grid selected-project-row" key={data.id}>
+            {renderProjectCard(data)}
+          </div>)}
         <div className="project-archive-heading">
           <h3>{labels.archiveHeading}</h3>
           <p className="section-intro archive-intro">{labels.archiveNote}</p>

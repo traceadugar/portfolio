@@ -180,8 +180,7 @@ h1[tabindex='-1']:focus, h2[tabindex='-1']:focus, h3[tabindex='-1']:focus { outl
 .technology-chip, .tech-list li { display: inline-flex; align-items: center; gap: .35rem; padding: .32rem .6rem; border-radius: .55rem; border: 1px solid var(--edge); background-color: var(--surface-alt); color: var(--muted); font-size: .75rem; line-height: 1.35; font-weight: 700; }
 .project-card-action { display: flex; align-items: center; justify-content: space-between; gap: .6rem; padding-top: .9rem; margin-top: auto; border-top: 1px solid var(--edge); color: var(--accent); font-size: .83rem; font-weight: 900; }
 .project-card-action .icon { font-size: 1.25rem; }
-.current-projects { margin-bottom: 3.5rem; }
-.current-projects-heading h3 { font-size: 1.4rem; margin-bottom: 1.5rem; }
+.selected-project-row { margin-bottom: 3.5rem; }
 .project-grid.current-project-grid { grid-template-columns: 1fr; }
 .current-project-grid .project-card { display: grid; grid-template-columns: minmax(240px, .7fr) minmax(0, 1.5fr); align-items: center; }
 .current-project-grid .project-image-wrap { margin: .75rem; }
@@ -310,11 +309,15 @@ h1[tabindex='-1']:focus, h2[tabindex='-1']:focus, h3[tabindex='-1']:focus { outl
 .project-screenshot { margin: 0; text-align: center; }
 .project-screenshot img { display: block; width: 100%; height: auto; max-height: 48svh; object-fit: contain; border-radius: .5rem; }
 .project-screenshot figcaption { color: var(--muted); font-size: .8rem; margin-top: .7rem; }
+.project-image-open { display: inline-flex; align-items: center; gap: .5rem; min-height: 44px; font-size: .8rem; font-weight: 800; margin-top: .3rem; }
 .gallery-controls { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: .6rem; margin-top: 1rem; }
 .gallery-dots { display: flex; gap: .45rem; flex-wrap: wrap; justify-content: center; }
 .gallery-dots button { min-width: 44px; min-height: 44px; padding: .4rem; border-radius: .8rem; background-color: var(--surface); background-image: none; border-color: var(--border); color: var(--muted); }
 .project-detail-copy { padding-top: 1.5rem; }
 .modal-description { color: var(--muted); line-height: 1.8; }
+.project-highlights { list-style: none; padding: 0; margin: 1.5rem 0; display: grid; gap: 1.25rem; }
+.project-highlight-title { font-size: 1rem; line-height: 1.5; margin: 0 0 .4rem; }
+.project-highlight p { color: var(--muted); line-height: 1.8; margin: 0; }
 .archive-note { display: flex; align-items: flex-start; gap: .65rem; color: var(--muted); font-size: .8rem; padding: .9rem 1rem; margin: 1.3rem 0; background-color: var(--wash); border-radius: .75rem; }
 .archive-note .icon { margin-top: .2rem; }
 .project-detail-actions { margin-top: 1.25rem; }

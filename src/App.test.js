@@ -207,10 +207,10 @@ test('the featured case study opens a text-only writeup and returns to the proje
   expect(global.fetch).toHaveBeenCalledTimes(2);
 });
 
-test('TanMar leads the new case study and the recent script appears before the archive', async () => {
+test('TanMar stays first while projects and case studies share newest-first order', async () => {
   render(<App />);
   await screen.findByRole('heading', { name: 'Projects & case studies' });
-  const selectedTitles = ['TanMar Safety Platform', 'Linux Ticket Generator & RHEL Lab', 'PaleHorse Intro Script', 'XLRX Logistics LLC Website Redesign'];
+  const selectedTitles = ['TanMar Safety Platform', 'Portfolio Recovery & Seaside Redesign', 'Linux Ticket Generator & RHEL Lab', 'PaleHorse Intro Script', 'XLRX Logistics LLC Website Redesign'];
   const headings = screen.getAllByRole('heading', { level: 3 }).map(heading => heading.textContent);
   expect(headings.filter(title => selectedTitles.includes(title))).toEqual(selectedTitles);
   const card = screen.getByRole('article', { name: 'Linux Ticket Generator & RHEL Lab' });
@@ -252,10 +252,47 @@ test('the PaleHorse script opens current project details with code and journal l
   expect(dialog.queryByText(/Live demos are retired/)).not.toBeInTheDocument();
   expect(dialog.getByRole('link', { name: /View repository/ })).toHaveAttribute('href', 'https://github.com/traceadugar/ProjectJournal/blob/main/April%2026/intoScript/intro.sh');
   expect(dialog.getByRole('link', { name: /Read project journal/ })).toHaveAttribute('href', 'https://github.com/traceadugar/ProjectJournal/blob/main/April%2026/introScript.md');
-  expect(dialog.getByRole('img')).toHaveAttribute('src', english.current_projects[0].images[0]);
+  expect(dialog.getByRole('img')).toHaveAttribute('src', '/images/portfolio/palehorse-intro-script/palehorseintro.webp');
   fireEvent.click(dialog.getByRole('button', { name: 'Close project details' }));
   await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument());
   expect(trigger).toHaveFocus();
+});
+
+test('the portfolio refresh opens project details with labelled before-and-after images in both languages', async () => {
+  render(<App />);
+  const trigger = await screen.findByRole('button', { name: 'View project details: Portfolio Recovery & Seaside Redesign' });
+  trigger.focus();
+  fireEvent.click(trigger);
+  const dialog = within(await screen.findByRole('dialog', { name: 'Portfolio Recovery & Seaside Redesign' }));
+  expect(dialog.getByRole('img')).toHaveAttribute('src', '/images/portfolio/portfolio-refresh/after-home-day.webp');
+  expect(dialog.getByText(/After — seaside homepage in day mode/)).toHaveTextContent('Image 1 of 8');
+  expect(dialog.getByRole('link', { name: /Open full-size image/ })).toHaveAttribute('href', '/images/portfolio/portfolio-refresh/after-home-day.webp');
+  expect(dialog.queryByText('Archived project')).not.toBeInTheDocument();
+  expect(dialog.queryByRole('link', { name: 'Read case study' })).not.toBeInTheDocument();
+  expect(dialog.getByRole('link', { name: /View repository/ })).toHaveAttribute('href', 'https://github.com/traceadugar/portfolio');
+  fireEvent.click(dialog.getByRole('button', { name: 'Next image' }));
+  expect(dialog.getByRole('img')).toHaveAttribute('src', '/images/portfolio/portfolio-refresh/before-home-day.webp');
+  expect(dialog.getByText(/Before — original homepage and biography in day mode/)).toHaveTextContent('Image 2 of 8');
+  expect(dialog.getByRole('link', { name: /Open full-size image/ })).toHaveAttribute('href', '/images/portfolio/portfolio-refresh/before-home-day.webp');
+  const gallery = dialog.getByRole('group', { name: 'Project screenshots' });
+  gallery.focus();
+  fireEvent.keyDown(gallery, { key: 'ArrowRight' });
+  expect(dialog.getByRole('img')).toHaveAttribute('src', '/images/portfolio/portfolio-refresh/after-projects-day.webp');
+  fireEvent.click(dialog.getByRole('button', { name: 'Show image 8' }));
+  expect(dialog.getByRole('img')).toHaveAttribute('src', '/images/portfolio/portfolio-refresh/before-home-dusk.webp');
+  expect(dialog.getByRole('heading', { name: 'One shared animation clock' })).toBeInTheDocument();
+  fireEvent.click(dialog.getByRole('button', { name: 'Close project details' }));
+  await waitFor(() => expect(screen.queryByRole('dialog')).not.toBeInTheDocument());
+  expect(trigger).toHaveFocus();
+  fireEvent.change(screen.getByRole('combobox', { name: 'Language' }), { target: { value: 'ja' } });
+  const translated = japanese.current_projects.find(project => project.id === 'portfolio-refresh');
+  fireEvent.click(await screen.findByRole('button', { name: `プロジェクトの詳細を表示: ${translated.title}` }));
+  const translatedDialog = within(await screen.findByRole('dialog', { name: translated.title }));
+  expect(translatedDialog.getByRole('img')).toHaveAttribute('alt', translated.imageAlts[0]);
+  expect(translatedDialog.getByText(new RegExp(translated.imageCaptions[0]))).toHaveTextContent('画像 1 / 8');
+  expect(translatedDialog.getByRole('link', { name: /画像を原寸で開く/ })).toHaveAttribute('href', '/images/portfolio/portfolio-refresh/after-home-day.webp');
+  expect(translatedDialog.getByRole('heading', { name: translated.highlights[0].title })).toBeInTheDocument();
+  expect(translatedDialog.queryByText(/One shared animation clock|After —|Before —/)).not.toBeInTheDocument();
 });
 
 test('a direct case study section link focuses the section and the writeup switches to Japanese', async () => {

@@ -45,12 +45,20 @@ The supplied official TanMar Communications SVG is self-hosted at `public/images
 
 The Linux Ticket Generator & RHEL Lab case study opens `/case-studies/linux-ticket-queue`. Its English and Japanese copy combines the public RHEL build journal with the AI-guided ticket workflow: a real lab baseline, explicit simulated state, three persistent tracking files, and inspection, diagnosis, verification, and resolution notes. The writeup describes the documented design and lab checks without claiming completion of every training tier, production deployment, or guaranteed enforcement by an AI prompt.
 
-TanMar stays pinned first. Other case studies and the `current_projects` array use descending `sortDate` values (`YYYY-MM`); the PaleHorse script appears ahead of the older project archive. Keep IDs and source URLs aligned in both locale files. Current project modals show code and journal links and omit the retired-demo notice used for archived projects.
+TanMar stays pinned first. Other case studies and entries in `current_projects` share descending `sortDate` order (`YYYY-MM`), ahead of the older project archive. Keep IDs and source URLs aligned in both locale files. Current project modals show code and optional journal links and omit the retired-demo notice used for archived projects.
 
 Images are optimized copies of the user's public GitHub assets:
 
 - RHEL hardware: [RHELheadless.png](https://github.com/traceadugar/ProjectJournal/blob/main/March%2026/Images/RHELheadless.png), saved as `public/images/portfolio/palehorse-lab/rhel-server.webp`.
 - PaleHorse terminal: [palehorseintro.png](https://github.com/traceadugar/ProjectJournal/blob/main/April%2026/images/palehorseintro.png), saved as `public/images/portfolio/palehorse-intro-script/palehorseintro.webp`, with 480- and 960-pixel thumbnails. The gallery preserves the full screenshot. ASCII-art and font attribution remains in the linked [script journal](https://github.com/traceadugar/ProjectJournal/blob/main/April%2026/introScript.md).
+
+## Portfolio refresh project
+
+`current_projects` contains the October 2026 Portfolio Recovery & Seaside Redesign project. It opens the project details modal, with owner-supplied before screenshots paired with captures of the published seaside interface. It remains a project entry; it does not create a case-study route. Its description credits AI-assisted development and Trace's direction and review, and explains recovery, synchronized scene lighting, bilingual usability, optimization, and deployment verification.
+
+The eight gallery images and two card thumbnails are self-hosted under `public/images/portfolio/portfolio-refresh/` and `public/images/thumbnails/`. The original before files remain preserved outside the website. Optimized copies retain the complete screenshot content; only the card thumbnail crops the current seaside hero. `imageCaptions` and `imageAlts` have one localized entry per image, identifying before/after, subject, and theme. New captures document the published interface before this project card was added, avoiding an image of the project embedding itself.
+
+TanMar remains first, followed by the October portfolio project, April Linux case study, and April PaleHorse script. Keep `sortDate` machine-readable in both locales when adding newer work. The comparison gallery offers a full-size image link for inspecting long screenshots, as well as arrows, numbered selection, Escape dismissal, and focus restoration; on narrow screens the numbered row is hidden while previous/next controls remain available.
 
 ## Deploy
 

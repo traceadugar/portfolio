@@ -8,6 +8,8 @@ export default function ProjectDetailsModal({ show, onHide, data, labels }) {
   if (!data) return null;
   const current = data.kind === 'current';
   const count = data.images.length;
+  const imageCaption = data.imageCaptions?.[imageIndex];
+  const imageAlt = data.imageAlts?.[imageIndex] || data.imageAlt || `${data.title} — ${labels.screenshot} ${imageIndex + 1}`;
   const moveImage = direction => setImageIndex(index => (index + direction + count) % count);
   return (
     <Modal show={show} onHide={onHide} size="lg" centered className="modal-inside" aria-labelledby="project-modal-title">
@@ -25,8 +27,15 @@ export default function ProjectDetailsModal({ show, onHide, data, labels }) {
           }
         }}>
           <figure className="project-screenshot">
-            <img src={data.images[imageIndex]} alt={data.imageAlt || `${data.title} — ${labels.screenshot} ${imageIndex + 1}`} decoding="async" />
-            <figcaption aria-live="polite" aria-atomic="true">{data.attribution || <>{labels.image} {imageIndex + 1} {labels.of} {count}</>}</figcaption>
+            <img src={data.images[imageIndex]} alt={imageAlt} decoding="async" />
+            <figcaption aria-live="polite" aria-atomic="true">
+              {imageCaption ? <>{imageCaption} <span aria-hidden="true">·</span> {labels.image} {imageIndex + 1} {labels.of} {count}</>
+                : data.attribution || <>{labels.image} {imageIndex + 1} {labels.of} {count}</>}
+            </figcaption>
+            {imageCaption && <a className="project-image-open" href={data.images[imageIndex]} target="_blank" rel="noopener noreferrer">
+              {labels.fullSizeImage}<Icon name="shore-arrow" />
+              <span className="visually-hidden"> ({labels.opensNewTab})</span>
+            </a>}
           </figure>
           {count > 1 && <div className="gallery-controls">
             <button type="button" className="gallery-step shore-icon-button" onClick={() => moveImage(-1)} aria-label={labels.previous}><Icon name="shore-chevron-left" /></button>
@@ -40,6 +49,12 @@ export default function ProjectDetailsModal({ show, onHide, data, labels }) {
         </div>
         <div className="project-detail-copy">
           <p className="modal-description">{data.description}</p>
+          {data.highlights?.length > 0 && <div className="project-highlights">
+            {data.highlights.map(highlight => <div className="project-highlight" key={highlight.title}>
+              <h3 className="project-highlight-title">{highlight.title}</h3>
+              <p>{highlight.description}</p>
+            </div>)}
+          </div>}
           <ul className="project-technologies technology-chips" aria-label={labels.technologies}>
             {data.technologies.map(tech => <li className="technology-chip" key={tech.name}>
               <Icon name={tech.icon} /> <span>{tech.name}</span>
