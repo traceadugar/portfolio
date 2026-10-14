@@ -23,6 +23,7 @@ export default function Home({ resumeData, sharedData, labels }) {
       <div className="intro-actions">
         <Link className="shore-button" to="/about">{labels.readAbout}<Icon name="shore-arrow" /></Link>
         <Link className="shore-button shore-button-secondary" to="/#resume">{resumeData.basic_info.section_name.experience}</Link>
+        <Link className="shore-button shore-button-secondary" to="/#skills">{labels.exploreSkills}<Icon name="shore-code" /></Link>
       </div>
     </section>
     <Projects resumeProjects={resumeData.projects} resumeCaseStudies={resumeData.case_studies}

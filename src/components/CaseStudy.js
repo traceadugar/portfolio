@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Icon from './Icon';
 
 export default function CaseStudy({ data, labels }) {
+  const { hash } = useLocation();
   if (!data) return null;
   const dateBadge = data.startDate && <time className="project-year" dateTime={data.sortDate}>{data.startDate}</time>;
 
@@ -42,7 +43,12 @@ export default function CaseStudy({ data, labels }) {
       <nav className="case-study-contents" aria-label={labels.caseStudyContents}>
         <p className="case-study-contents-label">{labels.caseStudyContents}</p>
         <ul>
-          {data.sections.map(section => <li key={section.id}><a href={`#case-${section.id}`}>{section.title}</a></li>)}
+          {data.sections.map(section => <li key={section.id}>
+            <Link to={`#case-${section.id}`} aria-current={hash === `#case-${section.id}` ? 'location' : undefined}>{section.title}</Link>
+          </li>)}
+          {data.sources?.length > 0 && <li>
+            <Link to="#case-study-sources-heading" aria-current={hash === '#case-study-sources-heading' ? 'location' : undefined}>{labels.caseStudySourcesNav}</Link>
+          </li>}
         </ul>
       </nav>
       <div className="case-study-body shore-panel">

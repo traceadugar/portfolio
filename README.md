@@ -105,6 +105,12 @@ npm run build
 
 Thumbnails are checked into Git, so Netlify does not need to regenerate them.
 
+## Interface polish
+
+About's biography uses the card's available width with compact padding and paragraph spacing. The home introduction includes a direct Skills jump. Case-study contents links use client routing, focus the destination heading, and mark the selected fragment with `aria-current`. The sticky contents panel can scroll on short desktop screens; it returns to the normal page flow on mobile. Entries with GitHub sources include a contents shortcut to the source section.
+
+A small seashell beside Back to top opens an optional footer note in either language. It stays closed until selected, keeps keyboard focus on its trigger, and closes with its button or Escape. This disclosure adds no animation, sound, storage, or network requests.
+
 ## Seaside background
 
 The custom header shows a miniature California seaside town with Trace's stylized avatar in modern clothes. Light theme uses the sunny scene; dark theme uses its matching late-dusk scene. Only the ocean and a narrow band of surf washing up the sand move. The wave cycle uses periodic displacement, with an identical virtual start/end frame; the repeated endpoint is omitted from playback.

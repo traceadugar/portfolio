@@ -1,5 +1,6 @@
 import React from 'react';
 import Icon from './Icon';
+import ShoreNote from './ShoreNote';
 import { Link } from 'react-router-dom';
 
 export default function Footer({ sharedBasicInfo, labels, language, applyPickedLanguage, loading }) {
@@ -23,10 +24,9 @@ export default function Footer({ sharedBasicInfo, labels, language, applyPickedL
             onClick={() => applyPickedLanguage('ja')}>{labels.japanese}</button>
         </div>
       </div>
-      <div className="footer-bottom">
-        <small>{labels.copyright} © {sharedBasicInfo?.name || 'Trace Dugar'}</small>
-        <Link className="back-to-top" to="#home">{labels.backToTop}<Icon name="shore-arrow-up" /></Link>
-      </div>
+      <ShoreNote labels={labels}
+        copyright={<small>{labels.copyright} © {sharedBasicInfo?.name || 'Trace Dugar'}</small>}
+        backToTop={<Link className="back-to-top" to="#home">{labels.backToTop}<Icon name="shore-arrow-up" /></Link>} />
     </footer>
   );
 }

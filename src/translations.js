@@ -34,6 +34,9 @@ const translations = {
     returnCaseOverview: 'Back to overview',
     currentProject: 'Personal project', readJournal: 'Read project journal',
     caseStudySources: 'Full project breakdown on GitHub',
+    caseStudySourcesNav: 'GitHub sources', exploreSkills: 'Explore skills',
+    shoreSurprise: 'A little surprise from the shore', shoreNoteTitle: 'A note from the shore',
+    shoreNoteMessage: 'A little curiosity goes a long way. Thanks for exploring.', closeShoreNote: 'Close the shoreline note',
     openVideo: 'Open the diagnostic clip', videoFallback: 'Your browser cannot play this video. Use the link below to open the clip.',
   },
   ja: {
@@ -71,6 +74,9 @@ const translations = {
     returnCaseOverview: '概要に戻る',
     currentProject: '個人プロジェクト', readJournal: 'プロジェクト日誌を読む',
     caseStudySources: 'GitHubで詳しいプロジェクト内容を見る',
+    caseStudySourcesNav: 'GitHubの資料', exploreSkills: '技術スキルを見る',
+    shoreSurprise: '海辺の小さなサプライズ', shoreNoteTitle: '海辺からの小さな便り',
+    shoreNoteMessage: '小さな好奇心が、新しい発見につながります。ここまで見てくださって、ありがとうございます。', closeShoreNote: '海辺の便りを閉じる',
     openVideo: '検証用動画を開く', videoFallback: 'このブラウザーでは動画を再生できません。下のリンクから動画を開いてください。',
   },
 };

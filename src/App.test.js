@@ -36,6 +36,9 @@ test('skill evidence links translate and navigate to the supporting section with
   render(<App />);
   await screen.findByRole('heading', { name: 'Skills', exact: true });
   const skills = within(document.getElementById('skills'));
+  fireEvent.click(screen.getByRole('link', { name: 'Explore skills', exact: true }));
+  expect(screen.getByRole('heading', { name: 'Skills', exact: true })).toHaveFocus();
+  expect(window.location.hash).toBe('#skills');
   expect(skills.getByRole('region', { name: 'AI development practices' })).toBeInTheDocument();
   expect(skills.getByRole('link', { name: /Least privilege — See supporting example/ })).toHaveAttribute('href', '/case-studies/linux-ticket-queue#case-privilege-evidence');
   fireEvent.change(screen.getByRole('combobox', { name: 'Language' }), { target: { value: 'ja' } });
@@ -281,6 +284,12 @@ test('the Linux case study supports direct sections and Japanese GitHub source l
   const study = english.case_studies.find(item => item.id === 'linux-ticket-queue');
   const aiSection = study.sections.find(item => item.id === 'ai');
   expect(await screen.findByRole('heading', { name: aiSection.title })).toHaveFocus();
+  const contents = within(screen.getByRole('navigation', { name: 'In this case study' }));
+  expect(contents.getByRole('link', { name: aiSection.title })).toHaveAttribute('aria-current', 'location');
+  fireEvent.click(contents.getByRole('link', { name: 'GitHub sources', exact: true }));
+  await waitFor(() => expect(screen.getByRole('heading', { name: 'Full project breakdown on GitHub' })).toHaveFocus());
+  expect(contents.getByRole('link', { name: 'GitHub sources', exact: true })).toHaveAttribute('aria-current', 'location');
+  expect(contents.getByRole('link', { name: aiSection.title })).not.toHaveAttribute('aria-current');
   expect(screen.getByText('Apr 2026', { selector: 'time' })).toHaveAttribute('datetime', '2026-04');
   for (const source of study.sources) {
     expect(screen.getByRole('link', { name: new RegExp(source.title) })).toHaveAttribute('href', source.url);
