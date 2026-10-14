@@ -28,6 +28,7 @@ const translations = {
     returnCaseOverview: 'Back to overview',
     currentProject: 'Personal project', readJournal: 'Read project journal',
     caseStudySources: 'Full project breakdown on GitHub',
+    openVideo: 'Open the diagnostic clip', videoFallback: 'Your browser cannot play this video. Use the link below to open the clip.',
   },
   ja: {
     locale: 'ja-JP',
@@ -58,6 +59,7 @@ const translations = {
     returnCaseOverview: '概要に戻る',
     currentProject: '個人プロジェクト', readJournal: 'プロジェクト日誌を読む',
     caseStudySources: 'GitHubで詳しいプロジェクト内容を見る',
+    openVideo: '検証用動画を開く', videoFallback: 'このブラウザーでは動画を再生できません。下のリンクから動画を開いてください。',
   },
 };
 

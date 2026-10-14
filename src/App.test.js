@@ -305,6 +305,57 @@ test('Aquarium opens directly with its project date, translates, and returns to 
   expect(global.fetch).toHaveBeenCalledTimes(3);
 });
 
+test('Aquarium evidence has dated anchors and an accessible, user-controlled diagnostic video in both languages', async () => {
+  window.history.replaceState({}, '', '/case-studies/aquarium#case-evidence');
+  render(<App />);
+  const study = english.case_studies.find(item => item.id === 'aquarium');
+  const evidence = study.sections.find(item => item.id === 'evidence');
+  expect(await screen.findByRole('heading', { name: evidence.title })).toHaveFocus();
+  const video = screen.getByLabelText(evidence.video.title);
+  expect(video.tagName).toBe('VIDEO');
+  expect(video).toHaveAttribute('controls');
+  expect(video).toHaveAttribute('playsinline');
+  expect(video).toHaveAttribute('preload', 'none');
+  expect(video).not.toHaveAttribute('autoplay');
+  expect(video).not.toHaveAttribute('loop');
+  expect(video).toHaveAttribute('poster', evidence.video.poster);
+  expect(video.querySelector('source')).toHaveAttribute('src', evidence.video.src);
+  expect(video).toHaveAccessibleDescription(evidence.video.caption);
+  expect(screen.getByRole('link', { name: /Open the diagnostic clip/ })).toHaveAttribute('href', evidence.video.src);
+  expect(screen.getByText(evidence.date, { selector: 'time' })).toHaveAttribute('datetime', '2026-10-11');
+  fireEvent.change(screen.getByRole('combobox', { name: 'Language' }), { target: { value: 'ja' } });
+  const translated = japanese.case_studies.find(item => item.id === 'aquarium').sections.find(item => item.id === 'evidence');
+  await screen.findByRole('heading', { name: translated.title });
+  expect(screen.getByLabelText(translated.video.title)).toHaveAccessibleDescription(translated.video.caption);
+  expect(screen.getByText(translated.date, { selector: 'time' })).toHaveAttribute('datetime', '2026-10-11');
+  expect(screen.getByRole('link', { name: /検証用動画を開く/ })).toHaveAttribute('href', evidence.video.src);
+  expect(screen.queryByText(evidence.video.caption)).not.toBeInTheDocument();
+});
+
+test('Linux exercise links focus dated evidence and render sanitized output as keyboard-accessible text in both languages', async () => {
+  window.history.replaceState({}, '', '/case-studies/linux-ticket-queue#case-login-evidence');
+  render(<App />);
+  const study = english.case_studies.find(item => item.id === 'linux-ticket-queue');
+  const login = study.sections.find(item => item.id === 'login-evidence');
+  const privilege = study.sections.find(item => item.id === 'privilege-evidence');
+  expect(await screen.findByRole('heading', { name: login.title })).toHaveFocus();
+  const transcript = screen.getByLabelText(privilege.transcript.title);
+  expect(transcript.tagName).toBe('PRE');
+  expect(transcript).toHaveAttribute('tabindex', '0');
+  expect(transcript.textContent).toContain('groups=1001(jrodriguez),10(wheel)');
+  expect(transcript.textContent).toContain('wheel:x:10:<lab_admin>');
+  expect(transcript.querySelector('lab_admin')).toBeNull();
+  expect(screen.getByLabelText(login.transcript.title)).toHaveTextContent('/home/mthompson:/bin/bash');
+  expect(screen.getAllByText('May 2, 2026', { selector: 'time' })).toHaveLength(2);
+  fireEvent.change(screen.getByRole('combobox', { name: 'Language' }), { target: { value: 'ja' } });
+  const translated = japanese.case_studies.find(item => item.id === 'linux-ticket-queue');
+  const translatedPrivilege = translated.sections.find(item => item.id === 'privilege-evidence');
+  await screen.findByRole('heading', { name: translatedPrivilege.title });
+  expect(screen.getByLabelText(translatedPrivilege.transcript.title)).toHaveTextContent('wheel:x:10:<lab_admin>');
+  expect(screen.getAllByText('2026年5月2日', { selector: 'time' })).toHaveLength(2);
+  expect(screen.queryByRole('heading', { name: login.title })).not.toBeInTheDocument();
+});
+
 test('the PaleHorse script opens current project details with code and journal links', async () => {
   render(<App />);
   const trigger = await screen.findByRole('button', { name: 'View project details: PaleHorse Intro Script' });

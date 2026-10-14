@@ -140,11 +140,37 @@
           ]
         },
         {
+          "id": "evidence",
+          "title": "Cory foraging: a worked example",
+          "date": "October 11, 2026",
+          "dateTime": "2026-10-11",
+          "paragraphs": [
+            "I requested a more readable corydoras foraging sequence: the mouth needed to reach the sand, disturb it, and transition into a short swim. AI implementation and independent checks exposed particle movement and turning defects. The team retained those failures and extended the correction to account for the fish’s body and fins during turns and settling.",
+            "A focused development fixture recorded 458 passing foraging checks; an unchanged shared-area departure test also passed for all six fish. Preserved reports, source inventories, and an independent correspondence review tie these historical results to the corrected development sequence. These are bounded checks, not universal collision-clearance acceptance. Broader species traffic remains work in progress."
+          ],
+          "video": {
+            "src": "/images/portfolio/aquarium/cory-foraging-diagnostic.mp4",
+            "poster": "/images/portfolio/aquarium/cory-foraging-poster.webp",
+            "title": "Corydoras foraging — development diagnostic close-up",
+            "caption": "Development diagnostic close-up: a four-second rendered witness using a separate camera and an extended foraging visit. It shows the corrected sequence; it is not a normal gameplay session or a performance benchmark."
+          }
+        },
+        {
           "id": "ai",
           "title": "My role and the feedback loop",
           "paragraphs": [
             "My tools are prompts, observation, playtesting, and critique. I make product and creative decisions, provide references, screenshots, logs, and feedback, and ask agents to investigate or change the project. They own implementation, tooling, debugging, builds, tests, and documentation.",
             "Specialized responsibilities cover architecture, persistence, behavior, performance, and independent review. Written scopes and acceptance criteria turn feedback into bounded work; durable context carries decisions across sessions. My role is to direct that loop and judge the experience, while keeping unfinished experiments distinct from the installed preview."
+          ]
+        },
+        {
+          "id": "context-evidence",
+          "title": "Routing the AI team to relevant context",
+          "date": "October 10, 2026",
+          "dateTime": "2026-10-10",
+          "paragraphs": [
+            "I directed a scoped reorganization of the information used by the AI team. Agents begin with governance and current state, then follow a router to the relevant subsystem and exact contract. AI agents implemented the documentation changes while preserving original decisions, research, and evidence; runtime and unfinished features stayed outside the scope.",
+            "At the October 10 documentation checkpoint, mandatory startup reading fell from 5,228 to 2,543 whitespace-separated words, a 51.36% reduction. This measures that historical reading set, not present-day context size, token cost, productivity, or model reliability."
           ]
         },
         {
@@ -174,7 +200,8 @@
           "id": "verification",
           "title": "Verification and independent review",
           "paragraphs": [
-            "The workflow records source and build identity, uses isolated test profiles, and preserves failed checks alongside successful evidence. Review asks whether a test measures its stated claim and whether the tested candidate matches the delivered build. Independent review complements automated checks; my playtesting covers qualities that need human judgment. Narrow passing results do not close unrelated behavior, visual, or performance gates."
+            "The workflow records source and build identity, uses isolated test profiles, and preserves failed checks alongside successful evidence. Review asks whether a test measures its stated claim and whether the tested candidate matches the delivered build. Independent review complements automated checks; my playtesting covers qualities that need human judgment. Narrow passing results do not close unrelated behavior, visual, or performance gates.",
+            "One proposed contact-query optimization passed 69,634 sampled comparisons against a frozen predecessor. Independent AI static analysis then identified an unsampled boundary where the finer spatial index could change the result. The team rejected the optimization and restored the original index. The counterexample was analytical, not executed in Godot; this records a decision to reject adoption, not a demonstrated performance gain."
           ]
         },
         {
@@ -192,19 +219,34 @@
       "sortDate": "2026-04",
       "title": "Linux Ticket Generator & RHEL Lab",
       "subtitle": "Designing a Stateful AI Workflow for Linux Operations Practice",
-      "summary": "A headless RHEL homelab paired with an AI-guided Linux ticket generator. I designed a reusable workflow that carries environment state, ticket history, and learning gaps across sessions while making investigation, verification, and documentation part of each exercise.",
-      "status": "RHEL lab configured; reusable AI-guided practice workflow documented.",
+      "summary": "A headless RHEL homelab paired with a stateful AI-guided Linux ticket generator. The workflow carries environment state, ticket history, and learning gaps across sessions. Two completed account and least-privilege exercises show how I use AI mentoring to investigate, make targeted changes, and document verification.",
+      "status": "RHEL lab configured; two Tier 1 account and permission exercises completed in May 2026.",
       "organization": "Independent project · PaleHorse homelab",
       "icon": "shore-network",
       "image": "/images/portfolio/palehorse-lab/rhel-server.webp",
       "imageAlt": "HP ProDesk hardware repurposed for the PaleHorse RHEL homelab",
       "imageCaption": "Repurposed HP ProDesk hardware for the PaleHorse RHEL homelab.",
       "technologies": [
-        { "name": "RHEL", "icon": "shore-network" },
-        { "name": "Claude Code", "icon": "shore-code" },
-        { "name": "AI Workflow Design", "icon": "shore-code" },
-        { "name": "SSH", "icon": "shore-shield" },
-        { "name": "Technical Documentation", "icon": "shore-book" }
+        {
+          "name": "RHEL",
+          "icon": "shore-network"
+        },
+        {
+          "name": "Claude Code",
+          "icon": "shore-code"
+        },
+        {
+          "name": "AI Workflow Design",
+          "icon": "shore-code"
+        },
+        {
+          "name": "SSH",
+          "icon": "shore-shield"
+        },
+        {
+          "name": "Technical Documentation",
+          "icon": "shore-book"
+        }
       ],
       "sections": [
         {
@@ -212,8 +254,37 @@
           "title": "Project overview",
           "paragraphs": [
             "I built a Linux practice environment around PaleHorse, my headless RHEL homelab, and designed an AI-guided ticket generator to make that environment useful for repeatable troubleshooting practice. The combination connects physical infrastructure work with AI workflow design: a real machine provides the baseline, while a documented simulation introduces realistic operational problems.",
-            "My goal was to practice judgment as well as commands. Each ticket presents symptoms and incomplete context, asks me to investigate, and ends with verification and a written resolution."
+            "My goal was to practice judgment as well as commands. Each ticket presents symptoms and incomplete context, asks me to investigate, and ends with verification and a written resolution.",
+            "The worked examples below are controlled Tier 1 exercises completed on May 2, 2026: fictional accounts and deliberately seeded faults on the real lab server. Claude Code issued the scenarios; AI mentoring supported my diagnosis and command use."
           ]
+        },
+        {
+          "id": "login-evidence",
+          "title": "TICK-002: restoring an account’s interactive login",
+          "date": "May 2, 2026",
+          "dateTime": "2026-05-02",
+          "paragraphs": [
+            "This exercise concerned a fictional developer account that could not complete an interactive login. The completion log identifies a nologin shell and missing home directory. My retained notes describe checking the account, investigating the missing home, and an initial mkdir/chown attempt. With AI mentoring, I learned how ownership and default home files work.",
+            "My resolution note records setting Bash, correcting the home with mkhomedir_helper, setting owner-only permissions (700), and testing SSH successfully. The retained account output below shows the Bash entry. The login result is documented in my closure note; no raw SSH success transcript survives."
+          ],
+          "transcript": {
+            "title": "Retained, user-pasted account output; real administrator and host redacted",
+            "content": "<lab_admin>@<lab_host>:/etc/ssh$ getent passwd mthompson\nmthompson:x:1002:1002::/home/mthompson:/bin/bash"
+          }
+        },
+        {
+          "id": "privilege-evidence",
+          "title": "TICK-001: narrowing an account’s privileges",
+          "date": "May 2, 2026",
+          "dateTime": "2026-05-02",
+          "paragraphs": [
+            "The initial id output showed a fictional junior-administrator account in wheel. The lab’s recorded sudoers policy granted that group unrestricted sudo access. With AI mentoring and the usermod documentation, I worked through a targeted membership change. My resolution note records removing the practice account; the later group listing shows only the lab administrator remaining.",
+            "The retained before-and-after inspection covers wheel membership, not a complete audit of alternative sudo grants. I also recorded the learning gaps exposed: connecting group membership with the configured sudo policy and checking the correct group file."
+          ],
+          "transcript": {
+            "title": "Retained, user-pasted inspection: before (id) and after (group listing); real administrator and host redacted",
+            "content": "<lab_admin>@<lab_host>:~$ id jrodriguez\nuid=1001(jrodriguez) gid=1001(jrodriguez) groups=1001(jrodriguez),10(wheel)\n\n<lab_admin>@<lab_host>:~$ grep wheel /etc/group\nwheel:x:10:<lab_admin>"
+          }
         },
         {
           "id": "lab",
@@ -252,14 +323,23 @@
           "title": "Lessons and next steps",
           "paragraphs": [
             "The strongest lesson is that useful AI workflows need explicit state, clear responsibilities, and a way to check their output. A reusable skill reduces setup friction, while the journal preserves decisions and troubleshooting context. The hardware lab also reinforced the need to test remote access after reboot rather than assuming configuration persists.",
-            "The next useful evidence is a redacted completed ticket with inspection output, diagnosis, the chosen fix, and verification. The linked GitHub journal contains the full setup and reusable workflow."
+            "These two completed exercises make the learning process visible: initial inspection, targeted changes with mentoring, retained output, and written closure. The next step is to carry the recorded gaps into further practice and strengthen verification. The linked GitHub journal contains the full setup and reusable workflow."
           ]
         }
       ],
       "sources": [
-        { "title": "Linux Admin Ticket Queue — project journal", "url": "https://github.com/traceadugar/ProjectJournal/blob/main/April%2026/LinuxAdminTicketQueue.md" },
-        { "title": "Headless RHEL Server — setup and troubleshooting", "url": "https://github.com/traceadugar/ProjectJournal/blob/main/March%2026/RHELServer.md" },
-        { "title": "Reusable simulator context and skill instructions", "url": "https://github.com/traceadugar/ProjectJournal/blob/main/April%2026/context_file/context.md" }
+        {
+          "title": "Linux Admin Ticket Queue — project journal",
+          "url": "https://github.com/traceadugar/ProjectJournal/blob/main/April%2026/LinuxAdminTicketQueue.md"
+        },
+        {
+          "title": "Headless RHEL Server — setup and troubleshooting",
+          "url": "https://github.com/traceadugar/ProjectJournal/blob/main/March%2026/RHELServer.md"
+        },
+        {
+          "title": "Reusable simulator context and skill instructions",
+          "url": "https://github.com/traceadugar/ProjectJournal/blob/main/April%2026/context_file/context.md"
+        }
       ]
     }
   ],
