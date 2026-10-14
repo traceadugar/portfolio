@@ -4,21 +4,20 @@ import Icon from './Icon';
 
 export default function CaseStudy({ data, labels }) {
   if (!data) return null;
+  const dateBadge = data.startDate && <time className="project-year" dateTime={data.sortDate}>{data.startDate}</time>;
 
   return <article className="section-shell case-study-page" aria-labelledby="case-study-heading">
     <header className="section-heading">
       <Link className="case-study-back-link" to="/#portfolio"><Icon name="shore-chevron-left" />{labels.backToProjects}</Link>
-      <div className="case-study-meta">
-        <p className="section-kicker"><Icon name="shore-compass" /> {labels.caseStudy}</p>
-        {data.startDate && <time className="case-study-date" dateTime={data.sortDate}>{data.startDate}</time>}
-      </div>
+      <p className="section-kicker"><Icon name="shore-compass" /> {labels.caseStudy}</p>
       <h2 className="section-title" id="case-study-heading">{data.title}</h2>
       <p className="section-intro case-study-subtitle">{data.subtitle}</p>
     </header>
     <div className="case-study-overview shore-panel">
-      {data.logo ? <div className="case-study-brand">
+      {data.logo ? <div className="case-study-brand case-study-media">
         <img src={data.logo} width="800" height="350" alt={data.logoAlt} decoding="async" />
-      </div> : <div className="case-study-emblem"><Icon name={data.icon || 'shore-code'} /></div>}
+        {dateBadge}
+      </div> : <div className={data.image ? 'case-study-emblem' : 'case-study-emblem case-study-media'}><Icon name={data.icon || 'shore-code'} />{!data.image && dateBadge}</div>}
       <div className="case-study-overview-copy">
         <p className="case-study-organization">{data.organization}</p>
         <p className="case-study-status">{data.status}</p>
@@ -29,7 +28,10 @@ export default function CaseStudy({ data, labels }) {
         </ul>
       </div>
       {data.image && <figure className="case-study-figure">
-        <img src={data.image} width={data.imageWidth} height={data.imageHeight} alt={data.imageAlt} loading="lazy" decoding="async" />
+        <div className="case-study-card-photo case-study-media">
+          <img src={data.image} width={data.imageWidth} height={data.imageHeight} alt={data.imageAlt} loading="lazy" decoding="async" />
+          {!data.logo && dateBadge}
+        </div>
         {data.imageCaption && <figcaption>{data.imageCaption}</figcaption>}
       </figure>}
     </div>

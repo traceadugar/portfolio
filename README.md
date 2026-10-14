@@ -41,7 +41,7 @@ The featured TanMar Safety Platform card opens `/case-studies/tanmar-safety-plat
 
 The supplied official TanMar Communications SVG is self-hosted at `public/images/brands/tanmar-communications-color.svg`, sourced from https://www.tanmarcompanies.com/images/logos/tanmar-communications-color.svg. Its colors remain unchanged on a warm neutral plaque in both themes. The case study uses a shareable route, section anchors, and return links that preserve the shared seaside animation clock.
 
-Case-study cards and detail pages display localized project start months with semantic `time` elements. `startDate` is the display text and `sortDate` is its machine-readable `YYYY-MM` value. TanMar began in August 2026 and remains pinned first for relevance; its date does not override that rule. The Linux case study uses April 2026, matching the ticket workflow journal.
+Case-study cards and detail pages display localized project start months with semantic `time` elements, placed at the lower right of the image, logo plaque, or fallback emblem. They reuse the project cards' `project-year` badge so placement, typography, and theme colors stay uniform. Logo and emblem panels reserve room for the badge. `startDate` is the display text and `sortDate` is its machine-readable `YYYY-MM` value. TanMar began in August 2026 and remains pinned first for relevance; its date does not override that rule. The Linux case study uses April 2026, matching the ticket workflow journal.
 
 ## Aquarium case study
 
