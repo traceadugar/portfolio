@@ -196,6 +196,7 @@ test('the featured case study opens a text-only writeup and returns to the proje
   const heading = await screen.findByRole('heading', { name: 'TanMar Safety Platform', level: 2 });
   expect(heading).toHaveFocus();
   const main = within(screen.getByRole('main'));
+  expect(main.getByText('Aug 2026', { selector: 'time' })).toHaveAttribute('datetime', '2026-08');
   expect(main.getByText(english.case_studies[0].status)).toBeInTheDocument();
   expect(main.getByRole('heading', { name: 'Directing AI-assisted development' })).toBeInTheDocument();
   expect(main.queryByRole('group', { name: 'Project screenshots' })).not.toBeInTheDocument();
@@ -210,7 +211,7 @@ test('the featured case study opens a text-only writeup and returns to the proje
 test('TanMar stays first while projects and case studies share newest-first order', async () => {
   render(<App />);
   await screen.findByRole('heading', { name: 'Projects & case studies' });
-  const selectedTitles = ['TanMar Safety Platform', 'Portfolio Recovery & Seaside Redesign', 'Linux Ticket Generator & RHEL Lab', 'PaleHorse Intro Script', 'XLRX Logistics LLC Website Redesign'];
+  const selectedTitles = ['TanMar Safety Platform', 'Portfolio Recovery & Seaside Redesign', 'Aquarium', 'Linux Ticket Generator & RHEL Lab', 'PaleHorse Intro Script', 'XLRX Logistics LLC Website Redesign'];
   const headings = screen.getAllByRole('heading', { level: 3 }).map(heading => heading.textContent);
   expect(headings.filter(title => selectedTitles.includes(title))).toEqual(selectedTitles);
   const card = screen.getByRole('article', { name: 'Linux Ticket Generator & RHEL Lab' });
@@ -220,18 +221,43 @@ test('TanMar stays first while projects and case studies share newest-first orde
   expect(global.fetch).toHaveBeenCalledTimes(2);
 });
 
+test('case-study cards show localized project start months with machine-readable dates', async () => {
+  render(<App />);
+  await screen.findByRole('heading', { name: 'Projects & case studies' });
+  const dates = [
+    { id: 'tanmar-safety-platform', value: '2026-08', en: 'Aug 2026', ja: '2026年8月' },
+    { id: 'aquarium', value: '2026-09', en: 'Sep 2026', ja: '2026年9月' },
+    { id: 'linux-ticket-queue', value: '2026-04', en: 'Apr 2026', ja: '2026年4月' },
+  ];
+  for (const date of dates) {
+    const study = english.case_studies.find(item => item.id === date.id);
+    const card = within(screen.getByRole('article', { name: study.title }));
+    expect(card.getByText(date.en, { selector: 'time' })).toHaveAttribute('datetime', date.value);
+  }
+  fireEvent.change(screen.getByRole('combobox', { name: 'Language' }), { target: { value: 'ja' } });
+  await screen.findByRole('heading', { name: japanese.basic_info.section_name.projects });
+  for (const date of dates) {
+    const study = japanese.case_studies.find(item => item.id === date.id);
+    const card = within(screen.getByRole('article', { name: study.title }));
+    expect(card.getByText(date.ja, { selector: 'time' })).toHaveAttribute('datetime', date.value);
+    expect(card.queryByText(date.en)).not.toBeInTheDocument();
+  }
+});
+
 test('the Linux case study supports direct sections and Japanese GitHub source links', async () => {
   window.history.replaceState({}, '', '/case-studies/linux-ticket-queue#case-ai');
   render(<App />);
   const study = english.case_studies.find(item => item.id === 'linux-ticket-queue');
   const aiSection = study.sections.find(item => item.id === 'ai');
   expect(await screen.findByRole('heading', { name: aiSection.title })).toHaveFocus();
+  expect(screen.getByText('Apr 2026', { selector: 'time' })).toHaveAttribute('datetime', '2026-04');
   for (const source of study.sources) {
     expect(screen.getByRole('link', { name: new RegExp(source.title) })).toHaveAttribute('href', source.url);
   }
   fireEvent.change(screen.getByRole('combobox', { name: 'Language' }), { target: { value: 'ja' } });
   const translated = japanese.case_studies.find(item => item.id === 'linux-ticket-queue');
   expect(await screen.findByRole('heading', { name: translated.title, level: 2 })).toBeInTheDocument();
+  expect(screen.getByText('2026年4月', { selector: 'time' })).toHaveAttribute('datetime', '2026-04');
   expect(screen.getByRole('heading', { name: translated.sections.find(item => item.id === 'ai').title })).toBeInTheDocument();
   expect(screen.queryByRole('heading', { name: aiSection.title })).not.toBeInTheDocument();
   expect(document.documentElement).toHaveAttribute('lang', 'ja');
@@ -240,6 +266,34 @@ test('the Linux case study supports direct sections and Japanese GitHub source l
     expect(screen.getByRole('link', { name: new RegExp(source.title) })).toHaveAttribute('href', source.url);
   }
   expect(screen.queryByText(/Linux\+/)).not.toBeInTheDocument();
+});
+
+test('Aquarium opens directly with its project date, translates, and returns to projects', async () => {
+  window.history.replaceState({}, '', '/case-studies/aquarium/#case-ai');
+  render(<App />);
+  const study = english.case_studies.find(item => item.id === 'aquarium');
+  const aiSection = study.sections.find(item => item.id === 'ai');
+  expect(await screen.findByRole('heading', { name: aiSection.title })).toHaveFocus();
+  const main = within(screen.getByRole('main'));
+  expect(main.getByRole('heading', { name: study.title, level: 2 })).toBeInTheDocument();
+  expect(main.getByText('Sep 2026', { selector: 'time' })).toHaveAttribute('datetime', '2026-09');
+  expect(main.getByText(study.status)).toBeInTheDocument();
+  expect(main.getByRole('img', { name: study.imageAlt })).toHaveAttribute('src', '/images/portfolio/aquarium/aquarium-title.webp');
+  fireEvent.change(screen.getByRole('combobox', { name: 'Language' }), { target: { value: 'ja' } });
+  const translated = japanese.case_studies.find(item => item.id === 'aquarium');
+  expect(await main.findByText(translated.status)).toBeInTheDocument();
+  expect(await main.findByRole('heading', { name: translated.title, level: 2 })).toBeInTheDocument();
+  expect(main.getByText('2026年9月', { selector: 'time' })).toHaveAttribute('datetime', '2026-09');
+  expect(main.getByRole('heading', { name: translated.sections.find(item => item.id === 'ai').title })).toBeInTheDocument();
+  expect(main.queryByText('Sep 2026')).not.toBeInTheDocument();
+  fireEvent.click(main.getAllByRole('link', { name: '制作実績に戻る', exact: true })[0]);
+  const projects = await screen.findByRole('heading', { name: japanese.basic_info.section_name.projects });
+  expect(projects).toHaveFocus();
+  expect(window.location.pathname).toBe('/');
+  expect(window.location.hash).toBe('#portfolio');
+  const card = within(screen.getByRole('article', { name: translated.title }));
+  expect(card.getByText('2026年9月', { selector: 'time' })).toHaveAttribute('datetime', '2026-09');
+  expect(global.fetch).toHaveBeenCalledTimes(3);
 });
 
 test('the PaleHorse script opens current project details with code and journal links', async () => {
@@ -304,6 +358,7 @@ test('a direct case study section link focuses the section and the writeup switc
   fireEvent.change(screen.getByRole('combobox', { name: 'Language' }), { target: { value: 'ja' } });
   const main = within(screen.getByRole('main'));
   expect(await main.findByText(japanese.case_studies[0].status)).toBeInTheDocument();
+  expect(main.getByText('2026年8月', { selector: 'time' })).toHaveAttribute('datetime', '2026-08');
   expect(main.getByRole('heading', { name: japanese.case_studies[0].sections.find(item => item.id === 'ai').title })).toBeInTheDocument();
   expect(document.documentElement).toHaveAttribute('lang', 'ja');
   expect(main.getByRole('img', { name: japanese.case_studies[0].logoAlt })).toBeInTheDocument();

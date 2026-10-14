@@ -7,10 +7,13 @@ export default function CaseStudyCard({ data, labels }) {
     {data.logo ? <div className="case-study-brand">
       <img src={data.logo} width="800" height="350" alt={data.logoAlt} loading="lazy" decoding="async" />
     </div> : data.image ? <div className="case-study-card-photo">
-      <img src={data.image} width="1200" height="904" alt={data.imageAlt} loading="lazy" decoding="async" />
+      <img src={data.image} width={data.imageWidth || 1200} height={data.imageHeight || 904} alt={data.imageAlt} loading="lazy" decoding="async" />
     </div> : <div className="case-study-emblem"><Icon name={data.icon || 'shore-code'} /></div>}
     <div className="case-study-card-copy">
-      <p className="section-kicker"><Icon name="shore-compass" /> {labels.featuredCaseStudy}</p>
+      <div className="case-study-meta">
+        <p className="section-kicker"><Icon name="shore-compass" /> {labels.featuredCaseStudy}</p>
+        {data.startDate && <time className="case-study-date" dateTime={data.sortDate}>{data.startDate}</time>}
+      </div>
       <h3 id={`case-study-${data.id}-title`}>{data.title}</h3>
       <p className="case-study-subtitle">{data.subtitle}</p>
       <p className="case-study-summary">{data.summary}</p>

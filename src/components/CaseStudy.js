@@ -8,7 +8,10 @@ export default function CaseStudy({ data, labels }) {
   return <article className="section-shell case-study-page" aria-labelledby="case-study-heading">
     <header className="section-heading">
       <Link className="case-study-back-link" to="/#portfolio"><Icon name="shore-chevron-left" />{labels.backToProjects}</Link>
-      <p className="section-kicker"><Icon name="shore-compass" /> {labels.caseStudy}</p>
+      <div className="case-study-meta">
+        <p className="section-kicker"><Icon name="shore-compass" /> {labels.caseStudy}</p>
+        {data.startDate && <time className="case-study-date" dateTime={data.sortDate}>{data.startDate}</time>}
+      </div>
       <h2 className="section-title" id="case-study-heading">{data.title}</h2>
       <p className="section-intro case-study-subtitle">{data.subtitle}</p>
     </header>
@@ -26,7 +29,7 @@ export default function CaseStudy({ data, labels }) {
         </ul>
       </div>
       {data.image && <figure className="case-study-figure">
-        <img src={data.image} alt={data.imageAlt} loading="lazy" decoding="async" />
+        <img src={data.image} width={data.imageWidth} height={data.imageHeight} alt={data.imageAlt} loading="lazy" decoding="async" />
         {data.imageCaption && <figcaption>{data.imageCaption}</figcaption>}
       </figure>}
     </div>

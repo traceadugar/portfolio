@@ -14,6 +14,8 @@
   "case_studies": [
     {
       "id": "tanmar-safety-platform",
+      "startDate": "Aug 2026",
+      "sortDate": "2026-08",
       "title": "TanMar Safety Platform",
       "subtitle": "AI-Assisted Modernization and Application Consolidation",
       "summary": "Leading the AI-assisted modernization of a legacy safety-training application and several smaller HR applications into one bilingual web platform. The work spans architecture, historical-data migration, access controls, performance, and verification.",
@@ -96,7 +98,97 @@
       ]
     },
     {
+      "id": "aquarium",
+      "startDate": "Sep 2026",
+      "sortDate": "2026-09",
+      "title": "Aquarium",
+      "subtitle": "An Experiment in Prompt-Only AI Development",
+      "summary": "An ongoing experiment in building and maintaining a Godot game through prompting alone. I direct the product, playtest, and critique results while AI agents perform implementation. Aquarium explores how durable context, scoped work, and independent verification support sustained AI development across sessions.",
+      "status": "Development preview; behavior, visual refinement, and performance work ongoing.",
+      "organization": "Independent project · 964 Concepts",
+      "icon": "shore-compass",
+      "image": "/images/portfolio/aquarium/aquarium-title.webp",
+      "imageWidth": 1280,
+      "imageHeight": 720,
+      "imageAlt": "October 2026 development screenshot of Aquarium’s live-rendered title screen with stylized fish and plants",
+      "imageCaption": "Aquarium title screen — October 2026 development preview.",
+      "technologies": [
+        {
+          "name": "Godot",
+          "icon": "shore-code"
+        },
+        {
+          "name": "GDScript",
+          "icon": "shore-code"
+        },
+        {
+          "name": "C++",
+          "icon": "shore-code"
+        },
+        {
+          "name": "AI Workflow Design",
+          "icon": "shore-network"
+        }
+      ],
+      "sections": [
+        {
+          "id": "overview",
+          "title": "The experiment and the game",
+          "paragraphs": [
+            "Aquarium asks whether a substantial game can be developed and maintained through prompting alone. The experiment deliberately excludes manual project edits by me: code, configuration, models, editor changes, repairs, and Git operations belong to AI agents.",
+            "The game itself is observation-first artificial life: a calm miniature world with persistent individuals and truthful recorded histories, without chores, scores, or an economy. Making that experience enjoyable provides a concrete product against which to evaluate the workflow."
+          ]
+        },
+        {
+          "id": "ai",
+          "title": "My role and the feedback loop",
+          "paragraphs": [
+            "My tools are prompts, observation, playtesting, and critique. I make product and creative decisions, provide references, screenshots, logs, and feedback, and ask agents to investigate or change the project. They own implementation, tooling, debugging, builds, tests, and documentation.",
+            "Specialized responsibilities cover architecture, persistence, behavior, performance, and independent review. Written scopes and acceptance criteria turn feedback into bounded work; durable context carries decisions across sessions. My role is to direct that loop and judge the experience, while keeping unfinished experiments distinct from the installed preview."
+          ]
+        },
+        {
+          "id": "persistence",
+          "title": "State and persistence boundaries",
+          "paragraphs": [
+            "Saved inhabitants carry identity, motion state, traits, and recorded histories. Save handling validates a complete candidate before adoption, uses staged writes and backups, and refuses unsupported future formats. Persistence changes receive explicit review because they affect the continuity of a player’s world.",
+            "The living title scene has a separate responsibility: its creatures are disposable presentation, with independent randomness and no saved individual history. The title’s species ensemble does not expand the persistent aquarium roster, which currently contains harlequin rasboras. This boundary protects the saved world while allowing visual experimentation."
+          ]
+        },
+        {
+          "id": "visuals",
+          "title": "Original visuals through iteration",
+          "paragraphs": [
+            "I direct a miniature diorama style with soft sculpted forms, tactile materials, and readable species silhouettes. Agents generate and refine the project’s creature models and materials through prompts. Anatomy and posture come before markings. Species references, matched camera and lighting comparisons, and playtesting guide fins, movement, contact, and habitat use. Biological research informs the design while its uncertainties remain documented. Geometry checks support review; visual and motion acceptance still require my judgment."
+          ]
+        },
+        {
+          "id": "performance",
+          "title": "Performance and tradeoffs",
+          "paragraphs": [
+            "Performance work has focused on CPU fin deformation, repeated geometry queries, and scene workload. The preview includes an optional C++ fin backend that preserves the existing calculations, with the original GDScript implementation available as a fallback. Candidate changes are compared against frozen predecessors across creature variants and failure paths.",
+            "I keep workload changes separate from implementation gains when interpreting results. Source diagnostics, frame-time samples, and packaged-player behavior answer different questions; broader performance acceptance remains ongoing."
+          ]
+        },
+        {
+          "id": "verification",
+          "title": "Verification and independent review",
+          "paragraphs": [
+            "The workflow records source and build identity, uses isolated test profiles, and preserves failed checks alongside successful evidence. Review asks whether a test measures its stated claim and whether the tested candidate matches the delivered build. Independent review complements automated checks; my playtesting covers qualities that need human judgment. Narrow passing results do not close unrelated behavior, visual, or performance gates."
+          ]
+        },
+        {
+          "id": "status",
+          "title": "Current status and next steps",
+          "paragraphs": [
+            "Aquarium is an in-progress development preview with a live title habitat and a persistent aquarium path. Group routing for celestial pearl danios remains unfinished. Next work includes behavior corrections, broader contact and movement verification, visual refinement, and performance acceptance. The experiment remains ongoing: I’m evaluating how scoped prompts, durable context, and independent review support progress over time."
+          ]
+        }
+      ]
+    },
+    {
       "id": "linux-ticket-queue",
+      "startDate": "Apr 2026",
       "sortDate": "2026-04",
       "title": "Linux Ticket Generator & RHEL Lab",
       "subtitle": "Designing a Stateful AI Workflow for Linux Operations Practice",

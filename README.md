@@ -41,6 +41,14 @@ The featured TanMar Safety Platform card opens `/case-studies/tanmar-safety-plat
 
 The supplied official TanMar Communications SVG is self-hosted at `public/images/brands/tanmar-communications-color.svg`, sourced from https://www.tanmarcompanies.com/images/logos/tanmar-communications-color.svg. Its colors remain unchanged on a warm neutral plaque in both themes. The case study uses a shareable route, section anchors, and return links that preserve the shared seaside animation clock.
 
+Case-study cards and detail pages display localized project start months with semantic `time` elements. `startDate` is the display text and `sortDate` is its machine-readable `YYYY-MM` value. TanMar began in August 2026 and remains pinned first for relevance; its date does not override that rule. The Linux case study uses April 2026, matching the ticket workflow journal.
+
+## Aquarium case study
+
+`/case-studies/aquarium` presents an ongoing experiment in prompt-only AI development, beginning in September 2026. Trace sets the product direction, observes, playtests, and critiques; AI agents perform implementation and project changes. The writeup explains the observation-first game, presentation/persistence boundaries, iterative creature design, performance tradeoffs, and independent verification without presenting the experiment as complete.
+
+The development-preview screenshot is self-hosted at `public/images/portfolio/aquarium/aquarium-title.webp`. It is an optimized copy of the October 10 native title capture `cory-forage-20261010/native-qa/frozen-02/title-19.png`, source commit `d848c2444f2240e3d7a8ac0db791ffaed39260a5`. It documents historical live title presentation, which is distinct from the persistent gameplay roster. Keep both locale files aligned and preserve the in-development status. No public repository or playable-demo link is supplied for Aquarium.
+
 ## PaleHorse case study and script
 
 The Linux Ticket Generator & RHEL Lab case study opens `/case-studies/linux-ticket-queue`. Its English and Japanese copy combines the public RHEL build journal with the AI-guided ticket workflow: a real lab baseline, explicit simulated state, three persistent tracking files, and inspection, diagnosis, verification, and resolution notes. The writeup describes the documented design and lab checks without claiming completion of every training tier, production deployment, or guaranteed enforcement by an AI prompt.
@@ -58,7 +66,7 @@ Images are optimized copies of the user's public GitHub assets:
 
 The eight gallery images and two card thumbnails are self-hosted under `public/images/portfolio/portfolio-refresh/` and `public/images/thumbnails/`. The original before files remain preserved outside the website. Optimized copies retain the complete screenshot content; only the card thumbnail crops the current seaside hero. `imageCaptions` and `imageAlts` have one localized entry per image, identifying before/after, subject, and theme. New captures document the published interface before this project card was added, avoiding an image of the project embedding itself.
 
-TanMar remains first, followed by the October portfolio project, April Linux case study, and April PaleHorse script. Keep `sortDate` machine-readable in both locales when adding newer work. The comparison gallery offers a full-size image link for inspecting long screenshots, as well as arrows, numbered selection, Escape dismissal, and focus restoration; on narrow screens the numbered row is hidden while previous/next controls remain available.
+TanMar remains first, followed by the October portfolio project, September Aquarium case study, April Linux case study, and April PaleHorse script. Keep `sortDate` machine-readable in both locales when adding newer work. The comparison gallery offers a full-size image link for inspecting long screenshots, as well as arrows, numbered selection, Escape dismissal, and focus restoration; on narrow screens the numbered row is hidden while previous/next controls remain available.
 
 ## Deploy
 

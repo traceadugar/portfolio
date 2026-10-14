@@ -196,6 +196,9 @@ h1[tabindex='-1']:focus, h2[tabindex='-1']:focus, h3[tabindex='-1']:focus { outl
 .case-study-emblem { @include foregrounds(surface-alt); display: flex; align-items: center; justify-content: center; background-color: var(--surface-alt); color: var(--accent); border: 1px solid var(--edge); border-radius: 1rem; min-height: 200px; }
 .case-study-emblem .icon { width: 100px; height: 100px; }
 .case-study-card-copy { min-width: 0; }
+.case-study-meta { display: flex; flex-wrap: wrap; align-items: center; gap: .65rem 1rem; }
+.case-study-meta .section-kicker { margin: 0; }
+.case-study-date { @include foregrounds(surface); display: inline-block; padding: .2rem .6rem; background-color: var(--surface); color: var(--ink); border: 1px solid var(--edge); border-radius: .6rem; font-size: .74rem; font-weight: 800; }
 .case-study-card h3 { font-size: clamp(1.5rem, 3vw, 2rem); margin: .6rem 0; }
 .case-study-subtitle { color: var(--muted); line-height: 1.6; font-weight: 750; margin-bottom: .9rem; }
 .case-study-summary { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; color: var(--muted); max-width: 70ch; margin-bottom: 1rem; }
