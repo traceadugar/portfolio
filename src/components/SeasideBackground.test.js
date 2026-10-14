@@ -157,3 +157,49 @@ test('an unavailable canvas still fades the interface and poster on the shared c
   expect(HTMLMediaElement.prototype.play).not.toHaveBeenCalled();
   expect(callbacks.size).toBe(0);
 });
+
+test('the lighthouse accumulates the source clock across video loops and freezes through pause and theme fades', () => {
+  const onFrame = jest.fn();
+  const { container, rerender } = render(<SeasideBackground theme="dark" paused={false} onFrame={onFrame} />);
+  const video = loadVideo(container);
+  advance(80);
+  expect(onFrame.mock.calls.at(-1)[0]).toMatchObject({ seconds: 0, active: true });
+  for (let loop = 0; loop < 5; loop += 1) {
+    video.currentTime = 3.92;
+    advance(2320);
+    video.currentTime = .08;
+    advance(160);
+  }
+  const seconds = onFrame.mock.calls.at(-1)[0].seconds;
+  expect(seconds).toBeCloseTo(18.48);
+  rerender(<SeasideBackground theme="light" paused={true} onFrame={onFrame} />);
+  advance(600);
+  expect(onFrame.mock.calls.at(-1)[0].seconds).toBe(seconds);
+  advance(600);
+  expect(onFrame.mock.calls.at(-1)[0].seconds).toBe(seconds);
+  expect(callbacks.size).toBe(0);
+  expect(Number(document.body.style.getPropertyValue('--theme-blend'))).toBe(0);
+  fireEvent.error(video);
+  expect(onFrame.mock.calls.at(-1)[0].active).toBe(false);
+});
+
+test('a hidden document freezes the same lighthouse phase and resumes without a time jump', () => {
+  const onFrame = jest.fn();
+  const { container } = render(<SeasideBackground theme="dark" paused={false} onFrame={onFrame} />);
+  const video = loadVideo(container);
+  advance(80);
+  video.currentTime = 2;
+  advance(400);
+  const seconds = onFrame.mock.calls.at(-1)[0].seconds;
+  Object.defineProperty(document, 'hidden', { configurable: true, value: true });
+  fireEvent(document, new Event('visibilitychange'));
+  advance(8000);
+  expect(onFrame.mock.calls.at(-1)[0].seconds).toBe(seconds);
+  Object.defineProperty(document, 'hidden', { configurable: true, value: false });
+  fireEvent(document, new Event('visibilitychange'));
+  advance(16);
+  expect(onFrame.mock.calls.at(-1)[0].seconds).toBe(seconds);
+  video.currentTime = 2.08;
+  advance(80);
+  expect(onFrame.mock.calls.at(-1)[0].seconds).toBeCloseTo(seconds + .08);
+});

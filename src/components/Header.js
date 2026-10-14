@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { readPreference, savePreference } from '../translations';
 import SeasideBackground from './SeasideBackground';
+import LighthouseBeam, { LighthouseText } from './LighthouseBeam';
 import Icon from './Icon';
 
 export default function Header({ sharedData, resumeBasicInfo, labels, theme, changeTheme, language, applyPickedLanguage, loading }) {
   const [paused, setPaused] = useState(() => readPreference('portfolioMotion', 'playing') === 'paused');
+  const lighthouseRef = useRef(null);
+  const paintLighthouse = useCallback(frame => lighthouseRef.current?.update(frame), []);
   const toggleMotion = () => {
     const nextPaused = !paused;
     setPaused(nextPaused);
@@ -13,6 +16,7 @@ export default function Header({ sharedData, resumeBasicInfo, labels, theme, cha
   };
   const github = sharedData?.social.find(item => item.name === 'GitHub')?.url;
   const linkedin = sharedData?.social.find(item => item.name === 'LinkedIn')?.url;
+  const name = sharedData?.name || 'Trace Dugar';
   return <>
     <a className="skip-link" href="#main-content">{labels.skipContent}</a>
     <div className="site-navigation">
@@ -48,11 +52,12 @@ export default function Header({ sharedData, resumeBasicInfo, labels, theme, cha
       </nav>
     </div>
     <header id="home" className="site-header" data-motion={paused ? 'paused' : 'playing'}>
-      <SeasideBackground theme={theme} paused={paused} />
+      <SeasideBackground theme={theme} paused={paused} onFrame={paintLighthouse} />
+      <LighthouseBeam ref={lighthouseRef} textKey={`${name}|${labels.heroEyebrow}|${resumeBasicInfo?.headline}`} />
       <div className="header-content">
-        <p className="hero-eyebrow">{labels.heroEyebrow}</p>
-        <h1>{sharedData?.name || 'Trace Dugar'}</h1>
-        <p className="title-container">{resumeBasicInfo?.headline}</p>
+        <LighthouseText as="p" className="hero-eyebrow">{labels.heroEyebrow}</LighthouseText>
+        <LighthouseText as="h1">{name}</LighthouseText>
+        <LighthouseText as="p" className="title-container">{resumeBasicInfo?.headline}</LighthouseText>
         {sharedData && <div className="header-actions">
           <Link className="shore-button hero-button" to="/#portfolio">{labels.projects}<Icon name="shore-arrow" /></Link>
           {linkedin && <a className="shore-button hero-button-secondary" href={linkedin} target="_blank" rel="noopener noreferrer">{labels.contact}<Icon name="shore-envelope" /></a>}

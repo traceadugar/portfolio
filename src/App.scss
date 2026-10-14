@@ -148,6 +148,13 @@ h1[tabindex='-1']:focus, h2[tabindex='-1']:focus, h3[tabindex='-1']:focus { outl
 .seaside-canvas { opacity: 0; }
 .seaside-background[data-ready='true'] .seaside-canvas { opacity: 1; }
 .seaside-video { display: none; }
+.lighthouse-beam { position: absolute; inset: 0; z-index: 1; width: 100%; height: 100%; pointer-events: none; opacity: calc(var(--theme-blend) * var(--lighthouse-strength, 1)); }
+.lighthouse-lamp-glow { fill: #fce0a2; fill-opacity: .65; }
+.lighthouse-text { position: relative; }
+.lighthouse-lit-text { position: absolute; inset: 0; padding: inherit; border-radius: inherit; color: #051026; background: #fce0a2; text-shadow: none; pointer-events: none; user-select: none; clip-path: var(--lighthouse-clip, polygon(0 0, 0 0, 0 0)); }
+.site-header:not([data-lighthouse-active='true']) .lighthouse-beam,
+.site-header:not([data-lighthouse-active='true']) .lighthouse-lit-text,
+.site-header:not([data-lighthouse-lit='true']) .lighthouse-lit-text { display: none; }
 .header-content { position: relative; z-index: 2; max-width: 850px; width: 100%; text-align: center; color: var(--hero-light); }
 .hero-eyebrow { display: inline-block; padding: .35rem .7rem; margin: 0 0 .7rem; border-radius: .7rem; background: rgba(var(--hero-rgb), .85); color: var(--hero-light); font-size: .73rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
 .site-header h1 { margin: 0; font-size: clamp(2.8rem, 6vw, 4.7rem); line-height: 1.05; letter-spacing: -.015em; text-shadow: 0 3px 14px rgba(var(--hero-rgb), .7); }
@@ -428,6 +435,6 @@ html[lang='ja'] .site-header h1 { letter-spacing: -.015em; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; }
-  .seaside-canvas, .motion-toggle { display: none; }
+  .seaside-canvas, .motion-toggle, .lighthouse-beam, .lighthouse-lit-text { display: none; }
   .project-card:hover, .shore-button:hover, .shore-icon-button:hover { transform: none; }
 }

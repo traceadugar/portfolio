@@ -5,11 +5,13 @@ const FADE_MS = 1200;
 const FRAME_SECONDS = .08;
 const mediaRoot = `${process.env.PUBLIC_URL}/images/backgrounds`;
 
-export default function SeasideBackground({ theme, paused }) {
+export default function SeasideBackground({ theme, paused, onFrame }) {
   const containerRef = useRef(null);
   const canvasRef = useRef(null);
   const videoRef = useRef(null);
   const controlsRef = useRef(null);
+  const onFrameRef = useRef(onFrame);
+  onFrameRef.current = onFrame;
   const preferencesRef = useRef({ theme, paused });
   preferencesRef.current = { theme, paused };
   const [reducedMotion, setReducedMotion] = useState(() =>
@@ -29,6 +31,7 @@ export default function SeasideBackground({ theme, paused }) {
     setReady(false);
     if (reducedMotion) {
       applyThemeBlend(preferencesRef.current.theme === 'dark' ? 1 : 0);
+      onFrameRef.current?.({ active: false });
       return undefined;
     }
     const video = videoRef.current;
@@ -49,11 +52,23 @@ export default function SeasideBackground({ theme, paused }) {
     let lastBlend = -1;
     let shown = false;
     let appliedBlend = blend;
+    let sceneSeconds = 0;
+    let lastSceneTime = null;
     applyThemeBlend(blend);
 
     const paint = now => {
       raf = 0;
       if (disposed) return;
+      // A cumulative clock survives the source video's four-second wrap. It
+      // advances only while that same scene plays, so pause and hidden tabs
+      // freeze the lighthouse without introducing another animation loop.
+      const moving = !failed && !video.paused && !document.hidden && !preferencesRef.current.paused;
+      if (moving && lastSceneTime !== null) {
+        const delta = video.currentTime - lastSceneTime;
+        const duration = Number.isFinite(video.duration) ? video.duration : 4;
+        sceneSeconds += Math.max(0, delta < 0 ? delta + duration : delta);
+      }
+      lastSceneTime = video.currentTime;
       const progress = Math.min(1, Math.max(0, (now - fadeStarted) / FADE_MS));
       blend = startBlend + (targetBlend - startBlend) * (1 - Math.cos(Math.PI * progress)) / 2;
       // The interface and both poster/video lighting variants use this exact
@@ -82,6 +97,13 @@ export default function SeasideBackground({ theme, paused }) {
         lastBlend = blend;
         if (!shown) { shown = true; setReady(true); }
       }
+      onFrameRef.current?.({
+        seconds: sceneSeconds,
+        width: containerRef.current.clientWidth,
+        height: containerRef.current.clientHeight,
+        blend,
+        active: shown && !failed,
+      });
       if ((!failed && !video.paused) || blend !== targetBlend) schedule();
     };
     const schedule = () => { if (!disposed && !raf) raf = requestAnimationFrame(paint); };
@@ -99,7 +121,9 @@ export default function SeasideBackground({ theme, paused }) {
       raf = 0;
       video.pause();
       shown = false;
+      lastSceneTime = null;
       setReady(false);
+      onFrameRef.current?.({ active: false });
       if (blend !== targetBlend) schedule();
     };
     const playing = () => { failed = !context; lastFrame = -1; schedule(); };
@@ -144,6 +168,7 @@ export default function SeasideBackground({ theme, paused }) {
       video.removeEventListener('error', fail);
       document.removeEventListener('visibilitychange', updatePlayback);
       video.pause();
+      onFrameRef.current?.({ active: false });
     };
   }, [reducedMotion]);
 
