@@ -98,6 +98,9 @@ h1[tabindex='-1']:focus, h2[tabindex='-1']:focus, h3[tabindex='-1']:focus { outl
 .shore-section, .skills-section, .experience-section, .about-section { padding-block: clamp(3rem, 6vw, 5rem); }
 .section-heading { max-width: 720px; margin-bottom: 2rem; }
 .section-title { font-size: clamp(1.9rem, 3.7vw, 2.7rem); margin: .6rem 0 1rem; }
+.section-title-row { display: flex; align-items: center; gap: 1rem; margin: .6rem 0 1rem; }
+.section-title-row .section-emblem { flex-shrink: 0; }
+.section-title-row .section-title { min-width: 0; margin: 0; }
 .section-kicker, .eyebrow { display: flex; align-items: center; gap: .55rem; color: var(--secondary); font-size: .8rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
 .section-intro { color: var(--muted); max-width: 64ch; margin-bottom: 0; }
 .section-emblem, .brand-emblem, .career-marker {
@@ -161,6 +164,7 @@ h1[tabindex='-1']:focus, h2[tabindex='-1']:focus, h3[tabindex='-1']:focus { outl
 .portfolio-intro { display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: center; padding-block: 2.6rem; border-bottom: 1px solid var(--edge); }
 .intro-copy { max-width: 73ch; }
 .intro-copy h2 { font-size: 1.55rem; margin: .5rem 0 .7rem; }
+.intro-copy .section-title-row h2 { min-width: 0; margin: 0; }
 .intro-copy p:last-child { color: var(--muted); margin-bottom: 0; }
 .intro-actions { display: flex; flex-direction: column; gap: .7rem; }
 .portfolio-section { background-color: var(--page); }
@@ -269,10 +273,6 @@ a.skills-tile:hover { border-color: var(--accent); text-decoration: underline; t
 .experience-summary { max-width: 86ch; color: var(--muted); line-height: 1.8; margin: 1.4rem 0; font-size: .96rem; }
 .experience-summary p:last-child { margin-bottom: 0; }
 
-.about-layout { display: grid; grid-template-columns: 280px minmax(0, 1fr); gap: 1.8rem; align-items: start; }
-.profile-panel { padding: 1rem; margin: 0; }
-.profile-photo { width: 100%; height: auto; display: block; border-radius: .9rem; }
-.profile-panel figcaption { padding: 1.1rem .5rem .4rem; font-weight: 900; text-align: center; font-size: 1.2rem; }
 .about-copy { padding: clamp(1.5rem, 3vw, 2.4rem); }
 .about-copy h3 { font-size: 1.7rem; margin-bottom: 1.2rem; }
 .about-copy p { color: var(--muted); line-height: 1.85; max-width: 70ch; }
@@ -370,7 +370,6 @@ html[lang='ja'] .site-header h1 { letter-spacing: -.015em; }
   .portfolio-intro { grid-template-columns: 1fr; gap: 1.3rem; }
   .intro-actions { flex-direction: row; flex-wrap: wrap; }
   .skills-groups { grid-template-columns: 1fr; }
-  .about-layout { grid-template-columns: 230px minmax(0, 1fr); gap: 1.3rem; }
   .footer-shell { align-items: flex-start; flex-direction: column; gap: 1.5rem; }
   html { scroll-padding-top: 9rem; }
 }
@@ -385,8 +384,7 @@ html[lang='ja'] .site-header h1 { letter-spacing: -.015em; }
   .case-study-card .shore-button { width: 100%; }
   .case-study-contents ul { grid-template-columns: 1fr; }
   .section-shell, .footer-shell, .footer-bottom { width: calc(100% - 2rem); }
-  .project-grid, .about-layout, .credentials-grid { grid-template-columns: 1fr; }
-  .profile-panel { max-width: 280px; width: 100%; justify-self: center; }
+  .project-grid, .credentials-grid { grid-template-columns: 1fr; }
   .career-timeline { padding-left: 2rem; }
   .career-timeline::before { left: .45rem; width: 2px; }
   .career-marker { width: 1rem; height: 1rem; left: -2rem; top: 2.3rem; }

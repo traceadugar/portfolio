@@ -16,29 +16,24 @@ export default function About({ resumeBasicInfo, sharedBasicInfo, labels }) {
 
   return <section id="about" className="section-shell about-section" aria-labelledby="about-heading">
     <div className="section-heading">
-      <span className="section-emblem" aria-hidden="true"><Icon name="shore-compass" /></span>
-      <h2 id="about-heading" className="section-title">{resumeBasicInfo.section_name.about}</h2>
+      <div className="section-title-row">
+        <span className="section-emblem" aria-hidden="true"><Icon name="shore-compass" /></span>
+        <h2 id="about-heading" className="section-title">{resumeBasicInfo.section_name.about}</h2>
+      </div>
     </div>
-    <div className="about-layout">
-      <figure className="profile-panel shore-panel">
-        <img className="profile-photo" width="200" height="285" src="/images/thumbnails/profile.webp"
-          alt={labels.profilePhoto} loading="lazy" decoding="async" />
-        <figcaption>{sharedBasicInfo?.name || 'Trace Dugar'}</figcaption>
-      </figure>
-      <article className="about-copy shore-panel">
-        <h3>{resumeBasicInfo.description_header}</h3>
-        {paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
-        <ul className="tech-list about-focus">
-          {[labels.focusOperations, labels.focusDevelopment, labels.focusDocumentation].map(focus => <li key={focus}>{focus}</li>)}
-        </ul>
-        <div className="about-actions">
-          {linkedin && <a className="shore-button" href={linkedin} target="_blank" rel="noopener noreferrer">
-            {labels.contact}<Icon name="shore-arrow" />
-          </a>}
-          <Link className="shore-button shore-button-secondary" to="/">{labels.backHome}</Link>
-        </div>
-      </article>
-    </div>
+    <article className="about-copy shore-panel">
+      <h3>{resumeBasicInfo.description_header}</h3>
+      {paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
+      <ul className="tech-list about-focus">
+        {[labels.focusOperations, labels.focusDevelopment, labels.focusDocumentation].map(focus => <li key={focus}>{focus}</li>)}
+      </ul>
+      <div className="about-actions">
+        {linkedin && <a className="shore-button" href={linkedin} target="_blank" rel="noopener noreferrer">
+          {labels.contact}<Icon name="shore-arrow" />
+        </a>}
+        <Link className="shore-button shore-button-secondary" to="/">{labels.backHome}</Link>
+      </div>
+    </article>
     <div className="credentials-grid">
       <section className="shore-panel credentials-panel" aria-labelledby="certifications-heading">
         <h3 id="certifications-heading"><Icon name="shore-shield" />{labels.credentialsHeading}</h3>

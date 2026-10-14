@@ -5,8 +5,10 @@ export default function Experience({ resumeExperience, resumeBasicInfo }) {
   return (
     <section id="resume" className="section-shell experience-section" aria-labelledby="experience-heading">
       <div className="section-heading">
-        <span className="section-emblem" aria-hidden="true"><Icon name="shore-briefcase" /></span>
-        <h2 id="experience-heading" className="section-title">{resumeBasicInfo.section_name.experience}</h2>
+        <div className="section-title-row">
+          <span className="section-emblem" aria-hidden="true"><Icon name="shore-briefcase" /></span>
+          <h2 id="experience-heading" className="section-title">{resumeBasicInfo.section_name.experience}</h2>
+        </div>
       </div>
       <ol className="career-timeline">
         {resumeExperience.map(work => <li className="career-entry" key={work.id}>

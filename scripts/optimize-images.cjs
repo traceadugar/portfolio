@@ -6,7 +6,6 @@ const root = path.resolve(__dirname, '..');
 
 async function main() {
   const data = JSON.parse(await fs.readFile(path.join(root, 'public/res_primaryLanguage.json'), 'utf8'));
-  const shared = JSON.parse(await fs.readFile(path.join(root, 'public/portfolio_shared_data.json'), 'utf8'));
   const target = path.join(root, 'public/images/thumbnails');
   await fs.mkdir(target, {recursive: true});
   let originalBytes = 0;
@@ -20,10 +19,6 @@ async function main() {
       if (width === 960) thumbnailBytes += (await fs.stat(output)).size;
     }
   }
-  // The original profile and all gallery screenshots remain untouched.
-  await sharp(path.join(root, 'public/images', shared.basic_info.image)).rotate()
-    .resize({width: 400, withoutEnlargement: true}).webp({quality: 85})
-    .toFile(path.join(target, 'profile.webp'));
   console.log(`Project card images: ${originalBytes} original bytes; ${thumbnailBytes} bytes at 960px.`);
 }
 

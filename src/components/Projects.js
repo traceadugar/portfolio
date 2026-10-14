@@ -53,8 +53,11 @@ export default function Projects({ resumeProjects = [], resumeCaseStudies = [], 
     <section id="portfolio" className="shore-section portfolio-section" aria-labelledby="portfolio-title">
       <div className="section-shell">
         <div className="section-heading">
-          <p className="section-kicker"><Icon name="shore-code" /> {labels.projectsKicker}</p>
-          <h2 className="section-title" id="portfolio-title">{resumeBasicInfo.section_name.projects}</h2>
+          <p className="section-kicker">{labels.projectsKicker}</p>
+          <div className="section-title-row">
+            <span className="section-emblem" aria-hidden="true"><Icon name="shore-code" /></span>
+            <h2 className="section-title" id="portfolio-title">{resumeBasicInfo.section_name.projects}</h2>
+          </div>
         </div>
         {selectedWork.map(({ data, type }) => type === 'caseStudy'
           ? <CaseStudyCard data={data} labels={labels} featured={pinnedCaseStudies.includes(data.id)} key={data.id} />

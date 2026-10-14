@@ -9,8 +9,11 @@ export default function CaseStudy({ data, labels }) {
   return <article className="section-shell case-study-page" aria-labelledby="case-study-heading">
     <header className="section-heading">
       <Link className="case-study-back-link" to="/#portfolio"><Icon name="shore-chevron-left" />{labels.backToProjects}</Link>
-      <p className="section-kicker"><Icon name="shore-compass" /> {labels.caseStudy}</p>
-      <h2 className="section-title" id="case-study-heading">{data.title}</h2>
+      <p className="section-kicker">{labels.caseStudy}</p>
+      <div className="section-title-row">
+        <span className="section-emblem" aria-hidden="true"><Icon name="shore-compass" /></span>
+        <h2 className="section-title" id="case-study-heading">{data.title}</h2>
+      </div>
       <p className="section-intro case-study-subtitle">{data.subtitle}</p>
     </header>
     <div className="case-study-overview shore-panel">

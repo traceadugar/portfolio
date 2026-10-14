@@ -94,9 +94,9 @@ The site was recovered from the original repository and reconnected to the curre
 - The timeline uses a single ordered list with dates first. It preserves newest-first chronology and the same reading order on desktop and mobile.
 - Bootstrap supplies the modal, transition, reset, and accessibility helpers. The layout and component styles use native CSS grid and flexbox. Retired grid/card/badge utilities and the old alternating timeline stylesheet were removed.
 - Local SVGs replace the external icon fonts and Iconify runtime. Icon sources and licenses are in `public/licenses/`.
-- Responsive WebP thumbnails reduce card and profile transfers. The original screenshots remain unchanged and are used in the gallery.
+- Responsive WebP thumbnails reduce project card transfers. The original screenshots remain unchanged and are used in the gallery.
 
-After changing a project's first screenshot or the shared profile image, regenerate thumbnails before building:
+After changing a project's first screenshot, regenerate thumbnails before building:
 
 ```powershell
 npm run optimize:images
@@ -119,7 +119,7 @@ The interface extends the artwork through warm sand surfaces, dark teal controls
 
 The page surfaces and scene lighting share one 1.2-second cosine fade in `SeasideBackground`. Each canvas paint sends its exact blend value to `themePalette.js`; posters use that same scalar. No independent CSS color timers can drift behind it. Text, links, and focus colors resolve against their actual page, card, chip, or wash background throughout the fade, because a continuous light-to-dark foreground crossing would briefly become unreadable. Primary button labels also account for the decorative sheen. Reversals start from the current blend, pause freezes only the waves, and reduced motion selects the final palette immediately. Palette tests sample 1,201 blend positions to check text and button contrast of at least 4.5:1 and control outlines of at least 3:1.
 
-Project cards show a short description, technology chips, project status, and a clear details action; XLRX's delivered client work appears first within the archive. The gallery keeps the original screenshots, supports arrow keys and Escape, and restores focus to the card on closing. About separates biography, qualifications, and contact actions. Qualification text is based on the supplied profile.
+Project cards show a short description, technology chips, project status, and a clear details action; XLRX's delivered client work appears first within the archive. The gallery keeps the original screenshots, supports arrow keys and Escape, and restores focus to the card on closing. About uses a biography panel without a portrait or reserved photo column, followed by qualifications and contact actions. Qualification text is based on the supplied profile. Major section headers align their round symbol to the left of the title in a shared `section-title-row`; translated titles can wrap while the symbol keeps its size.
 
 The sticky navigation offers page and section links, language selection, theme, and motion controls. `RouteNavigation` waits for content before following a section fragment and places keyboard focus at the destination. Navigation uses React Router links to preserve the shared video clock. A skip link, visible focus indicators, labelled icon controls, and touch targets of at least 44 pixels support keyboard and mobile use.
 

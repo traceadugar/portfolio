@@ -12,8 +12,10 @@ export default function Skills({ sharedSkills, resumeBasicInfo, labels }) {
 
   return <section id="skills" className="section-shell skills-section" aria-labelledby="skills-heading">
     <div className="section-heading">
-      <span className="section-emblem" aria-hidden="true"><Icon name="shore-code" /></span>
-      <h2 id="skills-heading" className="section-title">{resumeBasicInfo.section_name.skills}</h2>
+      <div className="section-title-row">
+        <span className="section-emblem" aria-hidden="true"><Icon name="shore-code" /></span>
+        <h2 id="skills-heading" className="section-title">{resumeBasicInfo.section_name.skills}</h2>
+      </div>
       <p className="section-intro">{labels.skillsIntro}</p>
     </div>
     <div className="skills-groups">

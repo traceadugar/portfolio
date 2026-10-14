@@ -22,11 +22,14 @@ beforeEach(() => {
 
 afterEach(cleanup);
 
-test('a direct About route with a trailing slash renders the profile with root-based image paths', async () => {
+test('a direct About route with a trailing slash renders the biography and qualifications without a portrait', async () => {
   window.history.replaceState({}, '', '/about/');
   render(<App />);
   expect(await screen.findByRole('heading', { name: 'About me' })).toBeInTheDocument();
-  expect(screen.getByRole('img', { name: 'Profile photo of Trace Dugar' })).toHaveAttribute('src', '/images/thumbnails/profile.webp');
+  const main = within(screen.getByRole('main'));
+  expect(main.getByRole('heading', { name: 'Hello, I’m Trace.' })).toBeInTheDocument();
+  expect(main.getByRole('heading', { name: 'Certifications' })).toBeInTheDocument();
+  expect(main.queryByRole('img')).not.toBeInTheDocument();
 });
 
 test('skill evidence links translate and navigate to the supporting section without reloading', async () => {

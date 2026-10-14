@@ -13,8 +13,11 @@ export default function Home({ resumeData, sharedData, labels }) {
   return <>
     <section className="section-shell portfolio-intro" aria-labelledby="intro-heading">
       <div className="intro-copy">
-        <p className="eyebrow"><Icon name="shore-compass" />{labels.introEyebrow}</p>
-        <h2 id="intro-heading">{resumeData.basic_info.description_header}</h2>
+        <p className="eyebrow">{labels.introEyebrow}</p>
+        <div className="section-title-row">
+          <span className="section-emblem" aria-hidden="true"><Icon name="shore-compass" /></span>
+          <h2 id="intro-heading">{resumeData.basic_info.description_header}</h2>
+        </div>
         <p>{introduction}</p>
       </div>
       <div className="intro-actions">
