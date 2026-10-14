@@ -1,0 +1,133 @@
+Portfolio skill brand symbols
+
+The symbols are self-hosted SVG paths selected from the pinned source versions below.
+Original path geometry and viewBox values are preserved. The symbols inherit the portfolio text color.
+Brand and product names and marks belong to their respective owners; identification does not imply endorsement.
+
+ChatGPT and Codex use the OpenAI family mark. No separate Codex product mark is claimed.
+Microsoft 365 uses the Microsoft vendor mark, not the Microsoft 365 product logo.
+The existing HTML and CSS symbols remain devicon-html5-plain and devicon-css3-plain.
+
+skill-redhat: Simple Icons 13.21.0; CC0-1.0
+SVG: https://github.com/simple-icons/simple-icons/blob/13.21.0/icons/redhat.svg
+SHA-256: 3d0e1854a9dad1a8ad11132843f522f948197ec0e0ee49b7a51d5fdf44230568
+Brand source recorded by the collection: https://www.redhat.com/en/about/brand/new-brand/details
+
+skill-ubiquiti: Simple Icons 13.21.0; CC0-1.0
+SVG: https://github.com/simple-icons/simple-icons/blob/13.21.0/icons/ubiquiti.svg
+SHA-256: 7082e9be5c0b167c30c3de6903ec7e497574b845a33415a572d4d1468f40e810
+Brand source recorded by the collection: https://www.ui.com
+
+skill-nodejs: Simple Icons 13.21.0; CC0-1.0
+SVG: https://github.com/simple-icons/simple-icons/blob/13.21.0/icons/nodedotjs.svg
+SHA-256: 021851b758cde7d3e04819c3ac02047d0ff281c712e8387afa0c76a6dac6db6c
+Brand source recorded by the collection: https://nodejs.org/en/about/branding
+
+skill-express: Simple Icons 13.21.0; CC0-1.0
+SVG: https://github.com/simple-icons/simple-icons/blob/13.21.0/icons/express.svg
+SHA-256: eb1d75ebfd1a8e75c888fe8d8e94214dd4a5380e847cc88eea552526af1e5edd
+Brand source recorded by the collection: https://github.com/openjs-foundation/artwork/blob/ac43961d1157f973c54f210cf5e0c9c45e3d3f10/projects/express/express-icon-black.svg
+
+skill-claude: Simple Icons 13.21.0; CC0-1.0
+SVG: https://github.com/simple-icons/simple-icons/blob/13.21.0/icons/claude.svg
+SHA-256: 2d6fda79eb18ddccca35b799eeb3cece0dfabc22520ce3b10abd25668df9fa93
+Brand source recorded by the collection: https://claude.ai
+
+skill-chatgpt: Simple Icons 13.21.0; CC0-1.0
+SVG: https://github.com/simple-icons/simple-icons/blob/13.21.0/icons/openai.svg
+SHA-256: 2b4a04ddc2395b20d168694d3850ce2050a702c4a0cdeb4d8b31b9a970481a8c
+Brand source recorded by the collection: https://openai.com/brand
+
+skill-codex: Simple Icons 13.21.0; CC0-1.0
+SVG: https://github.com/simple-icons/simple-icons/blob/13.21.0/icons/openai.svg
+SHA-256: 2b4a04ddc2395b20d168694d3850ce2050a702c4a0cdeb4d8b31b9a970481a8c
+Brand source recorded by the collection: https://openai.com/brand
+
+skill-typescript: Simple Icons 13.21.0; CC0-1.0
+SVG: https://github.com/simple-icons/simple-icons/blob/13.21.0/icons/typescript.svg
+SHA-256: 7f023e8d1e767370306ec9437d2de5d5af97491d6208dd7799a3808a7c10a36a
+Brand source recorded by the collection: https://www.typescriptlang.org/branding
+
+skill-fastapi: Simple Icons 13.21.0; CC0-1.0
+SVG: https://github.com/simple-icons/simple-icons/blob/13.21.0/icons/fastapi.svg
+SHA-256: af0bdd5fd3f16a49e341089049418af7b02a04eefdc088b2e26c4524fa8b75d1
+Brand source recorded by the collection: https://github.com/tiangolo/fastapi/blob/ffb4f77a11f83132b521ba0aac6c95792c19e797/docs/en/docs/img/icon-white.svg
+
+skill-svelte: Simple Icons 13.21.0; CC0-1.0
+SVG: https://github.com/simple-icons/simple-icons/blob/13.21.0/icons/svelte.svg
+SHA-256: a38cef0f4fc36bc63519ce34d24a91022f19ec6998ea402c5e155c7479a46f4c
+Brand source recorded by the collection: https://github.com/sveltejs/branding/blob/c4dfca6743572087a6aef0e109ffe3d95596e86a/svelte-logo.svg
+
+skill-powershell: Devicon 2.17.0; MIT
+SVG: https://github.com/devicons/devicon/blob/v2.17.0/icons/powershell/powershell-plain.svg
+SHA-256: 7ec3ab9c6ce2e8f93b93bc727fa253c409d61a8311cfe85d4374d388bddad2ef
+
+skill-microsoft365: Font Awesome Free 5.15.4; CC-BY-4.0
+SVG: https://github.com/FortAwesome/Font-Awesome/blob/5.15.4/svgs/brands/microsoft.svg
+SHA-256: 32b261cd8950a28ed8966fbf1d2a3420d207eb4afe10d8635077c3959e6f8823
+Microsoft vendor mark identifies the Microsoft 365 skill; this is not the Microsoft 365 product logo.
+
+
+Simple Icons package integrity:
+https://registry.npmjs.org/simple-icons/-/simple-icons-13.21.0.tgz
+sha512-LI5pVJPBv6oc79OMsffwb6kEqnmB8P1Cjg1crNUlhsxPETQ5UzbCKQdxU+7MW6+DD1qfPkla/vSKlLD4IfyXpQ==
+
+Simple Icons 13.21.0 original license follows:
+# CC0 1.0 Universal
+
+## Statement of Purpose
+
+The laws of most jurisdictions throughout the world automatically confer exclusive Copyright and Related Rights (defined below) upon the creator and subsequent owner(s) (each and all, an “owner”) of an original work of authorship and/or a database (each, a “Work”).
+
+Certain owners wish to permanently relinquish those rights to a Work for the purpose of contributing to a commons of creative, cultural and scientific works (“Commons”) that the public can reliably and without fear of later claims of infringement build upon, modify, incorporate in other works, reuse and redistribute as freely as possible in any form whatsoever and for any purposes, including without limitation commercial purposes. These owners may contribute to the Commons to promote the ideal of a free culture and the further production of creative, cultural and scientific works, or to gain reputation or greater distribution for their Work in part through the use and efforts of others.
+
+For these and/or other purposes and motivations, and without any expectation of additional consideration or compensation, the person associating CC0 with a Work (the “Affirmer”), to the extent that he or she is an owner of Copyright and Related Rights in the Work, voluntarily elects to apply CC0 to the Work and publicly distribute the Work under its terms, with knowledge of his or her Copyright and Related Rights in the Work and the meaning and intended legal effect of CC0 on those rights.
+
+1. Copyright and Related Rights. A Work made available under CC0 may be protected by copyright and related or neighboring rights (“Copyright and Related Rights”). Copyright and Related Rights include, but are not limited to, the following:
+    1. the right to reproduce, adapt, distribute, perform, display, communicate, and translate a Work;
+    2. moral rights retained by the original author(s) and/or performer(s);
+    3. publicity and privacy rights pertaining to a person’s image or likeness depicted in a Work;
+    4. rights protecting against unfair competition in regards to a Work, subject to the limitations in paragraph 4(i), below;
+    5. rights protecting the extraction, dissemination, use and reuse of data in a Work;
+    6. database rights (such as those arising under Directive 96/9/EC of the European Parliament and of the Council of 11 March 1996 on the legal protection of databases, and under any national implementation thereof, including any amended or successor version of such directive); and
+    7. other similar, equivalent or corresponding rights throughout the world based on applicable law or treaty, and any national implementations thereof.
+
+2. Waiver. To the greatest extent permitted by, but not in contravention of, applicable law, Affirmer hereby overtly, fully, permanently, irrevocably and unconditionally waives, abandons, and surrenders all of Affirmer’s Copyright and Related Rights and associated claims and causes of action, whether now known or unknown (including existing as well as future claims and causes of action), in the Work (i) in all territories worldwide, (ii) for the maximum duration provided by applicable law or treaty (including future time extensions), (iii) in any current or future medium and for any number of copies, and (iv) for any purpose whatsoever, including without limitation commercial, advertising or promotional purposes (the “Waiver”). Affirmer makes the Waiver for the benefit of each member of the public at large and to the detriment of Affirmer’s heirs and successors, fully intending that such Waiver shall not be subject to revocation, rescission, cancellation, termination, or any other legal or equitable action to disrupt the quiet enjoyment of the Work by the public as contemplated by Affirmer’s express Statement of Purpose.
+
+3. Public License Fallback. Should any part of the Waiver for any reason be judged legally invalid or ineffective under applicable law, then the Waiver shall be preserved to the maximum extent permitted taking into account Affirmer’s express Statement of Purpose. In addition, to the extent the Waiver is so judged Affirmer hereby grants to each affected person a royalty-free, non transferable, non sublicensable, non exclusive, irrevocable and unconditional license to exercise Affirmer’s Copyright and Related Rights in the Work (i) in all territories worldwide, (ii) for the maximum duration provided by applicable law or treaty (including future time extensions), (iii) in any current or future medium and for any number of copies, and (iv) for any purpose whatsoever, including without limitation commercial, advertising or promotional purposes (the “License”). The License shall be deemed effective as of the date CC0 was applied by Affirmer to the Work. Should any part of the License for any reason be judged legally invalid or ineffective under applicable law, such partial invalidity or ineffectiveness shall not invalidate the remainder of the License, and in such case Affirmer hereby affirms that he or she will not (i) exercise any of his or her remaining Copyright and Related Rights in the Work or (ii) assert any associated claims and causes of action with respect to the Work, in either case contrary to Affirmer’s express Statement of Purpose.
+
+4. Limitations and Disclaimers.
+    1. No trademark or patent rights held by Affirmer are waived, abandoned, surrendered, licensed or otherwise affected by this document.
+    2. Affirmer offers the Work as-is and makes no representations or warranties of any kind concerning the Work, express, implied, statutory or otherwise, including without limitation warranties of title, merchantability, fitness for a particular purpose, non infringement, or the absence of latent or other defects, accuracy, or the present or absence of errors, whether or not discoverable, all to the greatest extent permissible under applicable law.
+    3. Affirmer disclaims responsibility for clearing rights of other persons that may apply to the Work or any use thereof, including without limitation any person’s Copyright and Related Rights in the Work. Further, Affirmer disclaims responsibility for obtaining any necessary consents, permissions or other rights required for any use of the Work.
+    4. Affirmer understands and acknowledges that Creative Commons is not a party to this document and has no duty or obligation with respect to this CC0 or use of the Work.
+
+For more information, please see <https://creativecommons.org/publicdomain/zero/1.0/>.
+
+
+Devicon 2.17.0 original license follows:
+The MIT License (MIT)
+
+Copyright (c) 2015 konpa
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+
+Font Awesome Free 5.15.4 icon license: Creative Commons Attribution 4.0 International.
+Copyright Fonticons, Inc. https://fontawesome.com/license/free
+The original Font Awesome notice and license are retained at /licenses/fontawesome.txt.

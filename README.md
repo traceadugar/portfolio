@@ -35,6 +35,8 @@ Certification issuers, issue/expiry months, and verification URLs were observed 
 
 Archive projects are historical work. Their hosted demos and dependent APIs have retired, so cards retain screenshots and verified repository links without demo buttons. A project with no verified public repository omits that link.
 
+Skills cover tools used in projects and practices supported by project evidence or employment history. Each `skills.icons` entry has an explicit `group` (`systems`, `development`, `ai`, or `security`). Technology names stay in the shared file; a `label` key localizes descriptive practices through `translations.js`. Optional `evidence` routes turn a skill into a link to its supporting example, using React Router to preserve the shared scene clock. Keep the scope tied to actual experience; the section does not assign proficiency ratings or imply independent authorship of AI-written code. Brand SVGs are self-hosted in the existing sprite, with source and license information in `public/licenses/new-skill-symbols.txt`; practices use original rounded line icons.
+
 ## TanMar case study
 
 The featured TanMar Safety Platform card opens `/case-studies/tanmar-safety-platform`, a text-only case study of AI-assisted modernization and consolidation. The user-reviewed professional summary is stored in the `case_studies` array in each locale JSON file. Keep the English and Japanese section IDs aligned, and preserve the distinction between implemented test-environment workflows and production hardening.

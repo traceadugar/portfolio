@@ -53,44 +53,186 @@
   "skills": {
     "icons": [
       {
-        "name": "Python",
-        "icon": "devicon-python-plain"
+        "name": "Linux",
+        "icon": "devicon-linux-plain",
+        "group": "systems"
       },
       {
-        "name": "Linux",
-        "icon": "devicon-linux-plain"
+        "name": "RHEL",
+        "icon": "skill-redhat",
+        "group": "systems",
+        "evidence": "/case-studies/linux-ticket-queue#case-lab"
       },
       {
         "name": "Bash",
-        "icon": "fa-terminal"
+        "icon": "fa-terminal",
+        "group": "systems"
       },
       {
-        "name": "PostgreSQL",
-        "icon": "devicon-postgresql-plain"
+        "name": "PowerShell",
+        "icon": "skill-powershell",
+        "group": "systems"
+      },
+      {
+        "name": "SSH",
+        "icon": "shore-terminal",
+        "group": "systems",
+        "evidence": "/case-studies/linux-ticket-queue#case-login-evidence"
+      },
+      {
+        "name": "Network troubleshooting",
+        "icon": "shore-network-tools",
+        "group": "systems",
+        "label": "skillNetworking",
+        "evidence": "/#resume"
+      },
+      {
+        "name": "Ubiquiti",
+        "icon": "skill-ubiquiti",
+        "group": "systems"
+      },
+      {
+        "name": "IT support",
+        "icon": "shore-support",
+        "group": "systems",
+        "label": "skillITSupport",
+        "evidence": "/#resume"
+      },
+      {
+        "name": "Microsoft 365",
+        "icon": "skill-microsoft365",
+        "group": "systems"
       },
       {
         "name": "Git",
-        "icon": "devicon-git-plain"
+        "icon": "devicon-git-plain",
+        "group": "development"
+      },
+      {
+        "name": "HTML",
+        "icon": "devicon-html5-plain",
+        "group": "development"
+      },
+      {
+        "name": "CSS",
+        "icon": "devicon-css3-plain",
+        "group": "development"
       },
       {
         "name": "JavaScript",
-        "icon": "devicon-javascript-plain"
-      },
-      {
-        "name": "React",
-        "icon": "devicon-react-original"
+        "icon": "devicon-javascript-plain",
+        "group": "development"
       },
       {
         "name": "TypeScript",
-        "icon": "fa-code"
+        "icon": "skill-typescript",
+        "group": "development"
+      },
+      {
+        "name": "React",
+        "icon": "devicon-react-original",
+        "group": "development"
+      },
+      {
+        "name": "Node.js",
+        "icon": "skill-nodejs",
+        "group": "development"
+      },
+      {
+        "name": "Express.js",
+        "icon": "skill-express",
+        "group": "development"
+      },
+      {
+        "name": "Python",
+        "icon": "devicon-python-plain",
+        "group": "development"
       },
       {
         "name": "FastAPI",
-        "icon": "fa-code"
+        "icon": "skill-fastapi",
+        "group": "development"
       },
       {
         "name": "Svelte",
-        "icon": "fa-code"
+        "icon": "skill-svelte",
+        "group": "development"
+      },
+      {
+        "name": "PostgreSQL",
+        "icon": "devicon-postgresql-plain",
+        "group": "development"
+      },
+      {
+        "name": "Claude Code",
+        "icon": "skill-claude",
+        "group": "ai"
+      },
+      {
+        "name": "ChatGPT",
+        "icon": "skill-chatgpt",
+        "group": "ai"
+      },
+      {
+        "name": "Codex",
+        "icon": "skill-codex",
+        "group": "ai"
+      },
+      {
+        "name": "AI-assisted development",
+        "icon": "shore-code",
+        "group": "ai",
+        "label": "skillAIDevelopment",
+        "evidence": "/case-studies/aquarium#case-ai"
+      },
+      {
+        "name": "Prompt & context design",
+        "icon": "shore-prompt",
+        "group": "ai",
+        "label": "skillPromptContext",
+        "evidence": "/case-studies/aquarium#case-context-evidence"
+      },
+      {
+        "name": "Agent coordination",
+        "icon": "shore-workflow",
+        "group": "ai",
+        "label": "skillAgentCoordination",
+        "evidence": "/case-studies/aquarium#case-ai"
+      },
+      {
+        "name": "Verification & review",
+        "icon": "shore-review",
+        "group": "ai",
+        "label": "skillVerification",
+        "evidence": "/case-studies/aquarium#case-verification"
+      },
+      {
+        "name": "Access control",
+        "icon": "shore-key",
+        "group": "security",
+        "label": "skillAccessControl",
+        "evidence": "/case-studies/linux-ticket-queue#case-login-evidence"
+      },
+      {
+        "name": "Least privilege",
+        "icon": "shore-shield",
+        "group": "security",
+        "label": "skillLeastPrivilege",
+        "evidence": "/case-studies/linux-ticket-queue#case-privilege-evidence"
+      },
+      {
+        "name": "Security awareness training",
+        "icon": "shore-training",
+        "group": "security",
+        "label": "skillSecurityTraining",
+        "evidence": "/#resume"
+      },
+      {
+        "name": "Technical documentation",
+        "icon": "shore-book",
+        "group": "security",
+        "label": "skillDocumentation",
+        "evidence": "/case-studies/linux-ticket-queue#case-verification"
       }
     ]
   }

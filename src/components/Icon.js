@@ -23,6 +23,14 @@ const shoreIcons = {
   'shore-shell': <><path d="M4 15a9 9 0 1 1 16 0l-5.5 6h-5L4 15Z" /><path d="m5 7 7 11m0-15v15m7-11-7 11M3 12l9 6 9-6m-13 8h8" /></>,
   'shore-network': <><rect x="8" y="2" width="8" height="5" rx="1.5" /><rect x="2" y="17" width="8" height="5" rx="1.5" /><rect x="14" y="17" width="8" height="5" rx="1.5" /><path d="M12 7v5M6 17v-5h12v5" /></>,
   'shore-shield': <><path d="m12 2 8 3v6c0 5-3.5 8-8 11-4.5-3-8-6-8-11V5l8-3Z" /><path d="m8 12 3 3 5-6" /></>,
+  'shore-terminal': <><rect x="2" y="4" width="20" height="16" rx="3" /><path d="m6 9 3 3-3 3m6 0h5" /></>,
+  'shore-network-tools': <><circle cx="8" cy="8" r="5" /><path d="m12 12 5 5M8 3v10M3 8h10M18 14l-3 3 2 4 4-2-1-5-2 0Z" /></>,
+  'shore-support': <><path d="M4 14v-3a8 8 0 0 1 16 0v3m0 3v2c0 2-3 3-6 3" /><rect x="2" y="11" width="4" height="7" rx="2" /><rect x="18" y="11" width="4" height="7" rx="2" /><path d="M10 22h4" /></>,
+  'shore-key': <><circle cx="8" cy="8" r="5" /><path d="m11.5 11.5 8 8 2-2m-6-2 2-2" /></>,
+  'shore-training': <><path d="M2 3h20v13H2ZM12 16v6m-4 0 4-4 4 4M6 8h6M6 11h10" /></>,
+  'shore-workflow': <><rect x="2" y="2" width="7" height="6" rx="2" /><rect x="15" y="16" width="7" height="6" rx="2" /><path d="M9 5h7a3 3 0 0 1 3 3v4m-3-3 3 3 3-3M15 19H8a3 3 0 0 1-3-3v-4m-3 3 3-3 3 3" /></>,
+  'shore-prompt': <><path d="M3 4h18v13H9l-6 4V4Zm4 4h10M7 12h6" /></>,
+  'shore-review': <><rect x="5" y="3" width="14" height="19" rx="2" /><path d="M9 2h6v4H9V2Zm0 9h6m-7 5 3 3 5-5" /></>,
 };
 
 // All icons are decorative; adjacent text or the parent control supplies a name.

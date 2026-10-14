@@ -29,6 +29,25 @@ test('a direct About route with a trailing slash renders the profile with root-b
   expect(screen.getByRole('img', { name: 'Profile photo of Trace Dugar' })).toHaveAttribute('src', '/images/thumbnails/profile.webp');
 });
 
+test('skill evidence links translate and navigate to the supporting section without reloading', async () => {
+  render(<App />);
+  await screen.findByRole('heading', { name: 'Skills', exact: true });
+  const skills = within(document.getElementById('skills'));
+  expect(skills.getByRole('region', { name: 'AI development practices' })).toBeInTheDocument();
+  expect(skills.getByRole('link', { name: /Least privilege — See supporting example/ })).toHaveAttribute('href', '/case-studies/linux-ticket-queue#case-privilege-evidence');
+  fireEvent.change(screen.getByRole('combobox', { name: 'Language' }), { target: { value: 'ja' } });
+  await screen.findByRole('heading', { name: 'AI開発の実践' });
+  const translatedSkills = within(document.getElementById('skills'));
+  expect(translatedSkills.getByRole('link', { name: /最小権限 — 関連する実例を見る/ })).toBeInTheDocument();
+  expect(translatedSkills.queryByText('Agent coordination')).not.toBeInTheDocument();
+  fireEvent.click(translatedSkills.getByRole('link', { name: /プロンプト・前提情報の設計 — 関連する実例を見る/ }));
+  const study = japanese.case_studies.find(item => item.id === 'aquarium');
+  expect(await screen.findByRole('heading', { name: study.sections.find(item => item.id === 'context-evidence').title })).toHaveFocus();
+  expect(window.location.pathname).toBe('/case-studies/aquarium');
+  expect(window.location.hash).toBe('#case-context-evidence');
+  expect(global.fetch).toHaveBeenCalledTimes(3);
+});
+
 test('experience runs from the current role to the earliest training', async () => {
   render(<App />);
   await screen.findByRole('heading', { name: 'Experience' });
