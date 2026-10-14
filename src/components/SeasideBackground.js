@@ -101,7 +101,6 @@ export default function SeasideBackground({ theme, paused, onFrame }) {
         seconds: sceneSeconds,
         width: containerRef.current.clientWidth,
         height: containerRef.current.clientHeight,
-        blend,
         active: shown && !failed,
       });
       if ((!failed && !video.paused) || blend !== targetBlend) schedule();

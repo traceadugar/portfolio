@@ -2,7 +2,7 @@ import React, { useCallback, useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { readPreference, savePreference } from '../translations';
 import SeasideBackground from './SeasideBackground';
-import LighthouseBeam, { LighthouseText } from './LighthouseBeam';
+import LighthouseBeam from './LighthouseBeam';
 import Icon from './Icon';
 
 export default function Header({ sharedData, resumeBasicInfo, labels, theme, changeTheme, language, applyPickedLanguage, loading }) {
@@ -53,11 +53,11 @@ export default function Header({ sharedData, resumeBasicInfo, labels, theme, cha
     </div>
     <header id="home" className="site-header" data-motion={paused ? 'paused' : 'playing'}>
       <SeasideBackground theme={theme} paused={paused} onFrame={paintLighthouse} />
-      <LighthouseBeam ref={lighthouseRef} textKey={`${name}|${labels.heroEyebrow}|${resumeBasicInfo?.headline}`} />
+      <LighthouseBeam ref={lighthouseRef} />
       <div className="header-content">
-        <LighthouseText as="p" className="hero-eyebrow">{labels.heroEyebrow}</LighthouseText>
-        <LighthouseText as="h1">{name}</LighthouseText>
-        <LighthouseText as="p" className="title-container">{resumeBasicInfo?.headline}</LighthouseText>
+        <p className="hero-eyebrow">{labels.heroEyebrow}</p>
+        <h1>{name}</h1>
+        <p className="title-container">{resumeBasicInfo?.headline}</p>
         {sharedData && <div className="header-actions">
           <Link className="shore-button hero-button" to="/#portfolio">{labels.projects}<Icon name="shore-arrow" /></Link>
           {linkedin && <a className="shore-button hero-button-secondary" href={linkedin} target="_blank" rel="noopener noreferrer">{labels.contact}<Icon name="shore-envelope" /></a>}

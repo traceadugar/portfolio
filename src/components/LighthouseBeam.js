@@ -1,143 +1,130 @@
-import React, { forwardRef, useId, useImperativeHandle, useLayoutEffect, useRef } from 'react';
+import React, { forwardRef, useId, useImperativeHandle, useRef } from 'react';
+import { DISTANT_HILL_PATH, FOREGROUND_OCCLUSION_PATH, SEASIDE_LIGHT_SOURCE } from './seasideLightOcclusion';
 
 const LOOP_SECONDS = 16;
-const CORE_ANGLE = 4.5 * Math.PI / 180;
-const HALO_ANGLE = 13 * Math.PI / 180;
-const DEPTH_SCALE = .62;
+const LAMP = { x: 1150, y: 75 };
+const LIGHT_PLANE_HEIGHT = 190;
 
-// The lamp is measured in the original 1280×720 seaside image. Match the
-// scene's cover crop, including its mobile focus, even when the lamp is offscreen.
-export function lighthouseCone(width, height, seconds) {
-  const scale = Math.max(width / 1280, height / 720);
+// Match the ocean's source crop; the lamp can remain offscreen at narrow sizes.
+export function seasideLightCover(width, height) {
+  const scale = Math.max(width / SEASIDE_LIGHT_SOURCE.width, height / SEASIDE_LIGHT_SOURCE.height);
   const narrow = width <= 500;
-  const origin = {
-    x: (width - 1280 * scale) * (narrow ? .31 : .5) + 1150 * scale,
-    y: (height - 720 * scale) * (narrow ? .5 : .6) + 75 * scale,
+  return {
+    scale,
+    x: (width - SEASIDE_LIGHT_SOURCE.width * scale) * (narrow ? .31 : .5),
+    y: (height - SEASIDE_LIGHT_SOURCE.height * scale) * (narrow ? .5 : .6),
   };
-  const angle = (110 + (seconds % LOOP_SECONDS) / LOOP_SECONDS * 360) * Math.PI / 180;
-  const reach = Math.hypot(width, height) + Math.hypot(origin.x, origin.y) + 1;
-  // Project a circular rotation into the scene's depth. A shallow ellipse and
-  // dimming on the far side suggest a rotating beacon rather than a clock hand.
-  const point = radians => ({ x: origin.x + Math.cos(radians) * reach, y: origin.y + Math.sin(radians) * reach * DEPTH_SCALE });
-  const triangle = halfAngle => [origin, point(angle - halfAngle), point(angle + halfAngle)];
-  const strength = Math.min(1, Math.max(0, (Math.sin(angle) + .22) / .32));
-  return { origin, reach, strength, points: triangle(CORE_ANGLE), haloPoints: triangle(HALO_ANGLE) };
 }
 
-export function coneClip(points, left = 0, top = 0) {
-  return `polygon(${points.map(point => `${(point.x - left).toFixed(3)}px ${(point.y - top).toFixed(3)}px`).join(', ')})`;
+// A horizontal rotation projected into the scene. The near pass travels behind
+// the town; the far return is shorter, narrower and dimmer on the distant hill.
+export function seasideBeacon(seconds) {
+  const angle = (seconds % LOOP_SECONDS) / LOOP_SECONDS * Math.PI * 2;
+  const depth = (Math.sin(angle) + 1) / 2;
+  const reach = 380 + 950 * depth;
+  const end = {
+    x: LAMP.x - Math.cos(angle) * reach,
+    y: LAMP.y + Math.cos(angle) * (20 + 85 * (1 - depth)) + Math.sin(angle) * 8,
+  };
+  const halfWidth = 2.6 + 11 * depth;
+  const visibility = Math.sqrt(Math.abs(Math.cos(angle)));
+  const triangle = width => [LAMP, { x: end.x, y: end.y - width }, { x: end.x, y: end.y + width }];
+  return {
+    origin: LAMP, end, reach, halfWidth,
+    core: triangle(halfWidth), halo: triangle(halfWidth * 2.8),
+    nearOpacity: visibility * depth,
+    farOpacity: visibility * (1 - depth) * .72,
+  };
 }
 
-export function LighthouseText({ as: Tag = 'span', className = '', children }) {
-  return <Tag className={`lighthouse-text ${className}`}>
-    <span>{children}</span>
-    <span className="lighthouse-lit-text" aria-hidden="true">{children}</span>
-  </Tag>;
-}
+const pathFor = points => points.map((point, index) => `${index ? 'L' : 'M'}${point.x.toFixed(3)} ${point.y.toFixed(3)}`).join(' ') + ' Z';
 
-const LighthouseBeam = forwardRef(function LighthouseBeam({ textKey }, ref) {
+const LighthouseBeam = forwardRef(function LighthouseBeam(props, ref) {
   const svgRef = useRef(null);
+  const sceneRef = useRef(null);
   const coreRef = useRef(null);
   const haloRef = useRef(null);
-  const lampRef = useRef(null);
-  const filterRef = useRef(null);
   const coreGradientRef = useRef(null);
   const haloGradientRef = useRef(null);
-  const layoutRef = useRef(null);
-  const lastFrameRef = useRef(null);
-  const paintRef = useRef(null);
-  const haloId = `lighthouse-halo-${useId().replace(/:/g, '')}`;
+  const hillGradientRef = useRef(null);
+  const nearRef = useRef(null);
+  const farRef = useRef(null);
+  const id = `seaside-beacon-${useId().replace(/:/g, '')}`;
 
-  useLayoutEffect(() => {
-    const invalidate = () => {
-      layoutRef.current = null;
-      if (lastFrameRef.current) paintRef.current?.(lastFrameRef.current);
-    };
-    invalidate();
-    const header = svgRef.current?.closest('.site-header');
-    const observer = window.ResizeObserver ? new ResizeObserver(invalidate) : null;
-    if (observer) header?.querySelectorAll('.lighthouse-text, .header-content').forEach(element => observer.observe(element));
-    return () => observer?.disconnect();
-  }, [textKey]);
-
-  useImperativeHandle(ref, () => {
-    const update = frame => {
-      const { seconds = 0, width, height, blend = 0, active } = frame;
-      lastFrameRef.current = frame;
+  useImperativeHandle(ref, () => ({
+    update({ seconds = 0, width, height, active }) {
       const svg = svgRef.current;
       const header = svg?.closest('.site-header');
       if (!header) return;
       header.dataset.lighthouseActive = active && width > 0 && height > 0 ? 'true' : 'false';
-      header.dataset.lighthouseLit = 'false';
       if (!active || !width || !height) return;
-      const cone = lighthouseCone(width, height, seconds);
-      // Crossfading cream text into navy at the same time as its backdrop
-      // brightens would briefly erase contrast. Introduce the opaque, readable
-      // navy/gold pair only once the shared dusk blend is strong enough.
-      header.dataset.lighthouseLit = blend >= .65 && cone.strength >= .99 ? 'true' : 'false';
-      const path = points => points.map((point, index) => `${index ? 'L' : 'M'}${point.x.toFixed(3)} ${point.y.toFixed(3)}`).join(' ') + ' Z';
-      coreRef.current.setAttribute('d', path(cone.points));
-      haloRef.current.setAttribute('d', path(cone.haloPoints));
-      header.style.setProperty('--lighthouse-strength', cone.strength.toFixed(6));
-      for (const gradient of [coreGradientRef.current, haloGradientRef.current]) {
-        gradient.setAttribute('cx', cone.origin.x);
-        gradient.setAttribute('cy', cone.origin.y);
-        gradient.setAttribute('r', cone.reach);
+      const cover = seasideLightCover(width, height);
+      const beacon = seasideBeacon(seconds);
+      svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+      sceneRef.current.setAttribute('transform', `translate(${cover.x} ${cover.y}) scale(${cover.scale})`);
+      coreRef.current.setAttribute('d', pathFor(beacon.core));
+      haloRef.current.setAttribute('d', pathFor(beacon.halo));
+      nearRef.current.setAttribute('opacity', beacon.nearOpacity.toFixed(6));
+      farRef.current.setAttribute('opacity', beacon.farOpacity.toFixed(6));
+      for (const gradient of [coreGradientRef.current, haloGradientRef.current, hillGradientRef.current]) {
+        gradient.setAttribute('x2', beacon.end.x);
+        gradient.setAttribute('y2', beacon.end.y);
       }
-      lampRef.current.setAttribute('cx', cone.origin.x);
-      lampRef.current.setAttribute('cy', cone.origin.y);
+    },
+  }), []);
 
-      // Read layout only when size or translated text changes. The three text
-      // copies share the core's exact triangle; soft glow never washes out letters.
-      if (!layoutRef.current || layoutRef.current.width !== width || layoutRef.current.height !== height) {
-        svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
-        filterRef.current.setAttribute('width', width);
-        filterRef.current.setAttribute('height', height);
-        const bounds = header.getBoundingClientRect();
-        layoutRef.current = {
-          width, height,
-          text: [...header.querySelectorAll('.lighthouse-lit-text')].map(element => {
-            const box = element.parentElement.getBoundingClientRect();
-            return { element, left: box.left - bounds.left, top: box.top - bounds.top };
-          }),
-        };
-      }
-      for (const { element, left, top } of layoutRef.current.text) {
-        element.style.setProperty('--lighthouse-clip', coneClip(cone.points, left, top));
-      }
-    };
-    paintRef.current = update;
-    return { update };
-  }, []);
-
-  // A font completing its first load can change line breaks without changing
-  // the header's outer dimensions. Invalidate once rather than reading per frame.
-  useLayoutEffect(() => {
-    let mounted = true;
-    document.fonts?.ready.then(() => {
-      if (!mounted) return;
-      layoutRef.current = null;
-      if (lastFrameRef.current) paintRef.current?.(lastFrameRef.current);
-    });
-    return () => { mounted = false; };
-  }, []);
+  const light = <>
+    <use href={`#${id}-halo-shape`} fill={`url(#${id}-halo-color)`} filter={`url(#${id}-mist)`} />
+    <use href={`#${id}-core-shape`} fill={`url(#${id}-core-color)`} filter={`url(#${id}-soft)`} />
+  </>;
+  const hillLight = <>
+    <use href={`#${id}-halo-shape`} fill={`url(#${id}-halo-color)`} filter={`url(#${id}-mist)`} />
+    <use href={`#${id}-core-shape`} fill={`url(#${id}-hill-color)`} filter={`url(#${id}-soft)`} />
+  </>;
 
   return <svg ref={svgRef} className="lighthouse-beam" aria-hidden="true" focusable="false">
     <defs>
-      <filter ref={filterRef} id={haloId} filterUnits="userSpaceOnUse" x="0" y="0" width="0" height="0"><feGaussianBlur stdDeviation="9" /></filter>
-      <radialGradient ref={coreGradientRef} id={`${haloId}-core`} gradientUnits="userSpaceOnUse">
-        <stop offset="0" stopColor="#fce0a2" stopOpacity=".86" />
-        <stop offset=".4" stopColor="#fce0a2" stopOpacity=".42" />
+      <path ref={coreRef} id={`${id}-core-shape`} />
+      <path ref={haloRef} id={`${id}-halo-shape`} />
+      <linearGradient ref={coreGradientRef} id={`${id}-core-color`} gradientUnits="userSpaceOnUse" x1={LAMP.x} y1={LAMP.y}>
+        <stop offset="0" stopColor="#fce0a2" stopOpacity=".38" />
+        <stop offset=".45" stopColor="#fce0a2" stopOpacity=".18" />
         <stop offset="1" stopColor="#fce0a2" stopOpacity="0" />
-      </radialGradient>
-      <radialGradient ref={haloGradientRef} id={`${haloId}-mist`} gradientUnits="userSpaceOnUse">
-        <stop offset="0" stopColor="#fce0a2" stopOpacity=".22" />
+      </linearGradient>
+      <linearGradient ref={haloGradientRef} id={`${id}-halo-color`} gradientUnits="userSpaceOnUse" x1={LAMP.x} y1={LAMP.y}>
+        <stop offset="0" stopColor="#fce0a2" stopOpacity=".18" />
+        <stop offset=".5" stopColor="#fce0a2" stopOpacity=".07" />
         <stop offset="1" stopColor="#fce0a2" stopOpacity="0" />
-      </radialGradient>
+      </linearGradient>
+      <linearGradient ref={hillGradientRef} id={`${id}-hill-color`} gradientUnits="userSpaceOnUse" x1={LAMP.x} y1={LAMP.y}>
+        <stop offset="0" stopColor="#fce0a2" stopOpacity=".45" />
+        <stop offset=".6" stopColor="#fce0a2" stopOpacity=".4" />
+        <stop offset=".9" stopColor="#fce0a2" stopOpacity=".15" />
+        <stop offset="1" stopColor="#fce0a2" stopOpacity="0" />
+      </linearGradient>
+      <filter id={`${id}-soft`} filterUnits="userSpaceOnUse" x="0" y="0" width={SEASIDE_LIGHT_SOURCE.width} height={LIGHT_PLANE_HEIGHT}>
+        <feGaussianBlur stdDeviation="1.3" />
+      </filter>
+      <filter id={`${id}-mist`} filterUnits="userSpaceOnUse" x="0" y="0" width={SEASIDE_LIGHT_SOURCE.width} height={LIGHT_PLANE_HEIGHT}>
+        <feGaussianBlur stdDeviation="5.8" />
+      </filter>
+      <clipPath id={`${id}-plane`}><rect width={SEASIDE_LIGHT_SOURCE.width} height={LIGHT_PLANE_HEIGHT} /></clipPath>
+      <mask id={`${id}-foreground`} maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" x="0" y="0" width={SEASIDE_LIGHT_SOURCE.width} height={SEASIDE_LIGHT_SOURCE.height} style={{ maskType: 'luminance' }}>
+        <rect width={SEASIDE_LIGHT_SOURCE.width} height={SEASIDE_LIGHT_SOURCE.height} fill="white" />
+        <path d={FOREGROUND_OCCLUSION_PATH} fill="black" />
+      </mask>
+      <mask id={`${id}-hill`} maskUnits="userSpaceOnUse" maskContentUnits="userSpaceOnUse" x="0" y="0" width={SEASIDE_LIGHT_SOURCE.width} height={SEASIDE_LIGHT_SOURCE.height} style={{ maskType: 'luminance' }}>
+        <rect width={SEASIDE_LIGHT_SOURCE.width} height={SEASIDE_LIGHT_SOURCE.height} fill="black" />
+        <path d={DISTANT_HILL_PATH} fill="white" />
+      </mask>
     </defs>
-    <path ref={haloRef} fill={`url(#${haloId}-mist)`} className="lighthouse-beam-halo" filter={`url(#${haloId})`} />
-    <path ref={coreRef} fill={`url(#${haloId}-core)`} className="lighthouse-beam-core" />
-    <circle ref={lampRef} r="11" className="lighthouse-lamp-glow" filter={`url(#${haloId})`} />
+    <g ref={sceneRef}>
+      {/* Mask after both blur filters, so scattered glow cannot leak over palms. */}
+      <g clipPath={`url(#${id}-plane)`} mask={`url(#${id}-foreground)`}>
+        <g ref={nearRef} data-light-pass="near">{light}</g>
+        <g ref={farRef} data-light-pass="far" mask={`url(#${id}-hill)`}>{hillLight}</g>
+      </g>
+    </g>
   </svg>;
 });
 
