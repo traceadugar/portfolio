@@ -208,13 +208,18 @@ test('the featured case study opens a text-only writeup and returns to the proje
   expect(global.fetch).toHaveBeenCalledTimes(2);
 });
 
-test('TanMar stays first while projects and case studies share newest-first order', async () => {
+test('TanMar and Aquarium stay pinned while other projects and case studies share newest-first order', async () => {
   render(<App />);
   await screen.findByRole('heading', { name: 'Projects & case studies' });
-  const selectedTitles = ['TanMar Safety Platform', 'Portfolio Recovery & Seaside Redesign', 'Aquarium', 'Linux Ticket Generator & RHEL Lab', 'PaleHorse Intro Script', 'XLRX Logistics LLC Website Redesign'];
+  const selectedTitles = ['TanMar Safety Platform', 'Aquarium', 'Portfolio Recovery & Seaside Redesign', 'Linux Ticket Generator & RHEL Lab', 'PaleHorse Intro Script', 'XLRX Logistics LLC Website Redesign'];
   const headings = screen.getAllByRole('heading', { level: 3 }).map(heading => heading.textContent);
   expect(headings.filter(title => selectedTitles.includes(title))).toEqual(selectedTitles);
+  for (const title of ['TanMar Safety Platform', 'Aquarium']) {
+    expect(within(screen.getByRole('article', { name: title })).getByText('Featured case study', { exact: true })).toBeInTheDocument();
+  }
   const card = screen.getByRole('article', { name: 'Linux Ticket Generator & RHEL Lab' });
+  expect(within(card).getByText('Case study', { exact: true })).toBeInTheDocument();
+  expect(within(card).queryByText('Featured case study', { exact: true })).not.toBeInTheDocument();
   fireEvent.click(within(card).getByRole('link', { name: 'Read case study', exact: true }));
   expect(await screen.findByRole('heading', { name: 'Linux Ticket Generator & RHEL Lab', level: 2 })).toHaveFocus();
   expect(window.location.pathname).toBe('/case-studies/linux-ticket-queue');
@@ -236,6 +241,10 @@ test('case-study cards show localized project start months with machine-readable
   }
   fireEvent.change(screen.getByRole('combobox', { name: 'Language' }), { target: { value: 'ja' } });
   await screen.findByRole('heading', { name: japanese.basic_info.section_name.projects });
+  const linux = japanese.case_studies.find(item => item.id === 'linux-ticket-queue');
+  const linuxCard = within(screen.getByRole('article', { name: linux.title }));
+  expect(linuxCard.getByText('ケーススタディ', { exact: true })).toBeInTheDocument();
+  expect(linuxCard.queryByText('注目のケーススタディ', { exact: true })).not.toBeInTheDocument();
   for (const date of dates) {
     const study = japanese.case_studies.find(item => item.id === date.id);
     const card = within(screen.getByRole('article', { name: study.title }));

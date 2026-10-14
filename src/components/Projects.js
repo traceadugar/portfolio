@@ -3,17 +3,20 @@ import Icon from './Icon';
 import CaseStudyCard from './CaseStudyCard';
 
 const ProjectDetailsModal = lazy(() => import('./ProjectDetailsModal'));
+const pinnedCaseStudies = ['tanmar-safety-platform', 'aquarium'];
 
 export default function Projects({ resumeProjects = [], resumeCaseStudies = [], resumeCurrentProjects = [], resumeBasicInfo, labels }) {
   const [selectedProject, setSelectedProject] = useState(null);
-  // TanMar stays first; case studies and personal projects otherwise share date order.
+  // Featured cases stay pinned; other work shares newest-first date order.
   const selectedWork = [
     ...resumeCaseStudies.map(data => ({ data, type: 'caseStudy' })),
     ...resumeCurrentProjects.map(data => ({ data, type: 'project' })),
   ].sort((left, right) => {
     if (left.data.id === right.data.id) return 0;
-    if (left.data.id === 'tanmar-safety-platform') return -1;
-    if (right.data.id === 'tanmar-safety-platform') return 1;
+    for (const id of pinnedCaseStudies) {
+      if (left.data.id === id) return -1;
+      if (right.data.id === id) return 1;
+    }
     return (right.data.sortDate || '').localeCompare(left.data.sortDate || '');
   });
 
@@ -54,7 +57,7 @@ export default function Projects({ resumeProjects = [], resumeCaseStudies = [], 
           <h2 className="section-title" id="portfolio-title">{resumeBasicInfo.section_name.projects}</h2>
         </div>
         {selectedWork.map(({ data, type }) => type === 'caseStudy'
-          ? <CaseStudyCard data={data} labels={labels} key={data.id} />
+          ? <CaseStudyCard data={data} labels={labels} featured={pinnedCaseStudies.includes(data.id)} key={data.id} />
           : <div className="project-grid current-project-grid selected-project-row" key={data.id}>
             {renderProjectCard(data)}
           </div>)}

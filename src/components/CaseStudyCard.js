@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Icon from './Icon';
 
-export default function CaseStudyCard({ data, labels }) {
+export default function CaseStudyCard({ data, labels, featured = false }) {
   const dateBadge = data.startDate && <time className="project-year" dateTime={data.sortDate}>{data.startDate}</time>;
 
   return <article className="case-study-card shore-panel" aria-labelledby={`case-study-${data.id}-title`}>
@@ -14,7 +14,7 @@ export default function CaseStudyCard({ data, labels }) {
       {dateBadge}
     </div> : <div className="case-study-emblem case-study-media"><Icon name={data.icon || 'shore-code'} />{dateBadge}</div>}
     <div className="case-study-card-copy">
-      <p className="section-kicker"><Icon name="shore-compass" /> {labels.featuredCaseStudy}</p>
+      <p className="section-kicker"><Icon name="shore-compass" /> {featured ? labels.featuredCaseStudy : labels.caseStudyCard}</p>
       <h3 id={`case-study-${data.id}-title`}>{data.title}</h3>
       <p className="case-study-subtitle">{data.subtitle}</p>
       <p className="case-study-summary">{data.summary}</p>
