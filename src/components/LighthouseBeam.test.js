@@ -23,6 +23,16 @@ test('the far return is shorter, narrower, dimmer, and the full rotation closes'
   expect(seasideBeacon(16)).toEqual(seasideBeacon(0));
 });
 
+test('the beam fades with a flat slope when turning toward or away from the viewer', () => {
+  const step = .01;
+  for (const [seconds, opacity] of [[4, 'nearOpacity'], [12, 'farOpacity']]) {
+    const middle = seasideBeacon(seconds)[opacity];
+    expect(middle).toBeLessThan(.000001);
+    expect(Math.abs(seasideBeacon(seconds - step)[opacity] - middle) / step).toBeLessThan(.01);
+    expect(Math.abs(seasideBeacon(seconds + step)[opacity] - middle) / step).toBeLessThan(.01);
+  }
+});
+
 test('light stays in the upper background throughout the loop', () => {
   for (let seconds = 0; seconds < 16; seconds += .1) {
     const frame = seasideBeacon(seconds);
@@ -42,6 +52,31 @@ test('foreground occlusion encloses every filtered layer and the far pass also h
   expect(far.parentElement).toBe(near.parentElement);
   expect(far.getAttribute('mask')).toMatch(/hill/);
   expect(near.querySelectorAll('use[filter]')).toHaveLength(2);
+  // Both depth passes are the same light: receiver masking must not introduce
+  // a second, stronger falloff as the sweep crosses the hillside.
+  const sampleFalloff = (element, position) => {
+    const id = element.getAttribute('fill').match(/url\(#(.+)\)/)[1];
+    const stops = [...container.querySelector(`[id="${id}"]`).querySelectorAll('stop')].map(stop => ({
+      offset: Number(stop.getAttribute('offset')),
+      color: stop.getAttribute('stop-color'),
+      opacity: Number(stop.getAttribute('stop-opacity') ?? 1),
+    }));
+    const index = stops.findIndex(stop => stop.offset >= position);
+    const end = stops[index];
+    const start = stops[Math.max(0, index - 1)];
+    const progress = end.offset === start.offset ? 0 : (position - start.offset) / (end.offset - start.offset);
+    return { color: end.color, opacity: start.opacity + (end.opacity - start.opacity) * progress };
+  };
+  const nearPaint = [...near.querySelectorAll('use')];
+  const farPaint = [...far.querySelectorAll('use')];
+  for (const position of [0, .2, .5, .75, 1]) {
+    expect(farPaint.map(element => sampleFalloff(element, position)))
+      .toEqual(nearPaint.map(element => sampleFalloff(element, position)));
+  }
+  const nearBrightness = sampleFalloff(nearPaint[1], .5).opacity * Number(near.getAttribute('opacity'));
+  act(() => ref.current.update({ seconds: 14, width: 1024, height: 540, active: true }));
+  const farBrightness = sampleFalloff(farPaint[1], .5).opacity * Number(far.getAttribute('opacity'));
+  expect(farBrightness).toBeLessThan(nearBrightness);
   expect(container.querySelectorAll('filter')).toHaveLength(2);
   for (const filter of container.querySelectorAll('filter')) {
     expect(filter).toHaveAttribute('filterUnits', 'userSpaceOnUse');

@@ -27,7 +27,8 @@ export function seasideBeacon(seconds) {
     y: LAMP.y + Math.cos(angle) * (20 + 85 * (1 - depth)) + Math.sin(angle) * 8,
   };
   const halfWidth = 2.6 + 11 * depth;
-  const visibility = Math.sqrt(Math.abs(Math.cos(angle)));
+  const side = Math.abs(Math.cos(angle));
+  const visibility = side * side * (3 - 2 * side);
   const triangle = width => [LAMP, { x: end.x, y: end.y - width }, { x: end.x, y: end.y + width }];
   return {
     origin: LAMP, end, reach, halfWidth,
@@ -49,7 +50,6 @@ const LighthouseBeam = forwardRef(function LighthouseBeam(props, ref) {
   const haloRef = useRef(null);
   const coreGradientRef = useRef(null);
   const haloGradientRef = useRef(null);
-  const hillGradientRef = useRef(null);
   const nearRef = useRef(null);
   const farRef = useRef(null);
   const airGlintRef = useRef(null);
@@ -73,7 +73,7 @@ const LighthouseBeam = forwardRef(function LighthouseBeam(props, ref) {
       farRef.current.setAttribute('opacity', beacon.farOpacity.toFixed(6));
       airGlintRef.current.setAttribute('opacity', (beacon.glint * .2).toFixed(6));
       windowGlintRef.current.setAttribute('opacity', (beacon.glint * .68).toFixed(6));
-      for (const gradient of [coreGradientRef.current, haloGradientRef.current, hillGradientRef.current]) {
+      for (const gradient of [coreGradientRef.current, haloGradientRef.current]) {
         gradient.setAttribute('x2', beacon.end.x);
         gradient.setAttribute('y2', beacon.end.y);
       }
@@ -84,10 +84,6 @@ const LighthouseBeam = forwardRef(function LighthouseBeam(props, ref) {
     <use href={`#${id}-halo-shape`} fill={`url(#${id}-halo-color)`} filter={`url(#${id}-mist)`} />
     <use href={`#${id}-core-shape`} fill={`url(#${id}-core-color)`} filter={`url(#${id}-soft)`} />
   </>;
-  const hillLight = <>
-    <use href={`#${id}-halo-shape`} fill={`url(#${id}-halo-color)`} filter={`url(#${id}-mist)`} />
-    <use href={`#${id}-core-shape`} fill={`url(#${id}-hill-color)`} filter={`url(#${id}-soft)`} />
-  </>;
 
   return <svg ref={svgRef} className="lighthouse-beam" aria-hidden="true" focusable="false">
     <defs>
@@ -95,18 +91,13 @@ const LighthouseBeam = forwardRef(function LighthouseBeam(props, ref) {
       <path ref={haloRef} id={`${id}-halo-shape`} />
       <linearGradient ref={coreGradientRef} id={`${id}-core-color`} gradientUnits="userSpaceOnUse" x1={LAMP.x} y1={LAMP.y}>
         <stop offset="0" stopColor="#fce0a2" stopOpacity=".38" />
-        <stop offset=".45" stopColor="#fce0a2" stopOpacity=".18" />
+        <stop offset=".55" stopColor="#fce0a2" stopOpacity=".3" />
+        <stop offset=".9" stopColor="#fce0a2" stopOpacity=".08" />
         <stop offset="1" stopColor="#fce0a2" stopOpacity="0" />
       </linearGradient>
       <linearGradient ref={haloGradientRef} id={`${id}-halo-color`} gradientUnits="userSpaceOnUse" x1={LAMP.x} y1={LAMP.y}>
         <stop offset="0" stopColor="#fce0a2" stopOpacity=".18" />
         <stop offset=".5" stopColor="#fce0a2" stopOpacity=".07" />
-        <stop offset="1" stopColor="#fce0a2" stopOpacity="0" />
-      </linearGradient>
-      <linearGradient ref={hillGradientRef} id={`${id}-hill-color`} gradientUnits="userSpaceOnUse" x1={LAMP.x} y1={LAMP.y}>
-        <stop offset="0" stopColor="#fce0a2" stopOpacity=".45" />
-        <stop offset=".6" stopColor="#fce0a2" stopOpacity=".4" />
-        <stop offset=".9" stopColor="#fce0a2" stopOpacity=".15" />
         <stop offset="1" stopColor="#fce0a2" stopOpacity="0" />
       </linearGradient>
       <radialGradient id={`${id}-window-color`}>
@@ -134,7 +125,7 @@ const LighthouseBeam = forwardRef(function LighthouseBeam(props, ref) {
       {/* Mask after both blur filters, so scattered glow cannot leak over palms. */}
       <g clipPath={`url(#${id}-plane)`} mask={`url(#${id}-foreground)`}>
         <g ref={nearRef} data-light-pass="near">{light}</g>
-        <g ref={farRef} data-light-pass="far" mask={`url(#${id}-hill)`}>{hillLight}</g>
+        <g ref={farRef} data-light-pass="far" mask={`url(#${id}-hill)`}>{light}</g>
         <g ref={airGlintRef} opacity="0" data-light-glint="air">
           <circle cx={LAMP.x} cy={LAMP.y} r="18" fill="#fce0a2" filter={`url(#${id}-mist)`} />
         </g>
