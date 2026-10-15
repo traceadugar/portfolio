@@ -1,5 +1,7 @@
 # Trace Dugar's portfolio
 
+[![Portfolio checks](https://github.com/traceadugar/portfolio/actions/workflows/verify.yml/badge.svg?branch=main)](https://github.com/traceadugar/portfolio/actions/workflows/verify.yml)
+
 A bilingual React portfolio, published at [traceportfolio.netlify.app](https://traceportfolio.netlify.app/). It presents current IT and software development experience alongside archived project screenshots.
 
 ## Run and verify
@@ -20,6 +22,8 @@ npm run build
 ```
 
 The regression suite covers routing and section navigation, Japanese localization, timeline order, keyboard project galleries and focus restoration, recoverable data errors, saved preferences, synchronized lighting transitions, and reduced-motion/media fallbacks. Also inspect the production build in a browser at desktop and narrow mobile widths.
+
+GitHub Actions runs the same tests and production build on pushes to `main` and on pull requests. The badge above shows the latest result for `main`.
 
 ## Update content
 
