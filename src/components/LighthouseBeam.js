@@ -34,6 +34,9 @@ export function seasideBeacon(seconds) {
     core: triangle(halfWidth), halo: triangle(halfWidth * 2.8),
     nearOpacity: visibility * depth,
     farOpacity: visibility * (1 - depth) * .72,
+    // Briefly catch the viewer as the near cone becomes edge-on. The far-facing
+    // half stays dark, and the pulse shares this existing scene clock.
+    glint: Math.max(0, Math.sin(angle)) ** 48,
   };
 }
 
@@ -49,6 +52,8 @@ const LighthouseBeam = forwardRef(function LighthouseBeam(props, ref) {
   const hillGradientRef = useRef(null);
   const nearRef = useRef(null);
   const farRef = useRef(null);
+  const airGlintRef = useRef(null);
+  const windowGlintRef = useRef(null);
   const id = `seaside-beacon-${useId().replace(/:/g, '')}`;
 
   useImperativeHandle(ref, () => ({
@@ -66,6 +71,8 @@ const LighthouseBeam = forwardRef(function LighthouseBeam(props, ref) {
       haloRef.current.setAttribute('d', pathFor(beacon.halo));
       nearRef.current.setAttribute('opacity', beacon.nearOpacity.toFixed(6));
       farRef.current.setAttribute('opacity', beacon.farOpacity.toFixed(6));
+      airGlintRef.current.setAttribute('opacity', (beacon.glint * .2).toFixed(6));
+      windowGlintRef.current.setAttribute('opacity', (beacon.glint * .68).toFixed(6));
       for (const gradient of [coreGradientRef.current, haloGradientRef.current, hillGradientRef.current]) {
         gradient.setAttribute('x2', beacon.end.x);
         gradient.setAttribute('y2', beacon.end.y);
@@ -102,6 +109,11 @@ const LighthouseBeam = forwardRef(function LighthouseBeam(props, ref) {
         <stop offset=".9" stopColor="#fce0a2" stopOpacity=".15" />
         <stop offset="1" stopColor="#fce0a2" stopOpacity="0" />
       </linearGradient>
+      <radialGradient id={`${id}-window-color`}>
+        <stop offset="0" stopColor="#fff8df" />
+        <stop offset=".55" stopColor="#fff0bc" stopOpacity=".8" />
+        <stop offset="1" stopColor="#fce0a2" stopOpacity="0" />
+      </radialGradient>
       <filter id={`${id}-soft`} filterUnits="userSpaceOnUse" x="0" y="0" width={SEASIDE_LIGHT_SOURCE.width} height={LIGHT_PLANE_HEIGHT}>
         <feGaussianBlur stdDeviation="1.3" />
       </filter>
@@ -123,6 +135,13 @@ const LighthouseBeam = forwardRef(function LighthouseBeam(props, ref) {
       <g clipPath={`url(#${id}-plane)`} mask={`url(#${id}-foreground)`}>
         <g ref={nearRef} data-light-pass="near">{light}</g>
         <g ref={farRef} data-light-pass="far" mask={`url(#${id}-hill)`}>{hillLight}</g>
+        <g ref={airGlintRef} opacity="0" data-light-glint="air">
+          <circle cx={LAMP.x} cy={LAMP.y} r="18" fill="#fce0a2" filter={`url(#${id}-mist)`} />
+        </g>
+      </g>
+      {/* Only the tiny lamp window emits in front of the tower silhouette. */}
+      <g clipPath={`url(#${id}-plane)`}>
+        <circle ref={windowGlintRef} data-light-glint="window" cx={LAMP.x} cy={LAMP.y} r="3" opacity="0" fill={`url(#${id}-window-color)`} />
       </g>
     </g>
   </svg>;

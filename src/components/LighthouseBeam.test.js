@@ -52,3 +52,29 @@ test('foreground occlusion encloses every filtered layer and the far pass also h
   act(() => ref.current.update({ active: false }));
   expect(container.querySelector('header')).toHaveAttribute('data-lighthouse-active', 'false');
 });
+
+test('a brief lantern glint catches only the front-facing phase and closes at the existing loop seam', () => {
+  expect(seasideBeacon(4).glint).toBe(1);
+  expect(seasideBeacon(3).glint).toBeLessThan(.03);
+  expect(seasideBeacon(5).glint).toBeLessThan(.03);
+  expect(seasideBeacon(12).glint).toBe(0);
+  expect(seasideBeacon(0).glint).toBe(seasideBeacon(16).glint);
+});
+
+test('the emitter stays inside the tiny source lamp while scattered glint remains foreground-masked', () => {
+  const ref = createRef();
+  const { container } = render(<header className="site-header"><LighthouseBeam ref={ref} /></header>);
+  act(() => ref.current.update({ seconds: 4, width: 1024, height: 540, active: true }));
+  const emitter = container.querySelector('[data-light-glint="window"]');
+  const air = container.querySelector('[data-light-glint="air"]');
+  expect(emitter).toHaveAttribute('cx', '1150');
+  expect(emitter).toHaveAttribute('cy', '75');
+  expect(emitter).toHaveAttribute('r', '3');
+  expect(emitter).toHaveAttribute('opacity', '0.680000');
+  expect(emitter).not.toHaveAttribute('filter');
+  expect(air.parentElement.getAttribute('mask')).toMatch(/foreground/);
+  expect(air.querySelector('circle')).toHaveAttribute('filter');
+  act(() => ref.current.update({ seconds: 12, width: 1024, height: 540, active: true }));
+  expect(emitter).toHaveAttribute('opacity', '0.000000');
+  expect(air).toHaveAttribute('opacity', '0.000000');
+});
