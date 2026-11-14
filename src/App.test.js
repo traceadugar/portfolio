@@ -54,11 +54,11 @@ test('skill evidence links translate and navigate to the supporting section with
   expect(global.fetch).toHaveBeenCalledTimes(3);
 });
 
-test('experience runs from the current role to the earliest training', async () => {
+test('experience shows employment separately from training', async () => {
   render(<App />);
   await screen.findByRole('heading', { name: 'Experience' });
   expect(screen.getAllByRole('heading', { level: 4 }).map(element => element.textContent)).toEqual([
-    'TanMar Communications', 'Ethos Risk Services', 'XLRX Logistics LLC', 'Code Fellows',
+    'TanMar Communications', 'Ethos Risk Services',
   ]);
   expect(screen.queryByText('Sep 2023 – Present')).not.toBeInTheDocument();
   expect(screen.getByText('Sep 2023 – Oct 2024')).toBeInTheDocument();
@@ -72,9 +72,9 @@ test('Japanese changes the document language, navigation, timeline dates and des
   expect(document.documentElement).toHaveAttribute('lang', 'ja');
   expect(screen.getByRole('button', { name: 'English', exact: true })).toHaveAttribute('lang', 'en');
   expect(screen.getByRole('link', { name: 'ホーム', exact: true })).toBeInTheDocument();
-  expect(screen.getByText('2024年10月 – 現在')).toBeInTheDocument();
+  expect(screen.getByText('2024年10月 – 2026年11月')).toBeInTheDocument();
   expect(screen.getByText('2023年9月 – 2024年10月')).toBeInTheDocument();
-  expect(screen.getByText('メディアクエリ')).toBeInTheDocument();
+  expect(screen.queryByText('メディアクエリ')).not.toBeInTheDocument();
   expect(document.body.textContent).not.toMatch(/Current|Media Queries|Responsive Design|File Conversions|IT Support Technician/);
   expect(window.localStorage.getItem('portfolioLanguage')).toBe('ja');
 });
@@ -155,7 +155,7 @@ test('the navigation language selector translates About qualifications and prese
   expect(screen.getByText('Video Surveillance Tech')).toBeInTheDocument();
   expect(screen.getByText('LLSSA · Issued June 2025')).toBeInTheDocument();
   expect(screen.getByText('CompTIA · Issued April 2024 · Expires April 2027')).toBeInTheDocument();
-  expect(screen.getByRole('link', { name: 'CompTIA Security+ (opens in a new tab)' })).toHaveAttribute('href',
+  expect(screen.getByRole('link', { name: 'CompTIA Security+ ce (opens in a new tab)' })).toHaveAttribute('href',
     'https://www.credly.com/badges/37f0df2a-7dce-405f-a097-2f81c667739a/linked_in_profile');
   expect(screen.getByRole('link', { name: 'Google Cybersecurity Certificate (opens in a new tab)' })).toHaveAttribute('href',
     'https://www.coursera.org/account/accomplishments/specialization/QDF3Y3VLNBQU');
@@ -233,18 +233,17 @@ test('the featured case study opens a text-only writeup and returns to the proje
   expect(global.fetch).toHaveBeenCalledTimes(2);
 });
 
-test('TanMar and Aquarium stay pinned while other projects and case studies share newest-first order', async () => {
+test('Linux and TanMar lead while other projects and case studies share newest-first order', async () => {
   render(<App />);
   await screen.findByRole('heading', { name: 'Projects & case studies' });
-  const selectedTitles = ['TanMar Safety Platform', 'Aquarium', 'Portfolio Recovery & Seaside Redesign', 'Linux Ticket Generator & RHEL Lab', 'PaleHorse Intro Script', 'XLRX Logistics LLC Website Redesign'];
+  const selectedTitles = ['Linux Ticket Generator & RHEL Lab', 'TanMar Safety Platform', 'Portfolio Recovery & Seaside Redesign', 'Aquarium', 'PaleHorse Intro Script'];
   const headings = screen.getAllByRole('heading', { level: 3 }).map(heading => heading.textContent);
   expect(headings.filter(title => selectedTitles.includes(title))).toEqual(selectedTitles);
-  for (const title of ['TanMar Safety Platform', 'Aquarium']) {
+  for (const title of ['Linux Ticket Generator & RHEL Lab', 'TanMar Safety Platform']) {
     expect(within(screen.getByRole('article', { name: title })).getByText('Featured case study', { exact: true })).toBeInTheDocument();
   }
   const card = screen.getByRole('article', { name: 'Linux Ticket Generator & RHEL Lab' });
-  expect(within(card).getByText('Case study', { exact: true })).toBeInTheDocument();
-  expect(within(card).queryByText('Featured case study', { exact: true })).not.toBeInTheDocument();
+  expect(within(card).getByText('Featured case study', { exact: true })).toBeInTheDocument();
   fireEvent.click(within(card).getByRole('link', { name: 'Read case study', exact: true }));
   expect(await screen.findByRole('heading', { name: 'Linux Ticket Generator & RHEL Lab', level: 2 })).toHaveFocus();
   expect(window.location.pathname).toBe('/case-studies/linux-ticket-queue');
@@ -268,8 +267,7 @@ test('case-study cards show localized project start months with machine-readable
   await screen.findByRole('heading', { name: japanese.basic_info.section_name.projects });
   const linux = japanese.case_studies.find(item => item.id === 'linux-ticket-queue');
   const linuxCard = within(screen.getByRole('article', { name: linux.title }));
-  expect(linuxCard.getByText('ケーススタディ', { exact: true })).toBeInTheDocument();
-  expect(linuxCard.queryByText('注目のケーススタディ', { exact: true })).not.toBeInTheDocument();
+  expect(linuxCard.getByText('注目のケーススタディ', { exact: true })).toBeInTheDocument();
   for (const date of dates) {
     const study = japanese.case_studies.find(item => item.id === date.id);
     const card = within(screen.getByRole('article', { name: study.title }));
@@ -454,4 +452,16 @@ test('a direct case study section link focuses the section and the writeup switc
   expect(document.documentElement).toHaveAttribute('lang', 'ja');
   expect(main.getByRole('img', { name: japanese.case_studies[0].logoAlt })).toBeInTheDocument();
   expect(main.queryByText('Directing AI-assisted development')).not.toBeInTheDocument();
+});
+
+ test('case study metadata follows navigation and employment excludes archived contracts', async () => {
+  render(<App />);
+  await screen.findByRole('heading', { name: 'Projects & case studies' });
+  expect(document.title).toContain('Systems Administration');
+  expect(screen.queryByText('XLRX Logistics LLC')).not.toBeInTheDocument();
+  expect(screen.getByText('Seattle area, WA')).toBeInTheDocument();
+  const card = screen.getByRole('article', { name: 'Linux Ticket Generator & RHEL Lab' });
+  fireEvent.click(within(card).getByRole('link', { name: 'Read case study', exact: true }));
+  await screen.findByRole('heading', { name: 'Linux Ticket Generator & RHEL Lab', level: 2 });
+  expect(document.title).toBe('Linux Ticket Generator & RHEL Lab | Trace Dugar');
 });

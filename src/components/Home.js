@@ -19,6 +19,7 @@ export default function Home({ resumeData, sharedData, labels }) {
           <h2 id="intro-heading">{resumeData.basic_info.description_header}</h2>
         </div>
         <p>{introduction}</p>
+        <p>{resumeData.basic_info.location}</p>
       </div>
       <div className="intro-actions">
         <Link className="shore-button" to="/about">{labels.readAbout}<Icon name="shore-arrow" /></Link>

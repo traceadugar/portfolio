@@ -12,7 +12,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "react-scripts build && node scripts/prerender-meta.cjs",
     "test": "react-scripts test",
     "optimize:images": "node scripts/optimize-images.cjs"
   },

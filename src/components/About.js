@@ -23,6 +23,7 @@ export default function About({ resumeBasicInfo, sharedBasicInfo, labels }) {
     </div>
     <article className="about-copy shore-panel">
       <h3>{resumeBasicInfo.description_header}</h3>
+      <p>{resumeBasicInfo.location}</p>
       {paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}
       <ul className="tech-list about-focus">
         {[labels.focusOperations, labels.focusDevelopment, labels.focusDocumentation].map(focus => <li key={focus}>{focus}</li>)}

@@ -1,15 +1,16 @@
 {
   "basic_info": {
     "description_header": "Trace Dugarです。",
-    "headline": "AI支援によるソフトウェア開発とIT・ネットワーク運用",
-    "meta_description": "Trace Dugarのポートフォリオ。AI支援によるソフトウェア開発、Pythonを用いた既存システムの刷新、IT・ネットワーク運用の経験を紹介します。",
-    "description": "IT・ネットワーク運用の経験を生かし、AIの支援を受けながらソフトウェアを開発しています。現在はPythonを用いた既存システムの刷新と、安全で保守しやすいシステムづくりに取り組んでいます。ネットワークサポート、現場での障害対応、技術文書の作成で培った経験を基に、要件を理解し、問題の原因を調べ、データを守り、結果を検証することを大切にしています。音響エンジニアリングの経験と、JavaScriptによるフルスタック開発の学習経験もあります。",
+    "headline": "システム管理 · インフラ · Linuxと自動化",
+    "meta_description": "Trace Dugarのポートフォリオ。システム管理、Linux、ネットワーク運用、自動化の経験と検証済みラボ事例。Seattle area, WA。",
+    "description": "システム管理・インフラエンジニアリングを志向するITプロフェッショナルです。Linux、UniFi、VLAN、LTE・Starlinkを用いた遠隔拠点のIT・ネットワーク運用経験があります。要件を理解し、障害を調査し、データを保護し、結果を検証することを重視しています。AI支援開発は、Python、FastAPI、SvelteKit、PostgreSQLを用いた自動化・既存システム刷新のための手段として活用しています。米国陸軍の退役軍人で、ワシントン州Fort Lewisに勤務し、以前Secretセキュリティクリアランスを保有していました。CompTIA Security+ ce（2024年）を取得し、Microsoft LearnでAZ-104を学習中です（試験目標：2026年12月）。",
     "section_name": {
       "about": "プロフィール",
       "projects": "制作実績・ケーススタディ",
       "skills": "技術スキル",
       "experience": "職歴・学習歴"
-    }
+    },
+    "location": "Seattle area, WA"
   },
   "case_studies": [
     {
@@ -18,17 +19,32 @@
       "sortDate": "2026-08",
       "title": "TanMar Safety Platform",
       "subtitle": "AI支援による既存システムの刷新とアプリケーションの統合",
-      "summary": "AIの支援を受けながら、既存の安全研修システムと複数の小規模な人事アプリケーションを、二言語対応のウェブプラットフォームへ刷新・統合しています。設計、過去のデータ移行、アクセス制御、性能改善、検証までを担当しています。",
+      "summary": "AIの支援を受けながら、既存の安全研修システムと複数の小規模な人事アプリケーションを、二言語対応のウェブプラットフォームへ刷新・統合しました。設計、過去のデータ移行、アクセス制御、性能改善、検証までを担当しました。",
       "status": "主要な業務フローはテスト環境で実装済み。本番運用に向けた強化を進めています。",
       "organization": "TanMar Communications",
       "logo": "/images/brands/tanmar-communications-color.svg",
       "logoAlt": "TanMar Communicationsのロゴ",
       "technologies": [
-        { "name": "Python", "icon": "devicon-python-plain" },
-        { "name": "FastAPI", "icon": "shore-code" },
-        { "name": "PostgreSQL", "icon": "devicon-postgresql-plain" },
-        { "name": "Svelte", "icon": "shore-code" },
-        { "name": "TypeScript", "icon": "shore-code" }
+        {
+          "name": "Python",
+          "icon": "devicon-python-plain"
+        },
+        {
+          "name": "FastAPI",
+          "icon": "shore-code"
+        },
+        {
+          "name": "PostgreSQL",
+          "icon": "devicon-postgresql-plain"
+        },
+        {
+          "name": "SvelteKit",
+          "icon": "shore-code"
+        },
+        {
+          "name": "TypeScript",
+          "icon": "shore-code"
+        }
       ],
       "sections": [
         {
@@ -429,12 +445,23 @@
       "kind": "current",
       "summary": "RHELマシン向けに制作したBashのターミナル紹介画面です。馬のASCIIアート、ANSIカラー、読みやすいシステム情報を組み合わせ、実際のスクリプト作成とAI支援による試行を通じて配置・書式・表示を調整しました。",
       "description": "RHELマシン「PaleHorse」向けに、BashとAI支援による試行を通じて独自のターミナル紹介画面を制作しました。画面をクリアし、馬のASCIIアートと赤いPaleHorseのロゴ文字を描画してから、稼働時間、ロードアベレージ、ディストリビューション、バージョンを整列した列に表示します。/etc/os-releaseからOS情報を読み込み、awkでuptimeの出力を解析し、ANSIの256色表示とBashの文字列置換でアートに色を付けています。私が見た目の方針を決め、繰り返し確認しながら書式を調整しました。読みやすいターミナル表示と、再利用できるシェル出力の書式を試した小規模なプロジェクトです。公開スクリプトとリンク先のジャーナルで、実装とアートの出典を確認できます。",
-      "images": ["/images/portfolio/palehorse-intro-script/palehorseintro.webp"],
+      "images": [
+        "/images/portfolio/palehorse-intro-script/palehorseintro.webp"
+      ],
       "imageAlt": "馬のASCIIアート、赤いロゴ文字、システム情報を表示したPaleHorseのターミナル紹介画面",
       "technologies": [
-        { "name": "Bash", "icon": "shore-code" },
-        { "name": "RHEL", "icon": "shore-network" },
-        { "name": "ANSIカラー", "icon": "shore-code" }
+        {
+          "name": "Bash",
+          "icon": "shore-code"
+        },
+        {
+          "name": "RHEL",
+          "icon": "shore-network"
+        },
+        {
+          "name": "ANSIカラー",
+          "icon": "shore-code"
+        }
       ],
       "repositoryUrl": "https://github.com/traceadugar/ProjectJournal/blob/main/April%2026/intoScript/intro.sh",
       "journalUrl": "https://github.com/traceadugar/ProjectJournal/blob/main/April%2026/introScript.md",
@@ -547,35 +574,6 @@
       "id": "virtual-store",
       "archived": true,
       "repositoryUrl": "https://github.com/TraceDugar/virtual-store"
-    },
-    {
-      "title": "XLRX Logistics LLCのウェブサイト再制作",
-      "startDate": "2023年",
-      "description": "依頼主の要望に基づき、React、HTML、CSS、Mantine UIを使ってXLRX Logistics LLCのウェブサイトを再制作しました。画面サイズに応じたレイアウトと独自の動画背景を実装しました。スクリーンショットは納品当時の画面を記録したものです。",
-      "images": [
-        "/images/portfolio/XLRX/XLRX_Homepage.jpg",
-        "/images/portfolio/XLRX/XLRX_ServicesPage.jpg",
-        "/images/portfolio/XLRX/XLRX_AboutPage.jpg",
-        "/images/portfolio/XLRX/XLRX_ContactPage.jpg",
-        "/images/portfolio/XLRX/XLRX_GalleryPage.jpg"
-      ],
-      "technologies": [
-        {
-          "name": "React",
-          "icon": "devicon-react-plain"
-        },
-        {
-          "name": "CSS 3",
-          "icon": "devicon-css3-plain"
-        },
-        {
-          "name": "JavaScript",
-          "icon": "devicon-javascript-plain"
-        }
-      ],
-      "id": "xlrx",
-      "archived": true,
-      "repositoryUrl": null
     }
   ],
   "experience": [
@@ -583,7 +581,7 @@
       "id": "tanmar",
       "company": "TanMar Communications",
       "title": "ITジェネラリスト（NOC・現場対応）",
-      "years": "2024年10月 – 現在",
+      "years": "2024年10月 – 2026年11月",
       "mainTech": [
         "Python",
         "IT・ネットワーク運用"
@@ -591,7 +589,7 @@
       "technologies": [
         "FastAPI",
         "PostgreSQL",
-        "Svelte",
+        "SvelteKit",
         "TypeScript",
         "Linux",
         "SSH",
@@ -599,8 +597,8 @@
         "技術文書の作成"
       ],
       "summary": [
-        "安全研修・法令遵守を支援するTanMar Safety Platformの開発を担当しています。既存のXojo製アプリを刷新し、三つのアプリを二言語対応のプラットフォームに統合しています。主要機能はテスト環境で実装済みで、本番運用に向けた改善を進めています。",
-        "事務所と現場のネットワーク、NOCでの設定・障害診断、GPS・ドライブレコーダーの高度な障害対応を担当しています。技術文書と研修資料も作成しています。"
+        "安全研修・法令遵守を支援するTanMar Safety Platformの開発を担当しました。既存のXojo製アプリを刷新し、三つのアプリを二言語対応のプラットフォームに統合しました。退職時点では、主要機能はテスト環境で実装済みで、本番運用に向けた改善を進めていました。",
+        "事務所と現場のネットワーク、NOCでの設定・障害診断、GPS・ドライブレコーダーの高度な障害対応を担当しました。技術文書と研修資料も作成しました。"
       ]
     },
     {
@@ -620,49 +618,9 @@
         "セキュリティ研修"
       ],
       "summary": [
-        "KnowBe4の教材に代わる社内向け情報セキュリティ研修を制作し、約14,000米ドルの費用を削減しました。SOC 2への対応も支援しました。",
-        "Freshworksの業務指標で、毎月継続してヘルプデスク担当者の上位三名に入りました。"
-      ]
-    },
-    {
-      "id": "xlrx",
-      "company": "XLRXロジスティクスLLC",
-      "title": "ソフトウェア開発者（業務委託）",
-      "years": "2023年3月 – 2023年4月",
-      "mainTech": [
-        "React"
-      ],
-      "technologies": [
-        "HTML",
-        "CSS",
-        "Mantine UI",
-        "JavaScript",
-        "メディアクエリ",
-        "レスポンシブデザイン",
-        "Git"
-      ],
-      "summary": [
-        "企業のウェブサイトを再制作し、画面サイズに応じたレイアウトと独自の動画背景を実装しました。納品当時の画面は過去のプロジェクトとして保存しています。"
-      ]
-    },
-    {
-      "id": "code-fellows",
-      "company": "コードフェローズ",
-      "title": "ソフトウェア開発課程の受講生",
-      "years": "2022年8月 – 2023年2月",
-      "mainTech": [
-        "JavaScript"
-      ],
-      "technologies": [
-        "React",
-        "Node.js",
-        "Express.js",
-        "SQL",
-        "Git",
-        "フルスタック開発"
-      ],
-      "summary": [
-        "JavaScriptによるフルスタック開発課程を修了しました。画面、API、データベース、バージョン管理を組み合わせたウェブアプリの制作を学びました。"
+        "SOC 2監査を支援する社内セキュリティ意識向上研修動画を制作し、KnowBe4コンテンツを置き換えました。KnowBe4の利用終了により年間約14,000ドルを削減しました。",
+        "Freshworksの実績指標で毎月ヘルプデスク担当者の上位3名に入りました。Exchange Online Message Traceで不審メールを調査しました。",
+        "Pluralsightの最も積極的な利用者として評価されました。"
       ]
     }
   ]

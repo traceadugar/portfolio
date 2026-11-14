@@ -2,7 +2,7 @@
 
 [![Portfolio checks](https://github.com/traceadugar/portfolio/actions/workflows/verify.yml/badge.svg?branch=main)](https://github.com/traceadugar/portfolio/actions/workflows/verify.yml)
 
-A bilingual React portfolio, published at [traceportfolio.netlify.app](https://traceportfolio.netlify.app/). It presents current IT and software development experience alongside archived project screenshots.
+A bilingual React portfolio, published at [traceportfolio.netlify.app](https://traceportfolio.netlify.app/). It leads with systems administration, infrastructure operations, Linux lab evidence and automation; AI-assisted development is a method rather than the professional headline.
 
 ## Run and verify
 
@@ -47,7 +47,7 @@ The featured TanMar Safety Platform card opens `/case-studies/tanmar-safety-plat
 
 The supplied official TanMar Communications SVG is self-hosted at `public/images/brands/tanmar-communications-color.svg`, sourced from https://www.tanmarcompanies.com/images/logos/tanmar-communications-color.svg. Its colors remain unchanged on a warm neutral plaque in both themes. The case study uses a shareable route, section anchors, and return links that preserve the shared seaside animation clock.
 
-Case-study cards and detail pages display localized project start months with semantic `time` elements, placed at the lower right of the image, logo plaque, or fallback emblem. They reuse the project cards' `project-year` badge so placement, typography, and theme colors stay uniform. Logo and emblem panels reserve room for the badge. `startDate` is the display text and `sortDate` is its machine-readable `YYYY-MM` value. TanMar began in August 2026 and remains pinned first for relevance; its date does not override that rule. The Linux case study uses April 2026, matching the ticket workflow journal.
+Case-study cards and detail pages display localized project start months with semantic `time` elements, placed at the lower right of the image, logo plaque, or fallback emblem. They reuse the project cards' `project-year` badge so placement, typography, and theme colors stay uniform. Logo and emblem panels reserve room for the badge. `startDate` is the display text and `sortDate` is its machine-readable `YYYY-MM` value. The Linux lab is pinned first and TanMar second for infrastructure relevance; project dates do not override that rule. The Linux case study uses April 2026, matching the ticket workflow journal.
 
 ## Aquarium case study
 
@@ -65,7 +65,7 @@ The Linux Ticket Generator & RHEL Lab case study opens `/case-studies/linux-tick
 
 Two completed Tier 1 exercises dated May 2, 2026 show the workflow in use: a developer login repair and excessive `wheel` membership. Their excerpts come from retained human prompts and the completion log; personal administrator and host identifiers are replaced by `<lab_admin>` and `<lab_host>`. The fictional practice accounts are preserved. Render transcript text literally, retaining commands and output across both languages while translating their captions. Attribute the SSH test to the user's closure note, because no raw SSH success transcript survives; distinguish the surviving Bash account output from the initial shell described in the completion log. The wheel comparison supports a group-membership correction under the recorded lab sudo policy, not a complete audit of all possible privilege grants. AI mentoring remains explicit.
 
-TanMar stays pinned first and Aquarium stays pinned second. Both carry the featured case-study label; the Linux ticket system uses the regular case-study label. Other case studies and entries in `current_projects` share descending `sortDate` order (`YYYY-MM`), ahead of the older project archive. Keep IDs and source URLs aligned in both locale files. Current project modals show code and optional journal links and omit the retired-demo notice used for archived projects.
+The Linux lab stays pinned first and TanMar stays pinned second. Both carry the featured case-study label; Aquarium uses the regular case-study label. Other case studies and entries in `current_projects` share descending `sortDate` order (`YYYY-MM`), ahead of the older project archive. Keep IDs and source URLs aligned in both locale files. Current project modals show code and optional journal links and omit the retired-demo notice used for archived projects.
 
 Images are optimized copies of the user's public GitHub assets:
 
@@ -78,13 +78,13 @@ Images are optimized copies of the user's public GitHub assets:
 
 The eight gallery images and two card thumbnails are self-hosted under `public/images/portfolio/portfolio-refresh/` and `public/images/thumbnails/`. The original before files remain preserved outside the website. Optimized copies retain the complete screenshot content; only the card thumbnail crops the current seaside hero. `imageCaptions` and `imageAlts` have one localized entry per image, identifying before/after, subject, and theme. New captures document the published interface before this project card was added, avoiding an image of the project embedding itself.
 
-The two pinned case studies appear first: TanMar, then Aquarium. The October portfolio project, April Linux case study, and April PaleHorse script follow in date order. Keep `sortDate` machine-readable in both locales when adding newer work. The comparison gallery offers a full-size image link for inspecting long screenshots, as well as arrows, numbered selection, Escape dismissal, and focus restoration; on narrow screens the numbered row is hidden while previous/next controls remain available.
+The two pinned case studies appear first: Linux, then TanMar. The October portfolio project, September Aquarium study, and April PaleHorse script follow in date order. Keep `sortDate` machine-readable in both locales when adding newer work. The comparison gallery offers a full-size image link for inspecting long screenshots, as well as arrows, numbered selection, Escape dismissal, and focus restoration; on narrow screens the numbered row is hidden while previous/next controls remain available.
 
 ## Deploy
 
 Netlify builds the `main` branch of [traceadugar/portfolio](https://github.com/traceadugar/portfolio), using `npm run build` and publishing `build/`. Push a tested commit to that branch, then confirm the deployment has published and check the live site.
 
-`public/_redirects` serves the React app for direct route requests. React accepts both `/about` and `/about/`. Avoid redirects that add or remove a trailing slash: Netlify normalizes paths before matching rules, which can cause a redirect loop. Asset and data URLs start at `/` so direct visits and refreshes work. Unknown routes show a translated explanation and a link home. The application does not register a service worker.
+`scripts/prerender-meta.cjs` emits route-specific HTML titles, descriptions, canonical links and Open Graph tags for all case studies and About after the build. `RouteMetadata` keeps these tags synchronized during client navigation. `public/_redirects` serves the React app for other direct route requests. React accepts both `/about` and `/about/`. Avoid redirects that add or remove a trailing slash: Netlify normalizes paths before matching rules, which can cause a redirect loop. Asset and data URLs start at `/` so direct visits and refreshes work. Unknown routes show a translated explanation and a link home. The application does not register a service worker.
 
 ## Recovery and maintenance
 
@@ -133,7 +133,7 @@ The night lighthouse uses a source-space SVG overlay anchored to the lantern thr
 
 A projected 16-second revolution accumulates elapsed video time across the four-second wave loops, so pause and visibility controls freeze both effects without a second animation clock. Light opacity uses the shared day/dusk blend, while reduced motion and unavailable media retain the static scene. The ocean videos are unchanged.
 
-Project cards show a short description, technology chips, project status, and a clear details action; XLRX's delivered client work appears first within the archive. The gallery keeps the original screenshots, supports arrow keys and Escape, and restores focus to the card on closing. About uses a biography panel without a portrait or reserved photo column, followed by qualifications and contact actions. Qualification text is based on the supplied profile. Major section headers align their round symbol to the left of the title in a shared `section-title-row`; translated titles can wrap while the symbol keeps its size.
+Project cards show a short description, technology chips, project status, and a clear details action; Archived bootcamp work remains below current infrastructure projects. The gallery keeps the original screenshots, supports arrow keys and Escape, and restores focus to the card on closing. About uses a biography panel without a portrait or reserved photo column, followed by qualifications and contact actions. Qualification text is based on the supplied profile. Major section headers align their round symbol to the left of the title in a shared `section-title-row`; translated titles can wrap while the symbol keeps its size.
 
 The sticky navigation offers page and section links, language selection, theme, and motion controls. `RouteNavigation` waits for content before following a section fragment and places keyboard focus at the destination. Navigation uses React Router links to preserve the shared video clock. A skip link, visible focus indicators, labelled icon controls, and touch targets of at least 44 pixels support keyboard and mobile use.
 

@@ -1,15 +1,16 @@
 {
   "basic_info": {
     "description_header": "Hello, I’m Trace.",
-    "headline": "AI-Assisted Software Development · IT & Network Operations",
-    "meta_description": "Trace Dugar’s portfolio: AI-assisted software development, Python application modernization, and IT and network operations.",
-    "description": "I combine IT and network operations experience with AI-assisted software development. My current work focuses on Python, application modernization, and secure, maintainable systems. Network support, field troubleshooting, and technical documentation shape how I approach engineering: understand the requirements, investigate failures, protect data, and verify the results. My background also includes audio engineering and full stack JavaScript training.",
+    "headline": "Systems Administration · Infrastructure · Linux & Automation",
+    "meta_description": "Trace Dugar: systems administration, Linux, network operations, and automation. Explore infrastructure experience and documented lab work. Seattle area, WA.",
+    "description": "I’m a systems-focused IT professional pursuing systems administration and infrastructure engineering. My experience includes Linux, UniFi networking, VLANs, and LTE/Starlink connectivity supporting remote-site IT and network operations. I focus on understanding requirements, investigating failures, protecting data, and verifying results. AI-assisted development is a method I use for automation and application modernization with Python, FastAPI, SvelteKit, and PostgreSQL. I’m a United States Army veteran who served at Fort Lewis, Washington, and previously held a United States Government Secret security clearance. I hold CompTIA Security+ ce (2024) and am studying for AZ-104 through Microsoft Learn, with an exam target of December 2026.",
     "section_name": {
       "about": "About me",
       "projects": "Projects & case studies",
       "skills": "Skills",
       "experience": "Experience"
-    }
+    },
+    "location": "Seattle area, WA"
   },
   "case_studies": [
     {
@@ -18,24 +19,39 @@
       "sortDate": "2026-08",
       "title": "TanMar Safety Platform",
       "subtitle": "AI-Assisted Modernization and Application Consolidation",
-      "summary": "Leading the AI-assisted modernization of a legacy safety-training application and several smaller HR applications into one bilingual web platform. The work spans architecture, historical-data migration, access controls, performance, and verification.",
+      "summary": "Led the AI-assisted modernization of a legacy safety-training application and several smaller HR applications into one bilingual web platform. The work spans architecture, historical-data migration, access controls, performance, and verification.",
       "status": "Core workflows implemented in the test environment; production hardening underway.",
       "organization": "TanMar Communications",
       "logo": "/images/brands/tanmar-communications-color.svg",
       "logoAlt": "TanMar Communications logo",
       "technologies": [
-        { "name": "Python", "icon": "devicon-python-plain" },
-        { "name": "FastAPI", "icon": "shore-code" },
-        { "name": "PostgreSQL", "icon": "devicon-postgresql-plain" },
-        { "name": "Svelte", "icon": "shore-code" },
-        { "name": "TypeScript", "icon": "shore-code" }
+        {
+          "name": "Python",
+          "icon": "devicon-python-plain"
+        },
+        {
+          "name": "FastAPI",
+          "icon": "shore-code"
+        },
+        {
+          "name": "PostgreSQL",
+          "icon": "devicon-postgresql-plain"
+        },
+        {
+          "name": "SvelteKit",
+          "icon": "shore-code"
+        },
+        {
+          "name": "TypeScript",
+          "icon": "shore-code"
+        }
       ],
       "sections": [
         {
           "id": "overview",
           "title": "Project overview",
           "paragraphs": [
-            "I’m leading the AI-assisted development of the TanMar Safety Platform, bringing a legacy safety-training application and several smaller HR applications into a unified bilingual web system. The project combines application modernization, requirements analysis, database redesign, security controls, performance optimization, and production-readiness planning.",
+            "I led the AI-assisted development of the TanMar Safety Platform, bringing a legacy safety-training application and several smaller HR applications into a unified bilingual web system. The project combines application modernization, requirements analysis, database redesign, security controls, performance optimization, and production-readiness planning.",
             "The goal is to consolidate employee training and related administrative workflows while preserving the business rules and historical records those systems depend on. SafetyExam, the legacy Xojo training application, provides a substantial part of the behavior being analyzed and modernized."
           ]
         },
@@ -429,12 +445,23 @@
       "kind": "current",
       "summary": "A custom Bash terminal intro for my RHEL machine, combining an ASCII horse, ANSI color, and readable system information. Built through hands-on scripting and AI-assisted iteration on layout, formatting, and terminal presentation.",
       "description": "I created a custom terminal intro for PaleHorse, my RHEL machine, using Bash and AI-assisted iteration. The script clears the terminal, renders an ASCII horse and a red PaleHorse wordmark, then displays uptime, load averages, distribution, and version in aligned columns. It reads distribution metadata from /etc/os-release, parses uptime output with awk, and uses ANSI 256-color sequences and Bash string replacement to color the artwork. I directed the visual choices and refined formatting through repeated feedback. This small project explores readable terminal presentation and reusable shell formatting patterns. The public script and linked journal document the implementation and artwork sources.",
-      "images": ["/images/portfolio/palehorse-intro-script/palehorseintro.webp"],
+      "images": [
+        "/images/portfolio/palehorse-intro-script/palehorseintro.webp"
+      ],
       "imageAlt": "PaleHorse terminal intro showing an ASCII horse, red wordmark, and system information",
       "technologies": [
-        { "name": "Bash", "icon": "shore-code" },
-        { "name": "RHEL", "icon": "shore-network" },
-        { "name": "ANSI Color", "icon": "shore-code" }
+        {
+          "name": "Bash",
+          "icon": "shore-code"
+        },
+        {
+          "name": "RHEL",
+          "icon": "shore-network"
+        },
+        {
+          "name": "ANSI Color",
+          "icon": "shore-code"
+        }
       ],
       "repositoryUrl": "https://github.com/traceadugar/ProjectJournal/blob/main/April%2026/intoScript/intro.sh",
       "journalUrl": "https://github.com/traceadugar/ProjectJournal/blob/main/April%2026/introScript.md",
@@ -547,35 +574,6 @@
       "id": "virtual-store",
       "archived": true,
       "repositoryUrl": "https://github.com/TraceDugar/virtual-store"
-    },
-    {
-      "title": "XLRX Logistics LLC Website Redesign",
-      "startDate": "2023",
-      "description": "Redesigned XLRX Logistics LLC’s website at the owner’s request using React, HTML, CSS, and Mantine UI. Implemented responsive layouts and a custom video background. The screenshots preserve the delivered version.",
-      "images": [
-        "/images/portfolio/XLRX/XLRX_Homepage.jpg",
-        "/images/portfolio/XLRX/XLRX_ServicesPage.jpg",
-        "/images/portfolio/XLRX/XLRX_AboutPage.jpg",
-        "/images/portfolio/XLRX/XLRX_ContactPage.jpg",
-        "/images/portfolio/XLRX/XLRX_GalleryPage.jpg"
-      ],
-      "technologies": [
-        {
-          "name": "React",
-          "icon": "devicon-react-plain"
-        },
-        {
-          "name": "CSS 3",
-          "icon": "devicon-css3-plain"
-        },
-        {
-          "name": "JavaScript",
-          "icon": "devicon-javascript-plain"
-        }
-      ],
-      "id": "xlrx",
-      "archived": true,
-      "repositoryUrl": null
     }
   ],
   "experience": [
@@ -583,7 +581,7 @@
       "id": "tanmar",
       "company": "TanMar Communications",
       "title": "IT Generalist NOC / Field",
-      "years": "Oct 2024 – Present",
+      "years": "Oct 2024 – Nov 2026",
       "mainTech": [
         "Python",
         "IT & Network Operations"
@@ -591,7 +589,7 @@
       "technologies": [
         "FastAPI",
         "PostgreSQL",
-        "Svelte",
+        "SvelteKit",
         "TypeScript",
         "Linux",
         "SSH",
@@ -599,8 +597,8 @@
         "Technical Documentation"
       ],
       "summary": [
-        "Lead development of TanMar Safety Platform: modernize a legacy Xojo application and consolidate three applications into a bilingual training and compliance platform. Core workflows are implemented in the test environment; production hardening is underway.",
-        "Support office and field networks, NOC provisioning and diagnostics, and complex GPS and dashcam escalations. Create technical documentation and training materials."
+        "Led development of TanMar Safety Platform: modernized a legacy Xojo application and consolidated three applications into a bilingual training and compliance platform. At the end of my tenure, core workflows were implemented in the test environment and production hardening was underway.",
+        "Supported office and field networks, NOC provisioning and diagnostics, and complex GPS and dashcam escalations. Created technical documentation and training materials."
       ]
     },
     {
@@ -620,49 +618,9 @@
         "Security Training"
       ],
       "summary": [
-        "Created in-house information security training to replace KnowBe4 content, saving nearly $14,000 while supporting SOC 2 compliance efforts.",
-        "Consistently ranked among the top three help desk agents each month based on Freshworks performance metrics."
-      ]
-    },
-    {
-      "id": "xlrx",
-      "company": "XLRX Logistics LLC",
-      "title": "Software Developer — Contractor",
-      "years": "Mar 2023 – Apr 2023",
-      "mainTech": [
-        "React"
-      ],
-      "technologies": [
-        "HTML",
-        "CSS",
-        "Mantine UI",
-        "JavaScript",
-        "Media Queries",
-        "Responsive Design",
-        "Git"
-      ],
-      "summary": [
-        "Rebuilt the company website with responsive layouts and a custom video background. The delivered version is preserved in the project archive."
-      ]
-    },
-    {
-      "id": "code-fellows",
-      "company": "Code Fellows",
-      "title": "Software Development Student",
-      "years": "Aug 2022 – Feb 2023",
-      "mainTech": [
-        "JavaScript"
-      ],
-      "technologies": [
-        "React",
-        "Node.js",
-        "Express.js",
-        "SQL",
-        "Git",
-        "Full Stack Development"
-      ],
-      "summary": [
-        "Completed full stack JavaScript training and built web applications using frontend interfaces, APIs, databases, and version control."
+        "Created an internal security awareness training video to support the SOC 2 audit and replace KnowBe4 content. Offboarded KnowBe4, saving approximately $14,000 per year.",
+        "Consistently ranked among the top three help desk agents each month based on Freshworks performance metrics. Investigated suspicious email using Exchange Online Message Trace.",
+        "Recognized as the most active Pluralsight user."
       ]
     }
   ]

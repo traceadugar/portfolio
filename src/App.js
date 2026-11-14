@@ -7,6 +7,7 @@ import About from './components/About';
 import Home from './components/Home';
 import CaseStudy from './components/CaseStudy';
 import RouteNavigation from './components/RouteNavigation';
+import RouteMetadata from './components/RouteMetadata';
 import { getLabels, readPreference, savePreference } from './translations';
 
 async function loadJson(path) {
@@ -89,6 +90,7 @@ class App extends Component {
     const labels = getLabels(language);
     return (
       <Router>
+        <RouteMetadata data={resumeData} name={sharedData?.basic_info.name} />
         <RouteNavigation ready={Boolean(resumeData && sharedData)} />
         <Header sharedData={sharedData?.basic_info} resumeBasicInfo={resumeData?.basic_info}
           labels={labels} theme={theme} changeTheme={this.changeTheme} language={language}

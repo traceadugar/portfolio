@@ -148,7 +148,7 @@
         "group": "development"
       },
       {
-        "name": "Svelte",
+        "name": "SvelteKit",
         "icon": "skill-svelte",
         "group": "development"
       },

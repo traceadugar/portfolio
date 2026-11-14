@@ -3,7 +3,7 @@ import Icon from './Icon';
 import CaseStudyCard from './CaseStudyCard';
 
 const ProjectDetailsModal = lazy(() => import('./ProjectDetailsModal'));
-const pinnedCaseStudies = ['tanmar-safety-platform', 'aquarium'];
+const pinnedCaseStudies = ['linux-ticket-queue', 'tanmar-safety-platform'];
 
 export default function Projects({ resumeProjects = [], resumeCaseStudies = [], resumeCurrentProjects = [], resumeBasicInfo, labels }) {
   const [selectedProject, setSelectedProject] = useState(null);
