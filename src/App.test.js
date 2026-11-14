@@ -93,13 +93,13 @@ test('switching languages reuses shared and previously loaded content', async ()
   ]);
 });
 
-test('archived projects expose accessible details and repositories with working image controls', async () => {
+test('archived projects expose accessible details without retired source links', async () => {
   render(<App />);
   const project = await screen.findByRole('button', { name: 'View project details: Salmon Cookies' });
   fireEvent.click(project);
   const dialog = await screen.findByRole('dialog', { name: 'Salmon Cookies' });
   expect(dialog).toBeInTheDocument();
-  expect(screen.getByRole('link', { name: 'View repository' })).toHaveAttribute('href', 'https://github.com/TraceDugar/cookie-stand');
+  expect(screen.queryByRole('link', { name: 'View repository' })).not.toBeInTheDocument();
   fireEvent.click(screen.getByRole('button', { name: 'Next image' }));
   expect(screen.getByRole('img', { name: 'Salmon Cookies — screenshot 2' })).toHaveAttribute('src', '/images/portfolio/salmon-cookies/SalesPage.png');
   fireEvent.click(screen.getByRole('button', { name: 'Close project details' }));

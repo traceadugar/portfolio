@@ -492,8 +492,7 @@
         }
       ],
       "id": "salmon-cookies",
-      "archived": true,
-      "repositoryUrl": "https://github.com/TraceDugar/cookie-stand"
+      "archived": true
     },
     {
       "title": "商品投票アプリ「オッドダック」",
@@ -517,8 +516,7 @@
         }
       ],
       "id": "odd-duck",
-      "archived": true,
-      "repositoryUrl": "https://github.com/TraceDugar/odd-duck"
+      "archived": true
     },
     {
       "title": "権限制御付きタスク管理アプリ",
@@ -543,8 +541,7 @@
         }
       ],
       "id": "todo-app",
-      "archived": true,
-      "repositoryUrl": "https://github.com/TraceDugar/todo-app"
+      "archived": true
     },
     {
       "title": "オンラインストア",
@@ -572,8 +569,7 @@
         }
       ],
       "id": "virtual-store",
-      "archived": true,
-      "repositoryUrl": "https://github.com/TraceDugar/virtual-store"
+      "archived": true
     }
   ],
   "experience": [
