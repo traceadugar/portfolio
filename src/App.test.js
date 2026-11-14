@@ -58,7 +58,7 @@ test('experience shows employment separately from training', async () => {
   render(<App />);
   await screen.findByRole('heading', { name: 'Experience' });
   expect(screen.getAllByRole('heading', { level: 4 }).map(element => element.textContent)).toEqual([
-    'TanMar Communications', 'Ethos Risk Services',
+    'TanMar Communications', 'Ethos Risk Services', 'XLRX Logistics LLC',
   ]);
   expect(screen.queryByText('Sep 2023 – Present')).not.toBeInTheDocument();
   expect(screen.getByText('Sep 2023 – Oct 2024')).toBeInTheDocument();
@@ -74,7 +74,7 @@ test('Japanese changes the document language, navigation, timeline dates and des
   expect(screen.getByRole('link', { name: 'ホーム', exact: true })).toBeInTheDocument();
   expect(screen.getByText('2024年10月 – 2026年11月')).toBeInTheDocument();
   expect(screen.getByText('2023年9月 – 2024年10月')).toBeInTheDocument();
-  expect(screen.queryByText('メディアクエリ')).not.toBeInTheDocument();
+  expect(screen.getByText('メディアクエリ')).toBeInTheDocument();
   expect(document.body.textContent).not.toMatch(/Current|Media Queries|Responsive Design|File Conversions|IT Support Technician/);
   expect(window.localStorage.getItem('portfolioLanguage')).toBe('ja');
 });
@@ -454,11 +454,12 @@ test('a direct case study section link focuses the section and the writeup switc
   expect(main.queryByText('Directing AI-assisted development')).not.toBeInTheDocument();
 });
 
- test('case study metadata follows navigation and employment excludes archived contracts', async () => {
+ test('case study metadata follows navigation and employment includes restored XLRX contract', async () => {
   render(<App />);
   await screen.findByRole('heading', { name: 'Projects & case studies' });
   expect(document.title).toContain('Systems Administration');
-  expect(screen.queryByText('XLRX Logistics LLC')).not.toBeInTheDocument();
+  expect(screen.getByText('XLRX Logistics LLC')).toBeInTheDocument();
+  expect(screen.getByText('Mar 2023 – Apr 2023')).toBeInTheDocument();
   expect(screen.getByText('Seattle area, WA')).toBeInTheDocument();
   const card = screen.getByRole('article', { name: 'Linux Ticket Generator & RHEL Lab' });
   fireEvent.click(within(card).getByRole('link', { name: 'Read case study', exact: true }));

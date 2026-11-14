@@ -570,6 +570,35 @@
       ],
       "id": "virtual-store",
       "archived": true
+    },
+    {
+      "title": "XLRX Logistics LLC Website Redesign",
+      "startDate": "2023",
+      "description": "Redesigned XLRX Logistics LLC’s website at the owner’s request using React, HTML, CSS, and Mantine UI. Implemented responsive layouts and a custom video background. The screenshots preserve the delivered version.",
+      "images": [
+        "/images/portfolio/XLRX/XLRX_Homepage.jpg",
+        "/images/portfolio/XLRX/XLRX_ServicesPage.jpg",
+        "/images/portfolio/XLRX/XLRX_AboutPage.jpg",
+        "/images/portfolio/XLRX/XLRX_ContactPage.jpg",
+        "/images/portfolio/XLRX/XLRX_GalleryPage.jpg"
+      ],
+      "technologies": [
+        {
+          "name": "React",
+          "icon": "devicon-react-plain"
+        },
+        {
+          "name": "CSS 3",
+          "icon": "devicon-css3-plain"
+        },
+        {
+          "name": "JavaScript",
+          "icon": "devicon-javascript-plain"
+        }
+      ],
+      "id": "xlrx",
+      "archived": true,
+      "repositoryUrl": null
     }
   ],
   "experience": [
@@ -614,9 +643,30 @@
         "Security Training"
       ],
       "summary": [
-        "Created an internal security awareness training video to support the SOC 2 audit and replace KnowBe4 content. Offboarded KnowBe4, saving approximately $14,000 per year.",
+        "Created an internal security awareness training video to support the SOC 2 audit. In-house training replaced KnowBe4, saving approximately $14,000 per year.",
         "Consistently ranked among the top three help desk agents each month based on Freshworks performance metrics. Investigated suspicious email using Exchange Online Message Trace.",
         "Recognized as the most active Pluralsight user."
+      ]
+    },
+    {
+      "id": "xlrx",
+      "company": "XLRX Logistics LLC",
+      "title": "Software Developer — Contractor",
+      "years": "Mar 2023 – Apr 2023",
+      "mainTech": [
+        "React"
+      ],
+      "technologies": [
+        "HTML",
+        "CSS",
+        "Mantine UI",
+        "JavaScript",
+        "Media Queries",
+        "Responsive Design",
+        "Git"
+      ],
+      "summary": [
+        "Rebuilt the company website with responsive layouts and a custom video background. The delivered version is preserved in the project archive."
       ]
     }
   ]

@@ -570,6 +570,35 @@
       ],
       "id": "virtual-store",
       "archived": true
+    },
+    {
+      "title": "XLRX Logistics LLCのウェブサイト再制作",
+      "startDate": "2023年",
+      "description": "依頼主の要望に基づき、React、HTML、CSS、Mantine UIを使ってXLRX Logistics LLCのウェブサイトを再制作しました。画面サイズに応じたレイアウトと独自の動画背景を実装しました。スクリーンショットは納品当時の画面を記録したものです。",
+      "images": [
+        "/images/portfolio/XLRX/XLRX_Homepage.jpg",
+        "/images/portfolio/XLRX/XLRX_ServicesPage.jpg",
+        "/images/portfolio/XLRX/XLRX_AboutPage.jpg",
+        "/images/portfolio/XLRX/XLRX_ContactPage.jpg",
+        "/images/portfolio/XLRX/XLRX_GalleryPage.jpg"
+      ],
+      "technologies": [
+        {
+          "name": "React",
+          "icon": "devicon-react-plain"
+        },
+        {
+          "name": "CSS 3",
+          "icon": "devicon-css3-plain"
+        },
+        {
+          "name": "JavaScript",
+          "icon": "devicon-javascript-plain"
+        }
+      ],
+      "id": "xlrx",
+      "archived": true,
+      "repositoryUrl": null
     }
   ],
   "experience": [
@@ -614,9 +643,30 @@
         "セキュリティ研修"
       ],
       "summary": [
-        "SOC 2監査を支援する社内セキュリティ意識向上研修動画を制作し、KnowBe4コンテンツを置き換えました。KnowBe4の利用終了により年間約14,000ドルを削減しました。",
+        "SOC 2監査を支援する社内セキュリティ意識向上研修動画を制作しました。社内研修がKnowBe4に代わり、年間約14,000ドルを削減しました。",
         "Freshworksの実績指標で毎月ヘルプデスク担当者の上位3名に入りました。Exchange Online Message Traceで不審メールを調査しました。",
         "Pluralsightの最も積極的な利用者として評価されました。"
+      ]
+    },
+    {
+      "id": "xlrx",
+      "company": "XLRXロジスティクスLLC",
+      "title": "ソフトウェア開発者（業務委託）",
+      "years": "2023年3月 – 2023年4月",
+      "mainTech": [
+        "React"
+      ],
+      "technologies": [
+        "HTML",
+        "CSS",
+        "Mantine UI",
+        "JavaScript",
+        "メディアクエリ",
+        "レスポンシブデザイン",
+        "Git"
+      ],
+      "summary": [
+        "企業のウェブサイトを再制作し、画面サイズに応じたレイアウトと独自の動画背景を実装しました。納品当時の画面は過去のプロジェクトとして保存しています。"
       ]
     }
   ]
