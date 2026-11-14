@@ -393,7 +393,7 @@ test('the PaleHorse script opens current project details with code and journal l
   const dialog = within(await screen.findByRole('dialog', { name: 'PaleHorse Intro Script' }));
   expect(dialog.queryByText('Archived project')).not.toBeInTheDocument();
   expect(dialog.queryByText(/Live demos are retired/)).not.toBeInTheDocument();
-  expect(dialog.getByRole('link', { name: /View repository/ })).toHaveAttribute('href', 'https://github.com/traceadugar/ProjectJournal/blob/main/April%2026/intoScript/intro.sh');
+  expect(dialog.getByRole('link', { name: /View repository/ })).toHaveAttribute('href', 'https://github.com/traceadugar/ProjectJournal/blob/main/April%2026/introScript/intro.sh');
   expect(dialog.getByRole('link', { name: /Read project journal/ })).toHaveAttribute('href', 'https://github.com/traceadugar/ProjectJournal/blob/main/April%2026/introScript.md');
   expect(dialog.getByRole('img')).toHaveAttribute('src', '/images/portfolio/palehorse-intro-script/palehorseintro.webp');
   fireEvent.click(dialog.getByRole('button', { name: 'Close project details' }));

@@ -20,7 +20,7 @@
       "title": "TanMar Safety Platform",
       "subtitle": "AI-Assisted Modernization and Application Consolidation",
       "summary": "Led the AI-assisted modernization of a legacy safety-training application and several smaller HR applications into one bilingual web platform. The work spans architecture, historical-data migration, access controls, performance, and verification.",
-      "status": "Core workflows implemented in the test environment; production hardening underway.",
+      "status": "At the end of my tenure in November 2026, core workflows were implemented in the test environment and production hardening was underway.",
       "organization": "TanMar Communications",
       "logo": "/images/brands/tanmar-communications-color.svg",
       "logoAlt": "TanMar Communications logo",
@@ -106,9 +106,9 @@
         },
         {
           "id": "status",
-          "title": "Current status",
+          "title": "Status at departure — November 2026",
           "paragraphs": [
-            "Core employee, management, reporting, and training workflows are implemented in the authoritative test environment. Current work focuses on operational hardening, portable deployment configuration, and final physical-device and accessibility acceptance before a production rollout."
+            "At the end of my tenure in November 2026, core employee, management, reporting, and training workflows were implemented in the authoritative test environment. Remaining work included operational hardening, portable deployment configuration, and final physical-device and accessibility acceptance before a production rollout. This is a historical project snapshot, not a claim of current employment or subsequent deployment."
           ]
         }
       ]
@@ -463,7 +463,7 @@
           "icon": "shore-code"
         }
       ],
-      "repositoryUrl": "https://github.com/traceadugar/ProjectJournal/blob/main/April%2026/intoScript/intro.sh",
+      "repositoryUrl": "https://github.com/traceadugar/ProjectJournal/blob/main/April%2026/introScript/intro.sh",
       "journalUrl": "https://github.com/traceadugar/ProjectJournal/blob/main/April%2026/introScript.md",
       "attribution": "ASCII art and font sources are documented in the linked journal."
     }

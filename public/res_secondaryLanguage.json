@@ -20,7 +20,7 @@
       "title": "TanMar Safety Platform",
       "subtitle": "AI支援による既存システムの刷新とアプリケーションの統合",
       "summary": "AIの支援を受けながら、既存の安全研修システムと複数の小規模な人事アプリケーションを、二言語対応のウェブプラットフォームへ刷新・統合しました。設計、過去のデータ移行、アクセス制御、性能改善、検証までを担当しました。",
-      "status": "主要な業務フローはテスト環境で実装済み。本番運用に向けた強化を進めています。",
+      "status": "2026年11月の退職時点で、主要な業務フローはテスト環境で実装済みで、本番運用に向けた強化は進行中でした。",
       "organization": "TanMar Communications",
       "logo": "/images/brands/tanmar-communications-color.svg",
       "logoAlt": "TanMar Communicationsのロゴ",
@@ -106,9 +106,9 @@
         },
         {
           "id": "status",
-          "title": "現在の進捗",
+          "title": "退職時点の状況 — 2026年11月",
           "paragraphs": [
-            "主要な従業員向け機能、管理機能、報告機能、研修業務フローは、基準となるテスト環境で実装済みです。現在は本番展開に向けて、運用上の堅牢性の強化、環境間で移しやすいデプロイ設定、実機とアクセシビリティに関する最終的な受け入れ確認を進めています。"
+            "2026年11月の退職時点で、主要な従業員向け機能、管理機能、報告機能、研修業務フローは、基準となるテスト環境で実装済みでした。残作業には、運用上の堅牢性の強化、環境間で移しやすいデプロイ設定、実機とアクセシビリティに関する最終的な受け入れ確認が含まれていました。これは当時の記録であり、現在の雇用やその後の本番展開を示すものではありません。"
           ]
         }
       ]
@@ -463,7 +463,7 @@
           "icon": "shore-code"
         }
       ],
-      "repositoryUrl": "https://github.com/traceadugar/ProjectJournal/blob/main/April%2026/intoScript/intro.sh",
+      "repositoryUrl": "https://github.com/traceadugar/ProjectJournal/blob/main/April%2026/introScript/intro.sh",
       "journalUrl": "https://github.com/traceadugar/ProjectJournal/blob/main/April%2026/introScript.md",
       "attribution": "ASCIIアートとフォントの出典は、リンク先のジャーナルに記載しています。"
     }
